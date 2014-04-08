@@ -3,9 +3,13 @@
 @section('content')
 <style>
 	#mainContent {
-		margin-top: 30px;
+		margin-top: 90px;
 		margin-left: 75px;
 		width: 220px;
+	}
+
+	body {
+		background-color: ;
 	}
 </style>
 
