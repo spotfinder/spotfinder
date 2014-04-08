@@ -51,8 +51,6 @@
 	{{ Form::close() }}
 	  
 </div>
-<div class="col-sm-offset-2 col-sm-10">
-	<a href="#" type="button" class="btn btn-primary">Return to Index</a>
-</div>
+
 @stop
 
