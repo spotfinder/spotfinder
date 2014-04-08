@@ -3,7 +3,27 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends BaseModel implements UserInterface, RemindableInterface {
+// Establish constants for user roles keep in the user table as role_id
+	const ROLE_ADMIN = 1;
+	const ROLE_STAND = 2;
+
+	public static $ROLES = array(
+		array('id' => 1, 'name' => 'Admin'),
+		array('id' => 2, 'name' =>'Stand')
+	);
+
+// Validation rules
+    public static $signin_rules = array(
+    	'email'     => 'required|max:100',
+    	'password'  =>  'required|max:200'		
+	);
+
+	public static $signup_rules = array(
+    	'email'     => 'required|max:100',
+    	'password'  =>  'required|max:200|confirmed',
+    	'password_confirmation' => 'min:2'		
+	);
 
 	/**
 	 * The database table used by the model.
@@ -18,7 +38,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password');
-
+	/**
+	 * TRelationship for has many posts
+	 */
+	
 	/**
 	 * Get the unique identifier for the user.
 	 *
@@ -48,5 +71,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->email;
 	}
+
+	/**
+	 * Mutator sets email to lowercase
+	 *
+	 */
+	public function setEmailAttribute($value) {
+    	$this->attributes['email'] = strtolower($value);
+	}
+
+	/**
+	 * Mutator to hash all passwords
+	 *
+	 */
+	public function setPasswordAttribute($value) {
+    	$this->attributes['password'] = Hash::make($value);
+	}
+	
+	
+
+
 
 }

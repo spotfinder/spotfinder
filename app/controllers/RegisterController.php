@@ -7,8 +7,8 @@ class RegisterController extends BaseController {
 	 */
 
 	public function __construct(){
-		// Include parent constructor
-		parent::__construct();
+		// // Include parent constructor
+		// parent::__construct();
 
 		// Run an auth filter before all methods except index and show
 		$this->beforeFilter('auth', ['except' => ['index', 'show', 'create', 'store']]);
