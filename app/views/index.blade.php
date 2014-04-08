@@ -1,38 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-
-<!-- ******HEADER****** --> 
-    <header id="top" class="header navbar-fixed-top">  
-        <div class="container">            
-            <h1 class="logo pull-left">
-                <a class="scrollto" href="#promo">
-                    <img id="logo-image" class="logo-image" src="assets/images/logo/logo.png" alt="Logo">
-                    <span class="logo-title">SpotFinder</span>
-                </a>
-            </h1><!--//logo-->              
-            <nav id="main-nav" class="main-nav navbar-right" role="navigation">
-                <div class="navbar-header">
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button><!--//nav-toggle-->
-                </div><!--//navbar-header-->            
-                <div class="navbar-collapse collapse" id="navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active nav-item sr-only"><a class="scrollto" href="#promo">Home</a></li>
-                        <li class="nav-item"><a class="scrollto" href="#features">Features</a></li>
-                        <li class="nav-item"><a class="scrollto" href="#how">How it works</a></li>
-                        <li class="nav-item"><a class="scrollto" href="#faq">FAQ</a></li>
-                        <li class="nav-item"><a class="scrollto" href="#story">Story</a></li>
-                        <li class="nav-item last"><a class="scrollto" href="#contact">Contact</a></li>
-                    </ul><!--//nav-->
-                </div><!--//navabr-collapse-->
-            </nav><!--//main-nav-->           
-        </div>
-    </header><!--//header-->
     
     <!-- ******PROMO****** --> 
     <section id="promo" class="promo section offset-header has-pattern">
@@ -41,21 +9,16 @@
                 <div class="overview col-md-8 col-sm-12 col-xs-12">
                     <h2 class="title">SpotFinder makes parking easy!</h2>
                     <ul class="summary">
-                        <li>Showcase and promote your mobile app to the web</li>
-                        <li>Demonstrate how the app works</li>
-                        <li>Provide answers to common questions</li>
-                        <li>Tell the world about the story behind the app</li>
+                        <li>Find a spot before you leave!</li>
+                        <li>Reserve and pay right away!</li>
+                        <li>Get a text with driving directions!</li>
+                        <li>Make it to wherever you're going on time!</li>
                     </ul>
                     <div class="download-area">
-                        <ul class="btn-group list-inline">
-                            <li class="ios-btn"><a href="#">Download from the App Store</a></li>
-                            <li class="android-btn"><a href="#">Get it from Google Play</a></li>
-                        </ul>
-                        <div class="note text-center">
-                            <p>30% OFF - Now only $0.99<br />Offer ends 31st March</p>
-                            <span class="left-arrow"></span>
-                            <span class="right-arrow"></span>
-                        </div><!--//note-->
+                        <p>
+                          <button type="button" class="btn btn-default btn-lg"><a href="{{{ action('HomeController@showLogin') }}}">Login</button></a>
+                          <button type="button" class="btn btn-default btn-lg"><a href="{{{ action('RegisterController@index') }}}">Sign Up</a></button>
+                        </p>
                     </div>
                 </div><!--//overview-->
                 

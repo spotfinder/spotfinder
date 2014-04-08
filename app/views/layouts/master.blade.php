@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>Responsive website template for mobile app</title>
+    <title>SpotFinder</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,6 +29,48 @@
 </head> 
 
 <body data-spy="scroll">
+    
+    <!-- ******HEADER****** --> 
+    <header id="top" class="header navbar-fixed-top">  
+        <div class="container">            
+            <h1 class="logo pull-left">
+                <a class="scrollto" href="#promo">
+                    <img id="logo-image" class="logo-image" src="assets/images/logo/logo.png" alt="Logo">
+                    <span class="logo-title">SpotFinder</span>
+                </a>
+            </h1><!--//logo-->              
+            <nav id="main-nav" class="main-nav navbar-right" role="navigation">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button><!--//nav-toggle-->
+                </div><!--//navbar-header-->            
+                <div class="navbar-collapse collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active nav-item sr-only"><a class="scrollto" href="#promo">Home</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#features">Features</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#how">How it works</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#faq">FAQ</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#story">Story</a></li>
+                        <li class="nav-item last"><a class="scrollto" href="#contact">Contact</a></li>
+                        <li class="dropdown">
+                        @if (Auth::check())
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">MY ACCOUNT<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Reserve a spot!</a></li>
+                            <li><a href="{{{ action('RegisterController@update') }}}">Edit My Account</a></li>
+                            <li><a href="{{{ action('HomeController@logout') }}}">Logout</a></li>
+                        </ul>
+                        </li>
+                        @endif
+                    </ul><!--//nav-->
+                </div><!--//navabr-collapse-->
+            </nav><!--//main-nav-->           
+        </div>
+    </header><!--//header-->
 
 @yield('content')
 

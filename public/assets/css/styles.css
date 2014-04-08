@@ -404,7 +404,7 @@ blockquote {
   margin-bottom: 15px;
 }
 .promo .overview .btn-group li a {
-  background-color: #317b5e;
+/*  background-color: #317b5e;*/
   background-repeat: no-repeat;
   background-position: left top;
   -webkit-border-radius: 4px;
