@@ -21,7 +21,7 @@
       {{ Form::close() }}
            <div class = "text-center"> 
 	           <h4> Not an existing user?</h4>
-	            <a href = "#"> Sign Up!</a>
+	            <a href = "{{{ action('RegisterController@index') }}}"> Sign Up!</a>
 	       </div>
        </div>
 </body>
