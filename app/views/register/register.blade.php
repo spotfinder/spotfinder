@@ -9,7 +9,8 @@
 	}
 
 	body {
-		background-color: ;
+		background-color: #4EA784;
+		background-image: url("/assets/images/patterns/pattern-1.png");
 	}
 </style>
 
