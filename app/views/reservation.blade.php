@@ -30,19 +30,14 @@
 					<option>Downtown</option>
 					<option>Central Park</option>
 				</select> </p>
-	    	<!-- <p>{{ Form::label('first_name', 'First Name') }}
-	    	   {{ Form::text('first_name', null, array('class' => 'form-control', 'placeholder' => 'First Name')) }}</p>
-		    <p>{{ Form::label('last_name', 'Last Name') }}
-	           {{ Form::text('last_name', null, array('class' => 'form-control', 'placeholder' => 'Last Name')) }}</p> -->
 	        <p>{{ Form::label('arrival_date', 'Arrival Date') }}
-               <input type="date" class="form-control" id="inputDate" placeholder=""></p>
+               <input type="date" class="form-control" id="arrival_date" placeholder=""></p>
             <p>{{ Form::label('start_time', 'Start Time') }}
-               <input type="time" class="form-control" id="inputStartTime" placeholder=""></p>
+               <input type="time" class="form-control" id="start_time" placeholder=""></p>
+            <p>{{ Form::label('departure_date', 'Departure Date') }}
+               <input type="date" class="form-control" id="departure_date" placeholder=""></p>
             <p>{{ Form::label('end_time', 'End Time') }}
-               <input type="time" class="form-control" id="inputEndTime" placeholder=""></p>		
-			<!-- <p>{{ Form::label('arrival_date', 'Arrival Date') }}		
-			   {{ Form::selectMonth('month', null, [])}}
-			   {{ Form::selectYear('year', 2014, 2020, null, []) }}</p> -->
+               <input type="time" class="form-control" id="end_time" placeholder=""></p>	
 			<p>{{ Form::label('remember_me', 'Remember me!') }}
 			   {{ Form::checkbox('remember_me', 'value', true)}}<p>
 	        <p>{{ Form::submit('Submit', array('class' => 'btn btn-lg btn-primary btn-block')) }}</p>
