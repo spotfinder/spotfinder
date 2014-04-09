@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReservationsTable extends Migration {
+class CreateLotsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,16 +13,17 @@ class CreateReservationsTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('reservations', function($table)
+		Schema::create('lots', function($table)
 		{
 		    $table->increments('id')->unsigned();
+		    $table->string('lot_name', 50);
+		    $table->string('street_address', 50);
+		    $table->integer('capacity');
+		    $table->float('lat');
+		    $table->float('long');
+		    $table->float('cost');
 		    $table->integer('area_id')->unsigned();
-		    $table->date('arrival_date');
-		    $table->time('arrival_time');
-		    $table->date('departure_date');
-		    $table->time('departure_time');
-		    $table->integer('spot_number')->unsigned();
-		    $table->integer('user_id')->unsigned();
+		    $table->string('area_name', 50);
 		
 		});
 	}
@@ -35,7 +36,7 @@ class CreateReservationsTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::drop('reservations');
+		Schema::drop('lots');
 	}
 
 }
