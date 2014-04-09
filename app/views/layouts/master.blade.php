@@ -59,13 +59,13 @@
                         <li class="nav-item last"><a class="scrollto" href="#contact">Contact</a></li>
                         <li class="dropdown">
                         @if (Auth::check())
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">MY ACCOUNT<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Reserve a spot!</a></li>
-                            <li><a href="{{{ action('RegisterController@update') }}}">Edit My Account</a></li>
-                            <li><a href="{{{ action('HomeController@logout') }}}">Logout</a></li>
-                        </ul>
-                        </li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">MY ACCOUNT<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Reserve a spot!</a></li>
+                                <li><a href="{{{ action('RegisterController@update') }}}">Edit My Account</a></li>
+                                <li><a href="{{{ action('HomeController@logout') }}}">Logout</a></li>
+                            </ul>
+                            </li>
                         @endif
                     </ul><!--//nav-->
                 </div><!--//navabr-collapse-->
@@ -73,6 +73,14 @@
         </div>
     </header><!--//header-->
 
+    <!-- Success and Error messages when submiting forms -->
+        @if (Session::has('successMessage'))
+            <div class="alert alert-success" style="text-align:center">{{{ Session::get('successMessage') }}}</div>
+        @endif
+        @if (Session::has('errorMessage'))
+            <div class="alert alert-danger" style="text-align:center">{{{ Session::get('errorMessage') }}}</div>
+        @endif
+        
 @yield('content')
 
 @yield('bottom-script')
@@ -91,7 +99,14 @@
     <script type="text/javascript" src="assets/js/main.js"></script>
     <!--[if !IE]>--> 
     <script type="text/javascript" src="assets/js/animations.js"></script> 
-    <!--<![endif]-->         
+    <!--<![endif]--> 
+
+    <!-- Fade out error or success messages after forms are submitted -->
+    <script type="text/javascript">
+        $('.alert-success').fadeOut(3000);
+        $('.alert-danger').fadeOut(3000);
+    </script>
+
 </body>
 
 </html> 
