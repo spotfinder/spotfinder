@@ -26,6 +26,12 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style type="text/css">
+        .alert{
+            margin-top: 90px;
+        }
+    </style>
 @yield('top-script')
 </head> 
 
@@ -99,14 +105,15 @@
     <script type="text/javascript" src="assets/js/main.js"></script>
     <!--[if !IE]>--> 
     <script type="text/javascript" src="assets/js/animations.js"></script> 
-    <!--<![endif]--> 
+    <!--<![endif]-->
 
-    <!-- Fade out error or success messages after forms are submitted -->
+        <!-- Fade out error or success messages after forms are submitted -->
     <script type="text/javascript">
-        $('.alert-success').fadeOut(3000);
-        $('.alert-danger').fadeOut(3000);
-    </script>
-
+        $('.alert-success').fadeIn(5000);
+        $('.alert-success').fadeOut(10000);
+        $('.alert-success').fadeIn(5000);
+        $('.alert-danger').fadeOut(10000);
+    </script> 
 </body>
 
 </html> 
