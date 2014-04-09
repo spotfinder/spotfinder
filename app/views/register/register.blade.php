@@ -6,8 +6,7 @@
 @section('content')
 	<style>
 		#mainContent {
-			margin-top: 100px;
-			
+			margin-top: 105px;	
 		}
 
 		h2{
@@ -30,10 +29,8 @@
 @else
 	<h2> Edit Profile </h2>
 
-
 	{{ Form::model($user, array('action' => array('RegisterController@update', $user->id), 'method' => 'put', 'class' => 'form-signin' )) }}
 	
-
 @endif
 
 
