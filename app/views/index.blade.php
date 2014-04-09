@@ -123,7 +123,7 @@
                         <i class="fa fa-rocket"></i>                
                     </div><!--//icon-->
                     <div class="content">
-                        <h3 class="title">Don't Know How To Get There?</h3>
+                        <h3 class="title">Don't Know How To Get There</h3>
                         <p> SpotFinder will send you a text with a confirmation number and street address to the lot! No more driving around in circles! </p>  
                     </div><!--//content-->               
                 </div><!--//item-->
@@ -219,8 +219,7 @@
             <div class="row">
                 <div class="content col-md-6 col-sm-6 col-xs-12 text-center">
                     <h2 class="title">Story behind the app</h2>
-                    <p>Aliquam euismod vehicula lacus, non congue ante pulvinar a. Nunc eu posuere risus, ut condimentum ante. Suspendisse at turpis sollicitudin odio congue lobortis vitae nec nisi. Nullam sodales at libero in lacinia. Nullam vel nibh pulvinar, interdum purus tristique, iaculis turpis. Integer imperdiet tincidunt erat vel gravida. Suspendisse tincidunt orci sed leo euismod, quis ultrices ipsum lobortis. Sed viverra dui et elit accumsan accumsan. Donec lorem turpis, iaculis ac fermentum nec, dignissim sed nisi. Nunc condimentum turpis arcu, eu aliquet lorem eleifend ut. Integer at lorem nec diam elementum convallis vel vel nulla.</p>
-                    <p>Nullam vel nibh pulvinar, interdum purus tristique, iaculis turpis. Integer imperdiet tincidunt erat vel gravida. eleifend ut. Integer at lorem nec diam elementum convallis vel vel nulla.</p>
+                    <p>Parking was a pain so Karina and Mike came up with SpotFinder. The easy way to reserve a parking spot before you even get into a car! No driving in circles around full lots or having to park blocks away in the shady part of town!</p>
                 </div><!--//content-->
                 <div class="team col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1 col-xs-12">
                     <div class="row">
@@ -269,14 +268,14 @@
                     <div class="quote-box">
                         <i class="fa fa-quote-left"></i>
                         <blockquote class="quote">
-                            <a href="#">@Delta</a> I love this #app. Lorem ipsum dolor sit amet, consectetur adipiscing elit. #Mobile
+                            <a href="#">@spotfinder</a> I love this #app. Spotfinder makes parking so easy!
                         </blockquote><!--//quote-->
                     </div><!--//quote-box-->
                     <div class="people row">
                         <img class="img-rounded user-pic col-md-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1" src="assets/images/people/people-1.png" alt="" />
                         <p class="details text-center pull-left">
                             <span class="name">Christine Heal</span>
-                            <span class="title">Bristol, UK</span>
+                            <span class="title">San Antonio, Tx</span>
                         </p>                        
                     </div><!--//people-->
                 </div><!--//item-->
@@ -284,14 +283,14 @@
                     <div class="quote-box">
                         <i class="fa fa-quote-left"></i>
                         <blockquote class="quote">
-                            <a href="#">@Delta</a> consectetur adipiscing elit. #DeltaApp Sed bibendum velit quis nunc laoreet dictum id nisl id lacinia. 
+                            <a href="#">@spotfinder</a> Oh snap! I love spotfinder! 
                         </blockquote><!--//quote-->
                     </div><!--//quote-box-->
                     <div class="people row">
                         <img class="img-rounded user-pic col-md-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1" src="assets/images/people/people-2.png" alt="" />
                         <p class="details text-center pull-left">
                             <span class="name">Ben Rousseau</span>
-                            <span class="title">Paris, France</span>
+                            <span class="title">San Antonio, Tx</span>
                         </p>                        
                     </div><!--//people-->
                 </div><!--//item-->
@@ -299,14 +298,14 @@
                     <div class="quote-box">
                         <i class="fa fa-quote-left"></i>
                         <blockquote class="quote">
-                        I find DeltaApp very useful - Lorem ipsum dolor sit amet, check it out: <a href="#">http://bit.ly/1gB9UBR</a>
+                        I find SpotFinder very useful - I never have to stress about finding parking again!
                         </blockquote><!--//quote-->
                     </div><!--//quote-box-->
                     <div class="people row">
                         <img class="img-rounded user-pic col-md-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1" src="assets/images/people/people-3.png" alt="" />
                         <p class="details text-center pull-left">
                             <span class="name">Mike Chan</span>
-                            <span class="title">Hongkong, China</span>
+                            <span class="title">San Antonio, Tx</span>
                         </p>                        
                     </div><!--//people-->
                 </div><!--//item-->
@@ -316,14 +315,14 @@
                     <div class="quote-box">
                         <i class="fa fa-quote-left"></i>
                         <blockquote class="quote">
-                         DeltaApp is fab lorem ipsum dolor sit amet proin sagittis sodales pulvinar Mauris id arcu eget augue condimentum euismod: <a href="#">http://bit.ly/1gB9UBR</a>
+                         Spotfinder rocks my world! I use it every week!
                         </blockquote><!--//quote-->
                     </div><!--//quote-box-->
                     <div class="people row">
                         <img class="img-rounded user-pic col-md-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1" src="assets/images/people/people-4.png" alt="" />
                         <p class="details text-center pull-left">
                             <span class="name">Annie Lee</span>
-                            <span class="title">Berlin, Germany</span>
+                            <span class="title">San Antonio, Tx</span>
                         </p>                        
                     </div><!--//people-->
                 </div><!--//item-->
@@ -331,20 +330,20 @@
                     <div class="quote-box">
                         <i class="fa fa-quote-left"></i>
                         <blockquote class="quote">
-                        DeltaApp is a great dolor sit amet proin sagittis sodales pulvinar vestibulum porta dolor molestie semper.: <a href="#">http://bit.ly/1gB9UBR</a>
+                            I love claiming the best spot in the lot before I even hit the road!
                         </blockquote><!--//quote-->
                     </div><!--//quote-box-->
                     <div class="people row">
                         <img class="img-rounded user-pic col-md-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1" src="assets/images/people/people-5.png" alt="" />
                         <p class="details text-center pull-left">
                             <span class="name">Adam Gordon</span>
-                            <span class="title">London, UK</span>
+                            <span class="title">San Antonio, Tx</span>
                         </p>                        
                     </div><!--//people-->
                 </div><!--//item-->
             </div>
             <div class="press row text-center">
-                <h3 class="note">Also featured in...</h3>
+                <h3 class="note">Also featured in...(maybe one day)</h3>
                 <ul class="col-md-12 list-inline">
                     <li><a href="#"><img class="img-responsive" src="assets/images/press/press-1.png" alt="" /></a></li>
                     <li><a href="#"><img class="img-responsive" src="assets/images/press/press-2.png" alt="" /></a></li>
@@ -362,10 +361,10 @@
             <div class="row text-center">
                 <h2 class="title">Contact US</h2>
                 <div class="intro col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
-                    <p>We’d love to hear from you. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut erat magna. Aliquam porta sem a lacus imperdiet posuere. Integer semper eget ligula id eleifend.</p>
+                    <p>We’d love to hear from you!</p>
                     <ul class="list-unstyled contact-details">
-                        <li><i class="fa fa-envelope"></i><a href="mailto: hello@website.com">hello@website.com</a></li>
-                        <li><i class="fa fa-phone-square"></i>0800 123 456</li>
+                        <li><i class="fa fa-envelope"></i><a href="mailto: hello@website.com">spotfinder@gmail.com</a></li>
+                        <!-- <li><i class="fa fa-phone-square"></i>0800 123 456</li> -->
                 </div>
             </div><!--//row-->
             <div class="row text-center">
