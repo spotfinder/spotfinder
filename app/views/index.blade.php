@@ -225,7 +225,7 @@
                 <div class="team col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1 col-xs-12">
                     <div class="row">
                         <div class="member col-md-6 text-center">
-                            <img class="img-circle" style="width:160px" src="assets/images/team/karina.jpg" alt="" />
+                            <img class="img-circle" style="width:160px" src="assets/images/team/eva-longoria.jpg" alt="" />
                             <p class="name">Karina Montes Trevino</p>
                             <p class="title">Developer</p>
                             <ul class="connect list-inline">
@@ -235,7 +235,7 @@
                             </ul>
                         </div><!--//member-->
                         <div class="member col-md-6 text-center">
-                            <img class="img-rounded" src="assets/images/team/member-2.png" alt="" />
+                            <img class="img-circle" style="width:160px" src="assets/images/team/iron-man.jpg" alt="" />
                             <p class="name">Mike Tamburo</p>
                             <p class="title">Developer</p>
                             <ul class="connect list-inline">
@@ -245,7 +245,7 @@
                             </ul>
                         </div><!--//member-->
                         <div class="member col-md-12 text-center">
-                            <img class="img-circle" style="width:160px" src="assets/images/team/Grace.jpg" alt="" />
+                            <img class="img-circle" style="width:160px" src="assets/images/team/jennifer-lawerence.jpg" alt="" />
                             <p class="name">Grace Faubion</p>
                             <p class="title">Developer</p>
                             <ul class="connect list-inline">
