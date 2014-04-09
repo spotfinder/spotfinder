@@ -16,10 +16,11 @@ class CreateReservationsTable extends Migration {
 		Schema::create('reservations', function($table)
 		{
 		    $table->increments('id')->unsigned();
+		    $table->integer('area_id')->unsigned();
 		    $table->date('arrival_date');
-		    $table->time('start_time');
+		    $table->time('arrival_time');
 		    $table->date('departure_date');
-		    $table->time('end_time');
+		    $table->time('departure_time');
 		    $table->integer('spot_number')->unsigned();
 		    $table->integer('user_id')->unsigned();
 		
