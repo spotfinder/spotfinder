@@ -14,6 +14,10 @@ Route::get('/', 'HomeController@showWelcome');
 
 Route::get('/index', 'HomeController@showHome');
 
+Route::get('/admin', 'HomeController@showAdmin');
+
+Route::get('/search', 'HomeController@search');
+
 Route::get('/login', 'HomeController@showLogin');
 
 Route::post('/login', 'HomeController@doLogin');

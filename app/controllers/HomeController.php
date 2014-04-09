@@ -68,4 +68,12 @@ class HomeController extends BaseController {
 		return View::make('reservation');
 	}
 
+	public function showAdmin() {
+		return View::make('admin');
+	}
+
+	public function search() {
+		return View::make('search');
+	}
+
 }
