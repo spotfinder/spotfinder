@@ -2,6 +2,13 @@
 
 class HomeController extends BaseController {
 
+	public function __construct(){
+
+		// Run an auth filter before all methods except 
+		$this->beforeFilter('auth', ['except' => ['showLogin', 'doLogin', 'showWelcome', 'showHome']]);
+
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller
