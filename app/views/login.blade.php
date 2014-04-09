@@ -26,13 +26,13 @@
        <div id="formlogin">
        {{ Form::open(array('action' => 'HomeController@doLogin', 'class' => 'form-signin', 'role'=>'form')) }}
 	        <h2 class="form-signin-heading">Sign in</h2>
-		    {{ Form::label('email', 'Email') }}
-		    {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email')) }}
-		    {{ Form::label('password', 'Password') }}
-	        {{ Form::password('password', array('class' => 'form-control')) }}
-	        {{ Form::label('remember_me', 'Remember me!') }}
-	        {{ Form::checkbox('remember_me', 'value', true)}}
-	        {{ Form::submit('Sign In', array('class' => 'btn btn-lg btn-primary btn-block'))}}
+		    <p>{{ Form::label('email', 'Email') }}
+		       {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email')) }}</p>
+		    <p>{{ Form::label('password', 'Password') }}
+	           {{ Form::password('password', array('class' => 'form-control')) }}</p>
+	        <p>{{ Form::label('remember_me', 'Remember me!') }}
+	           {{ Form::checkbox('remember_me', 'value', true)}}</p>
+	        <p>{{ Form::submit('Sign In', array('class' => 'btn btn-lg btn-primary btn-block'))}}<p>
       {{ Form::close() }}
            <div class = "text-center"> 
 	           <h4> Not an existing user?</h4>
