@@ -57,4 +57,8 @@ class HomeController extends BaseController {
 		return Redirect::action('hello');
 	}
 
+	public function showReservation() {
+		return View::make('reservation');
+	}
+
 }

@@ -22,4 +22,6 @@ Route::get('/logout', 'HomeController@logout');
 
 Route::resource('register', 'RegisterController'); 
 
+Route::get('/reserve', 'HomeController@showReservation');
+
 
