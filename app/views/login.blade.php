@@ -34,9 +34,16 @@
 	           {{ Form::checkbox('remember_me', 'value', true)}}</p>
 	        <p>{{ Form::submit('Sign In', array('class' => 'btn btn-lg btn-primary btn-block'))}}<p>
       {{ Form::close() }}
+
            <div class = "text-center"> 
+      @if (!Auth::user())
 	           <h4> Not an existing user?</h4>
 	            <a href = "{{{ action('RegisterController@index') }}}"> Sign Up!</a>
+      @else  
+                <h4> Welcome Back!</h4>
+                <a href = "{{{ action('RegisterController@index') }}}"> Edit Account</a>
+      @endif          
 	       </div>
        </div>
+
 @stop
