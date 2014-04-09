@@ -32,20 +32,30 @@
 	{{ Form::model($user, array('action' => array('RegisterController@update', $user->id), 'method' => 'put', 'class' => 'form-signin' )) }}
 	
 @endif
-
+	<div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
 	<p>{{ Form::label('first_name', 'First Name') }}
 	{{ Form::text('first_name', null, array('class' => 'form-control', 'placeholder' => 'First Name')) }}</p>
+	</div>
+
+	<div class="form-group {{ $errors->has('last_name') ? 'has-error' : ''}}">
 	<p>{{ Form::label('last_name', 'Last Name') }}
 	{{ Form::text('last_name', null, array('class' => 'form-control', 'placeholder' => 'Last Name')) }}</p>
+	</div>
 
+	<div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
 	<p>{{ Form::label('email', 'Email') }}
 	{{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email')) }}</p>
+	</div>
 
+	<div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
 	<p>{{ Form::label('password', 'Password') }}
-	{{ Form::password('password', array('class' => 'form-control')) }}	
+	{{ Form::password('password', array('class' => 'form-control')) }}</p>
+	</div>	
 	
+	<div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
 	<p>{{ Form::label('password_confirmation', 'Confirm Password') }}
-	{{ Form::password('password_confirmation', array('class' => 'form-control')) }}
+	{{ Form::password('password_confirmation', array('class' => 'form-control')) }}</p>
+	</div>
 	
 	@if (!Auth::user())
 	<p>{{ Form::submit('Join', array('class' => 'btn btn-lg btn-primary btn-block'))}}</p>
