@@ -1,20 +1,26 @@
 @extends('layouts.master')
 
+@section('top-script')
+	<link href="/css/signin.css" rel="stylesheet">
+@stop
 @section('content')
-<style>
-	#mainContent {
-		margin-top: 90px;
-		margin-left: 75px;
-		width: 220px;
-	}
+	<style>
+		#mainContent {
+			margin-top: 100px;
+			
+		}
 
-	body {
-		background-color: #4EA784;
-		background-image: url("/assets/images/patterns/pattern-1.png");
-	}
-</style>
+		h2{
+			text-align: center;
+		}
 
-<div class="blog-post" id="mainContent">
+		body {
+			background-color: #4EA784;
+			background-image: url("/assets/images/patterns/pattern-1.png");
+		}
+	</style>
+
+	<div class="blog-post" id="mainContent">
 
 @if (!Auth::user())  
 
@@ -25,7 +31,7 @@
 	<h2> Edit Profile </h2>
 
 
-	{{ Form::model($user, array('action' => array('RegisterController@update', $user->id), 'method' => 'put', 'class' => 'form-horizontal' )) }}
+	{{ Form::model($user, array('action' => array('RegisterController@update', $user->id), 'method' => 'put', 'class' => 'form-signin' )) }}
 	
 
 @endif
