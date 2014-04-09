@@ -33,10 +33,8 @@
 	
 @endif
 
-
 	<p>{{ Form::label('first_name', 'First Name') }}
 	{{ Form::text('first_name', null, array('class' => 'form-control', 'placeholder' => 'First Name')) }}</p>
-
 	<p>{{ Form::label('last_name', 'Last Name') }}
 	{{ Form::text('last_name', null, array('class' => 'form-control', 'placeholder' => 'Last Name')) }}</p>
 
