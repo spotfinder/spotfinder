@@ -16,7 +16,7 @@ class CreateAreasTable extends Migration {
 		Schema::create('areas', function($table)
 		{
 		    $table->increments('id')->unsigned();
-		    $table->string('lot_name', 50);
+		    $table->string('area_name', 50);
 		
 		});
 	}

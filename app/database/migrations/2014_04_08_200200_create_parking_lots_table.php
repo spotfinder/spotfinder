@@ -17,7 +17,7 @@ class CreateParkingLotsTable extends Migration {
 		{
 		    $table->increments('id')->unsigned();
 		    $table->string('lot_name', 50);
-		    $table->string('address', 50);
+		    $table->string('street_address', 50);
 		    $table->integer('capacity');
 		    $table->float('lat');
 		    $table->float('long');
