@@ -42,7 +42,7 @@ class HomeController extends BaseController {
 
 			// Perform Authentication
 			if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
-	    		return Redirect::intended('/posts');
+	    		return Redirect::intended('/reserve');
 			} else {
 				Session::flash('errorMessage', 'User email or password not recognized.  Please try again.');
 				return Redirect::back()->withInput()->withErrors($validator);
@@ -54,7 +54,7 @@ class HomeController extends BaseController {
 
 	public function logout() {
 		Auth::logout();
-		return Redirect::action('hello');
+		return Redirect::action('HomeController@showWelcome');
 	}
 
 	public function showReservation() {
