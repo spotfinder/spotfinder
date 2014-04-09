@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-
 	 <h1>Available Spaces: Date and Time</h1>
       <div class="table-responsive">
       	<hr>
