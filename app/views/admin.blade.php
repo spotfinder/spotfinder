@@ -2,6 +2,14 @@
 
 @section('top-script')
 	<style type="text/css">
+		 h1 {
+			margin-top: 90px;
+			text-align: center;
+
+		}
+		th{
+			text-align: center;
+		}
 		body {
 			background-color: #4EA784;
 			background-image: url("/assets/images/patterns/pattern-1.png");
@@ -10,7 +18,7 @@
 @stop
 
 @section('content')
-	<div class="page-header">
+	<div>
 		<h1>Admin Dashboard</h1>
 	</div>
 
@@ -32,10 +40,16 @@
 						Email
 					</th>
 					<th>
-						Created 
+						Created At
 					</th>
 					<th>
-						Updated
+						Updated At
+					</th>
+					<th>
+						<a><span class="glyphicon glyphicon-pencil"></span></a>
+					</th>
+					<th>
+						<a><span class="glyphicon glyphicon-trash"></span></a>
 					</th>
 				</tr>
 <!-- 				@Foreach ($users as $user)
