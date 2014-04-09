@@ -97,70 +97,43 @@
         <div class="container">
             <div class="row">
                 <h2 class="title text-center sr-only">Features</h2>
-                <div class="item col-md-3 col-sm-6 col-xs-12 text-center">
-                    <div class="icon">
-                        <i class="fa fa-cloud-upload"></i>                
-                    </div><!--//icon-->
-                    <div class="content">
-                        <h3 class="title">App Feature One</h3>
-                        <p>Outline an app feature here. You can change the icon above to any of the 300+ <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwsome icons</a> available. </p>  
-                    </div><!--//content-->               
-                </div><!--//item-->
-                <div class="item col-md-3 col-sm-6 col-xs-12 text-center">
-                    <div class="icon">
-                        <i class="fa fa-rocket"></i>                
-                    </div><!--//icon-->
-                    <div class="content">
-                        <h3 class="title">App Feature Two</h3>
-                        <p>Outline an app feature here. You can change the icon above to any of the 300+ <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwsome icons</a> available. </p>   
-                    </div><!--//content-->               
-                </div><!--//item-->
-                <div class="item col-md-3 col-sm-6 col-xs-12 text-center">
-                    <div class="icon">
-                        <i class="fa fa-users"></i>                
-                    </div><!--//icon-->
-                    <div class="content">
-                        <h3 class="title">App Feature Three</h3>
-                        <p>Outline an app feature here. You can change the icon above to any of the 300+ <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwsome icons</a> available. </p>   
-                    </div><!--//content-->               
-                </div><!--//item-->
-                <div class="item col-md-3 col-sm-6 col-xs-12 text-center">
+                <div class="item col-md-6 col-sm-6 col-xs-12 text-center">
                     <div class="icon">
                         <i class="fa fa-map-marker"></i>                
                     </div><!--//icon-->
                     <div class="content">
-                        <h3 class="title">App Feature Four</h3>
-                        <p>Outline an app feature here. You can change the icon above to any of the 300+ <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwsome icons</a> available. </p>   
+                        <h3 class="title">Claim Your Spot</h3>
+                        <p> Kind of like how you called shotgun as a kid, claim your spot in the parking lot you choose before you even arrive! </p>  
                     </div><!--//content-->               
                 </div><!--//item-->
-            </div><!--//row-->
-            
-            <div class="row">
-                <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+                <div class="item col-md-6 col-sm-6 col-xs-12 text-center">
                     <div class="icon">
                         <i class="fa fa-calendar"></i>                
                     </div><!--//icon-->
                     <div class="content">
-                        <h3 class="title">App Feature One</h3>
-                        <p>Outline an app feature here. You can change the icon above to any of the 300+ <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwsome icons</a> available. </p>  
-                    </div><!--//content-->               
+                        <h3 class="title"> Be Prepared </h3>
+                        <p> With SpotFinder you can make a parking reservation minutes before or days in advance! Never be late for that important meeting again. </p>   
+                    </div><!--//content-->                            
                 </div><!--//item-->
-                <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+            </div><!--//row-->
+            
+            <div class="row">
+                <div class="item col-md-6 col-sm-6 col-xs-12 text-center">
                     <div class="icon">
-                        <i class="fa fa-comments"></i>                
+                        <i class="fa fa-rocket"></i>                
                     </div><!--//icon-->
                     <div class="content">
-                        <h3 class="title">App Feature Two</h3>
-                        <p>Outline an app feature here. You can change the icon above to any of the 300+ <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwsome icons</a> available. </p>   
+                        <h3 class="title">Don't Know How To Get There?</h3>
+                        <p> SpotFinder will send you a text with a confirmation number and street address to the lot! No more driving around in circles! </p>  
                     </div><!--//content-->               
                 </div><!--//item-->
-                <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+                <div class="item col-md-6 col-sm-6 col-xs-12 text-center">
                     <div class="icon">
-                        <i class="fa fa-globe"></i>                
+                        <i class="fa fa-shopping-cart"></i>                
                     </div><!--//icon-->
                     <div class="content">
-                        <h3 class="title">App Feature Three</h3>
-                        <p>Outline an app feature here. You can change the icon above to any of the 300+ <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwsome icons</a> available. </p>   
+                        <h3 class="title">Easy Checkout</h3>
+                        <p> Easy secure payment system. I mean seriously, who carries cash anymore?</p>   
                     </div><!--//content-->               
                 </div><!--//item-->
             </div><!--//row-->
@@ -252,23 +225,33 @@
                 <div class="team col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1 col-xs-12">
                     <div class="row">
                         <div class="member col-md-6 text-center">
-                            <img class="img-rounded" src="assets/images/team/member-1.png" alt="" />
-                            <p class="name">James Norton</p>
-                            <p class="title">Lead Developer</p>
+                            <img class="img-circle" style="width:160px" src="assets/images/team/karina.jpg" alt="" />
+                            <p class="name">Karina Montes Trevino</p>
+                            <p class="title">Developer</p>
                             <ul class="connect list-inline">
-                                <li><a href="#" ><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" ><i class="fa fa-linkedin"></i></a></li>
-                                <li class="row-end"><a href="#" ><i class="fa fa-github"></i></a></li>         
+                                <li><a href="https://twitter.com/Kimt3D"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/karinamontestrevino"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="row-end"><a href="https://github.com/KarinaMontesTrevino"><i class="fa fa-github"></i></a></li>         
                             </ul>
                         </div><!--//member-->
                         <div class="member col-md-6 text-center">
                             <img class="img-rounded" src="assets/images/team/member-2.png" alt="" />
-                            <p class="name">Steve Thomson</p>
-                            <p class="title">UI/UX Designer</p>
+                            <p class="name">Mike Tamburo</p>
+                            <p class="title">Developer</p>
                             <ul class="connect list-inline">
                                 <li><a href="#" ><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#" ><i class="fa fa-linkedin"></i></a></li>
-                                <li class="row-end"><a href="#" ><i class="fa fa-dribbble"></i></a></li>         
+                                <li class="row-end"><a href="https://github.com/miketamburo"><i class="fa fa-github"></i></a></li>         
+                            </ul>
+                        </div><!--//member-->
+                        <div class="member col-md-12 text-center">
+                            <img class="img-circle" style="width:160px" src="assets/images/team/Grace.jpg" alt="" />
+                            <p class="name">Grace Faubion</p>
+                            <p class="title">Developer</p>
+                            <ul class="connect list-inline">
+                                <li><a href="https://twitter.com/gdfaubion"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/gracefaubion"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="row-end"><a href="https://github.com/gdfaubion"><i class="fa fa-github"></i></a></li>         
                             </ul>
                         </div><!--//member-->
                     </div>
