@@ -62,7 +62,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">MY ACCOUNT<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Reserve a spot!</a></li>
-                                <li><a href="{{{ action('RegisterController@update') }}}">Edit My Account</a></li>
+                                <li><a href="{{{ action('RegisterController@edit') }}}">Edit My Account</a></li>
                                 <li><a href="{{{ action('HomeController@logout') }}}">Logout</a></li>
                             </ul>
                             </li>
@@ -80,7 +80,7 @@
         @if (Session::has('errorMessage'))
             <div class="alert alert-danger" style="text-align:center">{{{ Session::get('errorMessage') }}}</div>
         @endif
-        
+
 @yield('content')
 
 @yield('bottom-script')
