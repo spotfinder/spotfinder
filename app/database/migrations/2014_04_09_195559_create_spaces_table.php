@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAreasTable extends Migration {
+class CreateSpacesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,11 +13,10 @@ class CreateAreasTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('areas', function($table)
+		Schema::create('spaces', function($table)
 		{
-		    $table->increments('id')->unsigned();
-		    $table->string('area_name', 50);
-		
+			$table->integer('space_number')->unsigned();
+			$table->integer('lot_id')->unsigned();
 		});
 	}
 
@@ -29,7 +28,7 @@ class CreateAreasTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::drop('areas');
+		Schema::drop('spaces');
 	}
 
 }

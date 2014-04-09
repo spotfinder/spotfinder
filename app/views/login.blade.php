@@ -26,10 +26,14 @@
        <div id="formlogin">
        {{ Form::open(array('action' => 'HomeController@doLogin', 'class' => 'form-signin', 'role'=>'form')) }}
 	        <h2 class="form-signin-heading">Sign in</h2>
-		    <p>{{ Form::label('email', 'Email') }}
-		       {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email')) }}</p>
-		    <p>{{ Form::label('password', 'Password') }}
-	           {{ Form::password('password', array('class' => 'form-control')) }}</p>
+	        <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+			    <p>{{ Form::label('email', 'Email') }}
+			       {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email')) }}</p>
+		    </div>
+		    <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+			    <p>{{ Form::label('password', 'Password') }}
+		           {{ Form::password('password', array('class' => 'form-control')) }}</p>
+	        </div>
 	        <p>{{ Form::label('remember_me', 'Remember me!') }}
 	           {{ Form::checkbox('remember_me', 'value', true)}}</p>
 	        <p>{{ Form::submit('Sign In', array('class' => 'btn btn-lg btn-primary btn-block'))}}<p>
