@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    
+    <!-- SpotFinder is Awesome!! -->
     <!-- ******PROMO****** --> 
     <section id="promo" class="promo section offset-header has-pattern">
         <div class="container">
