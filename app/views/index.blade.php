@@ -96,7 +96,7 @@
     <section id="features" class="features section">
         <div class="container">
             <div class="row">
-                <a name="features">
+                <a name="features"></a>
                 <h2 class="title text-center sr-only">Features</h2>
                 <div class="item col-md-6 col-sm-6 col-xs-12 text-center">
                     <div class="icon">
@@ -142,7 +142,7 @@
     </section><!--//features-->
     
     <!-- ******HOW****** -->
-    <a name="how"> 
+    <a name="how"></a>
     <section id="how" class="how section has-pattern">
         <div class="container">
             <div class="row">
@@ -175,7 +175,7 @@
     </section><!--//how-->
     
     <!-- ******FAQ****** -->
-    <a name="faq"> 
+    <a name="faq"></a>
     <section id="faq" class="faq section">
         <div class="container">
             <div class="row">
@@ -217,7 +217,7 @@
     </section><!--//faq-->
     
     <!-- ******STORY****** --> 
-    <a name="story">
+    <a name="story"></a>
     <section id="story" class="story section has-pattern">
         <div class="container">
             <div class="row">
@@ -360,7 +360,7 @@
     </section><!--//Testimonials-->
     
     <!-- ******CONTACT****** -->
-    <a name="contact"> 
+    <a name="contact"></a>
     <section id="contact" class="contact section has-pattern">
         <div class="container">
             <div class="row text-center">
