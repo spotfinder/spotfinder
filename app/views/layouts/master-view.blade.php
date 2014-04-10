@@ -41,9 +41,9 @@
     <header id="top" class="header navbar-fixed-top">  
         <div class="container">            
             <h1 class="logo pull-left">
-                <a href="http://spotfinder.dev/index#promo">
+                <a class="scrollto" href="#promo">
                     <img id="logo-image" class="logo-image" src="assets/images/logo/logo.png" alt="Logo">
-                    <span class="logo-title">SpotFinder</span>
+                    <span class="logo-title"><a href="http://spotfinder.dev/index">SpotFinder</a></span>
                 </a>
             </h1><!--//logo-->              
             <nav id="main-nav" class="main-nav navbar-right" role="navigation">

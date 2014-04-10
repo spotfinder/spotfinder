@@ -3,7 +3,6 @@
 @section('content')
     <!-- SpotFinder is Awesome!! -->
     <!-- ******PROMO****** -->
-    <a name="promo">
     <section id="promo" class="promo section offset-header has-pattern">
         <div class="container">
             <div class="row">
