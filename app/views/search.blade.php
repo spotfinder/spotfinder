@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
-
-	 <h1>Available Spaces: Date & Time</h1>
+	 <h1>Available Spaces: Date and Time</h1>
       <div class="table-responsive">
+      	<hr>
           <table class="table">
             <thead>
             	<tr>
