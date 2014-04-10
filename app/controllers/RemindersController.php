@@ -58,6 +58,7 @@ class RemindersController extends Controller {
 			$user->password = $password;
 
 			$user->save();
+
 		});
 
 		switch ($response)
