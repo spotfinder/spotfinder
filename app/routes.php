@@ -10,9 +10,9 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::get('/', 'HomeController@showWelcome'); 
+// Route::get('/', 'HomeController@showWelcome'); 
 
-Route::get('/index', 'HomeController@showHome');
+Route::get('/', 'HomeController@showHome');
 
 Route::get('/admin', 'HomeController@showAdmin');
 
@@ -34,22 +34,4 @@ Route::get('/reserve', 'HomeController@showReservation');
 
 Route::controller('password', 'RemindersController');
 
-// Route::get('password/reset', array(
-//   'uses' => 'PasswordController@remind',
-//   'as' => 'password.remind'
-// ));
 
-// Route::post('password/reset', array(
-//   'uses' => 'PasswordController@request',
-//   'as' => 'password.request'
-// ));
-
-// Route::get('password/reset/{token}', array(
-//   'uses' => 'PasswordController@reset',
-//   'as' => 'password.reset'
-// ));
-
-// Route::post('password/reset/{token}', array(
-//   'uses' => 'PasswordController@update',
-//   'as' => 'password.update'
-// ));
