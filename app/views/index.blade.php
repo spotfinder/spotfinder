@@ -2,7 +2,8 @@
 
 @section('content')
     <!-- SpotFinder is Awesome!! -->
-    <!-- ******PROMO****** --> 
+    <!-- ******PROMO****** -->
+    <a name="promo">
     <section id="promo" class="promo section offset-header has-pattern">
         <div class="container">
             <div class="row">
@@ -96,6 +97,7 @@
     <section id="features" class="features section">
         <div class="container">
             <div class="row">
+                <a name="features">
                 <h2 class="title text-center sr-only">Features</h2>
                 <div class="item col-md-6 col-sm-6 col-xs-12 text-center">
                     <div class="icon">
@@ -140,7 +142,8 @@
         </div><!--//container-->
     </section><!--//features-->
     
-    <!-- ******HOW****** --> 
+    <!-- ******HOW****** -->
+    <a name="how"> 
     <section id="how" class="how section has-pattern">
         <div class="container">
             <div class="row">
@@ -172,7 +175,8 @@
         </div><!--//container-->
     </section><!--//how-->
     
-    <!-- ******FAQ****** --> 
+    <!-- ******FAQ****** -->
+    <a name="faq"> 
     <section id="faq" class="faq section">
         <div class="container">
             <div class="row">
@@ -214,6 +218,7 @@
     </section><!--//faq-->
     
     <!-- ******STORY****** --> 
+    <a name="story">
     <section id="story" class="story section has-pattern">
         <div class="container">
             <div class="row">
@@ -355,7 +360,8 @@
         </div><!--//container-->
     </section><!--//Testimonials-->
     
-    <!-- ******CONTACT****** --> 
+    <!-- ******CONTACT****** -->
+    <a name="contact"> 
     <section id="contact" class="contact section has-pattern">
         <div class="container">
             <div class="row text-center">

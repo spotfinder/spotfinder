@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master-view')
 
 @section('top-script')
 	<link href="/css/signin.css" rel="stylesheet">
