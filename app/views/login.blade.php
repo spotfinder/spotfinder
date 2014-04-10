@@ -37,6 +37,9 @@
 	        <p>{{ Form::label('remember_me', 'Remember me!') }}
 	           {{ Form::checkbox('remember_me', 'value', true)}}</p>
 	        <p>{{ Form::submit('Sign In', array('class' => 'btn btn-lg btn-primary btn-block'))}}<p>
+	        <div class = "text-center"> 	 
+	        	<a href = "{{{ action('RemindersController@getRemind') }}}"> Forgot your password?</a>
+	        </div>
       {{ Form::close() }}
 
            <div class = "text-center"> 

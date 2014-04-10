@@ -3,7 +3,7 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends BaseModel implements UserInterface, RemindableInterface {
+class User extends Eloquent implements UserInterface, RemindableInterface {
 // Establish constants for user roles keep in the user table as role_id
 	const ROLE_ADMIN = 1;
 	const ROLE_STAND = 2;
@@ -84,9 +84,5 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	public function setPasswordAttribute($value) {
     	$this->attributes['password'] = Hash::make($value);
 	}
-	
-	
-
-
 
 }
