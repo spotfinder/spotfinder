@@ -61,7 +61,7 @@ class HomeController extends BaseController {
 
 	public function logout() {
 		Auth::logout();
-		return Redirect::action('HomeController@showWelcome');
+		return Redirect::action('HomeController@showHome');
 	}
 
 	public function showReservation() {
