@@ -18,9 +18,8 @@ class ReservationController extends BaseController {
     	$openSpaces = Space::where('area_id', $requestedArea)
     					->where('status', 0)
     					->take(5)
-    					->order_by('cost', 'asc')
     					->get();
-    // count the number of results; if count is > 0, then those are the quick picks since status is zero.  DB plan is to have a status defined as zero 0 available and one 1 as booked.  If it is booked then the spot also resides in the reservation table.  This initial query serves as a quick look of what is not in the reservation table.
+    // count the number of results; if count is > 0, then those are the quick picks since status is zero.  DB plan is to have a status defined as zero 0 available and one 1 as booked.  If it is booked (i.e. 1) then the spot also resides in the reservation table.  This initial query serves as a quick look of what is not in the reservation table.
     	return $openSpaces; 
     }
     // If count from the openSpaces query is zero, then a query of the reservation table is required.
@@ -41,6 +40,36 @@ class ReservationController extends BaseController {
     // We will then need to provide them a message of something to the fact of "sorry no match" and possibly a redirect to try their request again with different dates and or time.
     // 
     // If count from reservation query is greater than zero, return the results view and allow a user to select a space.
+
+    // Now figure out the whole solution
+    public function solution(){
+    	// Take in requested area, dates/times
+
+
+    	// call function searchOpenSpaces
+
+
+    	// get results of open spaces and count returned spaces
+
+    	// if returned spaces equals zero call the function searchReservations
+
+
+    	// get results of reservations query and count them.  If query result is zero, send the user a message - sorry, there are no space that meet your criteria.  Please return to the reservation make to change your search criteria.
+
+
+    	// If reservation query is > zero, list results in a table for the user to review.  Pick only 5 and allow the user to pick only one choice to make a reservation.
+
+
+    	// upon click - route the user to a pay view.
+
+    	// upon confirmation call the ReservationController@store method to save the reservation to the database.
+
+
+
+    	// if the user wants to edit their reservation, get the reservation by id, have the user make changes, run another reservation table query based on the new data.  The results and methods are the same as the creation of a new reservation except call the ReservationController@update methoc.
+
+    	return View::make('search');
+    }
 
 	/**
 	 * Display a listing of the resource.
