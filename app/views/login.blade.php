@@ -1,7 +1,6 @@
 @extends('layouts.master-view')
 
 @section('top-script')
-<link href="/css/signin.css" rel="stylesheet">
 <style>
 	#formlogin {
 		margin-top: 60px;
