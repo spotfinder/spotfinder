@@ -1,7 +1,5 @@
 <?php
 
-
-
 class Reservation extends Eloquent { 
     
     public function user() {
@@ -12,5 +10,12 @@ class Reservation extends Eloquent {
         return $this->belongsTo('Space');
     }
 
+// Validation rules
+    public static $rules = array(
+    	'arrival_date' => 'required',
+    	'arrival_time' => 'required',
+    	'departure_date' => 'required',
+    	'departure_time' => 'required'		
+	);
 
 }

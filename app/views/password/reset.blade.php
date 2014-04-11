@@ -1,5 +1,6 @@
 @extends('layouts.master-view')
 
+
 @section('top-script')
   <style type="text/css">
     body {
@@ -8,6 +9,7 @@
     } 
   </style>
 @stop
+
 @section('content')
 <form action="{{ action('RemindersController@postReset') }}" method="POST">
     <input type="hidden" name="token" value="{{ $token }}">
