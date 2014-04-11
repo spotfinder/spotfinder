@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="assets/plugins/animate-css/animate.min.css">
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- Form CSS-->
+    <link href="/css/signin.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -43,7 +45,7 @@
             <h1 class="logo pull-left">
                 <a class="scrollto" href="#promo">
                     <img id="logo-image" class="logo-image" src="assets/images/logo/logo.png" alt="Logo">
-                    <span class="logo-title"><a href="http://spotfinder.dev/index">SpotFinder</a></span>
+                    <span class="logo-title"><a href="http://spotfinder.dev/">SpotFinder</a></span>
                 </a>
             </h1><!--//logo-->              
             <nav id="main-nav" class="main-nav navbar-right" role="navigation">
@@ -58,11 +60,11 @@
                 <div class="navbar-collapse collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active nav-item sr-only"><a class="scrollto" href="#promo">Home</a></li>
-                        <li class="nav-item"><a href="http://spotfinder.dev/index#features">Features</a></li>
-                        <li class="nav-item"><a href="http://spotfinder.dev/index#how">How it works</a></li>
-                        <li class="nav-item"><a href="http://spotfinder.dev/index#faq">FAQ</a></li>
-                        <li class="nav-item"><a href="http://spotfinder.dev/index#story">Story</a></li>
-                        <li class="nav-item last"><a href="http://spotfinder.dev/index#contact">Contact</a></li>
+                        <li class="nav-item"><a href="http://spotfinder.dev/#features">Features</a></li>
+                        <li class="nav-item"><a href="http://spotfinder.dev/#how">How it works</a></li>
+                        <li class="nav-item"><a href="http://spotfinder.dev/#faq">FAQ</a></li>
+                        <li class="nav-item"><a href="http://spotfinder.dev/#story">Story</a></li>
+                        <li class="nav-item last"><a href="http://spotfinder.dev/#contact">Contact</a></li>
                         <li class="dropdown">
                         @if (Auth::check())
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">MY ACCOUNT<b class="caret"></b></a>

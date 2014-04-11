@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'spotfindersa@gmail.com', 'name' => 'Welcome to Spotfinder Web App'),
+	'from' => array('address' => 'spotfindersa@gmail.com', 'name' => 'Spotfinder Web App. We solve your parking problems.'),
 
 	/*
 	|--------------------------------------------------------------------------
