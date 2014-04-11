@@ -8,6 +8,7 @@
     } 
   </style>
 @stop
+
 @section('content')
 <form action="{{ action('RemindersController@postReset') }}" method="POST">
     <input type="hidden" name="token" value="{{ $token }}">
