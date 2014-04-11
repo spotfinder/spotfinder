@@ -22,7 +22,7 @@ Route::get('/login', 'HomeController@showLogin');
 
 Route::get('/admin', 'HomeController@showAdmin');
 
-Route::get('/search', 'HomeController@search');
+Route::any('/search', 'HomeController@search');
 
 Route::post('/login', 'HomeController@doLogin');
 

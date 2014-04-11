@@ -10,7 +10,7 @@
 @stop
 @section('content')
 <div class="page-header">
-    <h1>Admin Dashboard</h1>
+    <h1>Search Result:</h1>
   </div>
 
   <div class="container-fluid projects">
@@ -28,7 +28,7 @@
             Lot Name
           </th>
           <th>
-            Sport Number
+            Spot Number
           </th>
           <th>
             Cost

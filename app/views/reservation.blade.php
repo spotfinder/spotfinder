@@ -23,7 +23,7 @@
 @section('content')
 <div id = "formreserve">
 		<h2>Reserve Now</h2> 
-		{{ Form::open(array('action' => 'HomeController@showReservation', 'class' => 'form-signin', 'role'=>'form')) }}
+		{{ Form::open(array('action' => 'ReservationController@solution', 'class' => 'form-signin', 'role'=>'form')) }}
 	    	<p>{{ Form::label('area', 'Area') }}
 	    	   <select class="form-control">
 					<option value="1">Downtown</option>
