@@ -68,7 +68,7 @@ class HomeController extends BaseController {
 		return View::make('reservation');
 	}
     
-    public function search() {
+    public function results() {
 		return View::make('search');
 	}
 

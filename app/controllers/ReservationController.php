@@ -11,7 +11,7 @@ class ReservationController extends BaseController {
 		$this->beforeFilter('auth', ['except' => ['index', 'show', 'create', 'store']]);
 		$this->beforeFilter('role', ['only' => ['edit', 'destroy']]);
 	}
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Query for open spaces from the Spaces Table --------------
 	// Gets all "open" spaces in "requestedArea" from the Table "Spaces"
     public function searchOpenSpaces($requestedArea){
@@ -36,46 +36,47 @@ class ReservationController extends BaseController {
     	return $reservedSpaces; 	
     }
 
-    // If count from reservations query is zero, then there are no spaces that meet the user's criteria
-    // We will then need to provide them a message of something to the fact of "sorry no match" and possibly a redirect to try their request again with different dates and or time.
-    // 
-    // If count from reservation query is greater than zero, return the results view and allow a user to select a space.
-
     // Now figure out the whole solution ----------------------------------------
-    // public function solution(){
+    public function solution() {
+    	var_dump($_POST);
     	// Take in requested area, dates/times
-    	$requestedArea = Input::get('area_id');
+    	$requestedArea = Input::get('area');
     	$requestedArrivalDateTime = Input::get('arrival_date_time');
     	$requestedDepartureDateTime = Input::get('departure_date_time');
 
+    	var_dump($requestedArea);
+    	var_dump($requestedArrivalDateTime);
+    	var_dump($requestedDepartureDateTime);
+
     	// call function searchOpenSpaces to find spaces with a status of 0 ('open')
-    	searchOpenSpaces($requestedArea);
+    	$resultsOfOpenSpaces = $this->searchOpenSpaces($requestedArea);
+    	var_dump($resultsOfOpenSpaces);
 
     	// get results of open spaces and count them
-		$searchOpenSpacesCount = count($openSpaces);
+		$searchOpenSpacesCount = count($resultsOfOpenSpaces);
+		var_dump($searchOpenSpacesCount);
 
     	// if returned open spaces equals (0), 'zero', call the function searchReservations
-		@if ($searchOpenSpacesCount == 0)
+		if ($searchOpenSpacesCount == 0) {
 			// query reservation table for parking spaces in the desired area where requested arrival time is after any already booked departure space times and where the desired departure time is before any already booked arrival times. 
-			searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime);
+			$this->searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime);
 
 			// count the number of results
     		$searchReservationCount = count($reservedSpaces);
 
     		// get results of reservations query and count them.  If query result is zero, send the user a message - sorry, there are no space that meet your criteria.  Please return to the reservation make to change your search criteria.
-    		@if ($searchReservationCount == 0)
+    		if ($searchReservationCount == 0){
     			Session::flash('errorMessage', 'No available parking spaces matched your search criteria.  Please amend your search and try again.');
 				return Redirect::action('HomeController@showReservation')->withInput();
-    		@endif
-		
-		@else
+			}
+    	} else {
 
     		// If reservation query is > zero, list results in a table for the user to review.  Pick only 5 and allow the user to pick only one choice to make a reservation.
 			Session::flash('successMessage', 'Possible criteria match found.');
 				// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
-				return Redirect::action('HomeController@search');
+				return Redirect::action('HomeController@results');
 
-		@endif
+		}
 
 // DEVELOPMENT TEAM NOTES
     	// upon click / SELECTION FROM THE 'SEARCH' VIEW - route the user to a pay view.
@@ -85,7 +86,7 @@ class ReservationController extends BaseController {
     	// if the user wants to edit their reservation, get the reservation by id, have the user make changes, run another reservation table query based on the new data.  The results and methods are the same as the creation of a new reservation except call the ReservationController@update methoc.
 
     	return View::make('search');
-    // } THIS IS THE END OF THE PUBLIC SOLUTION FUNCTION
+    } //THIS IS THE END OF THE PUBLIC SOLUTION FUNCTION
 
 	/**
 	 * Display a listing of the resource.
