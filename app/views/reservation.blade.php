@@ -43,12 +43,14 @@
 		{{ Form::open(array('action' => 'ReservationController@solution', 'role'=>'form')) }}
 	    	<p>{{ Form::label('area', 'Area') }}
 	    	   <select name='area' id='area' class="form-control">
-					<option value=1>Downtown</option>
+					<option value="1">Downtown</option>
 					<option value="2">Medical Center</option>
+					<option value="3">Alamodome</option>
+					<option value="4">AT&amp;T Center</option>
 				</select> </p>
-	        <p>{{ Form::label('arrival_date', 'Arrival Date & Time') }}
+	        <p>{{ Form::label('arrival_date', 'Arrival Date &amp; Time') }}
                <input type="datetime-local" class="form-control" name='arrival_date_time' id="arrival_date_time" placeholder=""></p>
-            <p>{{ Form::label('departure_date', 'Departure Date & Time') }}
+            <p>{{ Form::label('departure_date', 'Departure Date &amp; Time') }}
                <input type="datetime-local" class="form-control" name='departure_date_time' id="departure_date_time" placeholder=""></p>
                <br>
 	        <p>{{ Form::submit('Submit', array('class' => 'btn btn-lg btn-primary btn-block')) }}</p>
