@@ -368,7 +368,7 @@
                 <div class="intro col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
                     <p>We’d love to hear from you!</p>
                     <ul class="list-unstyled contact-details">
-                        <li><i class="fa fa-envelope"></i><a href="mailto: hello@website.com">spotfinder@gmail.com</a></li>
+                        <li><i class="fa fa-envelope"></i><a href="mailto: hello@website.com">spotfindersa@gmail.com</a></li>
                         <!-- <li><i class="fa fa-phone-square"></i>0800 123 456</li> -->
                 </div>
             </div><!--//row-->
