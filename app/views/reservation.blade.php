@@ -52,7 +52,9 @@
                <input type="datetime-local" class="form-control" name='arrival_date_time' id="arrival_date_time" placeholder=""></p>
             <p>{{ Form::label('departure_date', 'Departure Date &amp; Time') }}
                <input type="datetime-local" class="form-control" name='departure_date_time' id="departure_date_time" placeholder=""></p>
-               <br>
+            <p>{{ Form::label('license_plate_number', 'License Plate Number') }}
+            	<input type="text" class="form-control" name="license_plate_number" id="license_plate_number" placeholder=""></p>
+            	<br>
 	        <p>{{ Form::submit('Submit', array('class' => 'btn btn-lg btn-primary btn-block')) }}</p>
 	    {{ Form::close() }}			
 </div> 
