@@ -14,13 +14,13 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Covered+By+Your+Grace' rel='stylesheet' type='text/css'>  
     <!-- Global CSS -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ URL::to('') }}/assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Plugins CSS -->    
-    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/plugins/flexslider/flexslider.css">
-    <link rel="stylesheet" href="assets/plugins/animate-css/animate.min.css">
+    <link rel="stylesheet" href="{{ URL::to('') }}/assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="{{ URL::to('') }}/assets/plugins/flexslider/flexslider.css">
+    <link rel="stylesheet" href="{{ URL::to('') }}/assets/plugins/animate-css/animate.min.css">
     <!-- Theme CSS -->  
-    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <link id="theme-style" rel="stylesheet" href="{{ URL::to('') }}/assets/css/styles.css">
     <!-- Form CSS-->
     <link href="/css/signin.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -44,7 +44,7 @@
         <div class="container">            
             <h1 class="logo pull-left">
                 <a class="scrollto" href="#promo">
-                    <img id="logo-image" class="logo-image" src="assets/images/logo/logo.png" alt="Logo">
+                    <img id="logo-image" class="logo-image" src="{{ URL::to('') }}/assets/images/logo/logo.png" alt="Logo">
                     <span class="logo-title"><a href="http://spotfinder.dev/">SpotFinder</a></span>
                 </a>
             </h1><!--//logo-->              
@@ -94,19 +94,19 @@
 @yield('bottom-script')
 
 	    <!-- Javascript -->          
-    <script type="text/javascript" src="assets/plugins/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/detectmobilebrowser.js"></script>      
-    <script type="text/javascript" src="assets/plugins/jquery.easing.1.3.js"></script>   
-    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>     
-    <script type="text/javascript" src="assets/plugins/jquery-inview/jquery.inview.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/FitVids/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>    
-    <script type="text/javascript" src="assets/plugins/jquery-placeholder/jquery.placeholder.js"></script>
-    <script type="text/javascript" src="assets/plugins/flexslider/jquery.flexslider-min.js"></script>
-    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/detectmobilebrowser.js"></script>      
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery.easing.1.3.js"></script>   
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>     
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery-inview/jquery.inview.min.js"></script>
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/FitVids/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>    
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery-placeholder/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/flexslider/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/js/main.js"></script>
     <!--[if !IE]>--> 
-    <script type="text/javascript" src="assets/js/animations.js"></script> 
+    <script type="text/javascript" src="{{ URL::to('') }}/assets/js/animations.js"></script> 
     <!--<![endif]-->
 
         <!-- Fade out error or success messages after forms are submitted -->
