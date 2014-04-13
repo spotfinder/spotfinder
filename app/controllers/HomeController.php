@@ -76,5 +76,12 @@ class HomeController extends BaseController {
 		return View::make('admin');
 	}
     
-
+    public function showConfirmation() {
+		return View::make('confirmation');
+	}
+    
+    public function sendConfirmation() {
+    	Twilio::message('2102372042', 'Pink Elephants and Happy Rainbows');
+    	return View::make('confirmation');
+    }
 }
