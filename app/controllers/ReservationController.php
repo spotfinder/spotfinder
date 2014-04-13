@@ -57,9 +57,7 @@ var_dump($results);
 
     		// }
     	}
-    	
-dd();
-					
+    						
     	return $reservedSpaces; 	
     }
 
