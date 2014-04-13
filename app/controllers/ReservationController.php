@@ -26,53 +26,80 @@ class ReservationController extends BaseController {
     }
     // If count from the openSpaces query is zero, then a query of the reservation table is required.
     public function searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime){
-    	$reservedSpaces = Reservation::where('area_id', '=', $requestedArea)
-    					->where('departureDateTime','<', $requestedArrivalDateTime)
-    					->where('arrivalDateTime', '>', $requestedDepartureDateTime)
-    					->take(5)
-    					->order_by('cost', 'asc')
-    					->get();
 
+    	// locate all potential spaces by determining that the user will
+    	// arrive after the space should be empty
+    	$spacesAvailAtArrivalTime = Reservation::where('area_id', '=', $requestedArea)
+    					->where('departureDateTime','<=', $requestedArrivalDateTime)
+    					->lists('space_number');
+
+    	if (sizeof($spacesAvailAtArrivalTime) > 1){
+
+    		$spacesAvailBeforeTakenAgain = Reservation::where('area_id', '=', $requestedArea)
+    					->where('arrivalDateTime','>=', $requestedDepartureDateTime)
+    					->lists('space_number');
+
+    		foreach ($spacesAvailBeforeTakenAgain as $key => $value) {
+    			$results = array();
+
+	    		if (in_array( $value, $spacesAvailAtArrivalTime)){
+
+	    			$foundSlot = $spacesAvailBeforeTakenAgain[$key];
+
+	    			array_push($results, $foundSlot);
+	    		}
+    		}
+var_dump($results);
+    		// foreach ($results as $key => $result){
+    		// 	$pickOneResult = array();
+	    	// 	$foundSpacesCost = Reservation::where('space_number', '=', $result)
+	    	// 				 ->pluck('cost');
+
+    		// }
+    	}
+    	
+dd();
+					
     	return $reservedSpaces; 	
     }
 
     // Now figure out the whole solution ----------------------------------------
     public function solution() {
-    	var_dump($_POST);
+    	
     	// Take in requested area, dates/times
     	$requestedArea = Input::get('area');
     	$requestedArrivalDateTime = Input::get('arrival_date_time');
     	$requestedDepartureDateTime = Input::get('departure_date_time');
+    	// calculate the total parking duration (divide by 3600 to get hours format)
+    	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
 
-    	var_dump($requestedArea);
-    	var_dump($requestedArrivalDateTime);
-    	var_dump($requestedDepartureDateTime);
+    	if (($requestedArrivalDateTime > $requestedDepartureDateTime) || $requestedArrivalDateTime > time()) {
+    		Session::flash('errorMessage', "Arrival date and time must be after the current date and time and before selected departure time.  Please try again.");
+				return Redirect::action('HomeController@showReservation')->withInput();
+    	}
 
     	// call function searchOpenSpaces to find spaces with a status of 0 ('open')
     	$resultsOfOpenSpaces = $this->searchOpenSpaces($requestedArea);
-    	var_dump($resultsOfOpenSpaces);
 
-    	// get results of open spaces and count them
-		$searchOpenSpacesCount = count($resultsOfOpenSpaces);
-		var_dump($searchOpenSpacesCount);
+		// if open spaces are found
+		if (sizeof($resultsOfOpenSpaces) > 0){
+			Session::flash('successMessage', 'We found some options for you.');
+			// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
+			return Redirect::action('HomeController@results');
 
-    	// if returned open spaces equals (0), 'zero', call the function searchReservations
-		if ($searchOpenSpacesCount == 0) {
+		} else if (sizeof($resultsOfOpenSpaces) == 0) {
 			// query reservation table for parking spaces in the desired area where requested arrival time is after any already booked departure space times and where the desired departure time is before any already booked arrival times. 
-			$this->searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime);
-
-			// count the number of results
-    		$searchReservationCount = count($reservedSpaces);
+			$reservedSpaces = $this->searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime);
 
     		// get results of reservations query and count them.  If query result is zero, send the user a message - sorry, there are no space that meet your criteria.  Please return to the reservation make to change your search criteria.
-    		if ($searchReservationCount == 0){
+    		if (sizeof($reservedSpaces) == 0){
     			Session::flash('errorMessage', 'No available parking spaces matched your search criteria.  Please amend your search and try again.');
 				return Redirect::action('HomeController@showReservation')->withInput();
 			}
     	} else {
 
     		// If reservation query is > zero, list results in a table for the user to review.  Pick only 5 and allow the user to pick only one choice to make a reservation.
-			Session::flash('successMessage', 'Possible criteria match found.');
+			Session::flash('successMessage', 'We found some options for you.');
 				// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
 				return Redirect::action('HomeController@results');
 
