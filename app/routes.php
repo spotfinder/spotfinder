@@ -34,4 +34,6 @@ Route::get('/reserve', 'HomeController@showReservation');
 
 Route::controller('password', 'RemindersController');
 
+Route::get('/confirmation', 'HomeController@showConfirmation');
 
+Route::post('/confirmation', 'HomeController@sendConfirmation');
