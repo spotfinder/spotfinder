@@ -15,8 +15,10 @@ class CreateSpacesTable extends Migration {
 		//
 		Schema::create('spaces', function($table)
 		{
-			$table->integer('space_number')->unsigned();
+		    $table->integer('area_id')->unsigned();
 			$table->integer('lot_id')->unsigned();
+		    $table->integer('space_number')->unsigned();
+		    $table->integer('status', 20);
 		});
 	}
 

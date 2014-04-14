@@ -34,15 +34,15 @@ class ReservationController extends BaseController {
     				->join('lots', 'reservations.area_id', '=', 'lots.area_id')
     				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.id', 'lots.street_address', 'lots.cost_per_hour')
 					->where('reservations.area_id', '=', $requestedArea)
-    				->whereNotBetween('arrivalDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
-    				->whereNotBetween('departureDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
+    				->whereNotBetween('arrival_date_time', array($requestedArrivalDateTime, $requestedDepartureDateTime))
+    				->whereNotBetween('departure_date_time', array($requestedArrivalDateTime, $requestedDepartureDateTime))
     				->get();
 
     	// calculate the total parking duration (divide by 3600 to get hours format)
     	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
 
     	foreach ($resultsOfReservationQuery as &$value){
-    			$value->total_cost = ($duration * $value->cost_per_hour);
+    			$value->total_cost = ($duration * $value->cost);
     	}
     				
     	return $resultsOfReservationQuery; 	
@@ -152,10 +152,10 @@ class ReservationController extends BaseController {
 
     		$reservation = new Reservation();
     		
-			$reservation->arrival_date = Input::get('arrival_date');
-			$reservation->arrival_time = Input::get('arrival_time');
-			$reservation->departure_date = Input::get('departure_date');
-			$reservation->departure_time = Input::get('departure_time');
+			$reservation->arrival_date_time = Input::get('arrival_date_time');
+			
+			$reservation->departure_date_time = Input::get('departure_date_time');
+			
 			
 			// example
 			$reservation->save();
@@ -213,10 +213,10 @@ class ReservationController extends BaseController {
     	} else {
 
         	// validation succeeded, create and save the post
-    		$reservation->arrival_date = Input::get('arrival_date');
-			$reservation->arrival_time = Input::get('arrival_time');
-			$reservation->departure_date = Input::get('departure_date');
-			$reservation->departure_time = Input::get('departure_time');
+    		$reservation->arrival_date_time = Input::get('arrival_date_time');
+			
+			$reservation->departure_date_time = Input::get('departure_date_time');
+			
 			
 			// example
 			$reservation->save();
