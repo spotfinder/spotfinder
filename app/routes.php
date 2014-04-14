@@ -14,7 +14,7 @@
 
 Route::get('/', 'HomeController@showHome');
 
-Route::get('/admin', 'HomeController@showAdmin');
+// Route::get('/admin', 'HomeController@showAdmin');
 
 Route::get('/login', 'HomeController@showLogin');
 
