@@ -15,51 +15,38 @@ class ReservationController extends BaseController {
 	// Query for open spaces from the Spaces Table --------------
 	// Gets all "open" spaces in "requestedArea" from the Table "Spaces"
     public function searchOpenSpaces($requestedArea){
-    	$openSpaces = Space::where('area_id', $requestedArea)
-    					->where('status', 0)
-    					->take(5)
-    					->get();
 
-    // count the number of results; if count is > 0, then those are the quick picks since status is zero.  DB plan is to have a status defined as zero 0 available and one 1 as booked.  If it is booked (i.e. 1) then the spot also resides in the reservation table.  This initial query serves as a quick look of what is not in the reservation table.
-    		return $openSpaces; 	
- 			
+    	$resultsOfOpenSpaces = DB::table('spaces')
+    						->join('lots', 'spaces.area_id', '=', 'lots.area_id')
+    						->select('spaces.area_id', 'lots.lot_name', 'spaces.space_number', 'lots.cost_per_hour')
+    						->where('status','=', 0)
+    						->take(5)
+    						->get();
+
+    	return $resultsOfOpenSpaces; 			
     }
+
     // If count from the openSpaces query is zero, then a query of the reservation table is required.
     public function searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime){
-
     	// locate all potential spaces by determining that the user will
     	// arrive after the space should be empty
-    	$spacesAvailAtArrivalTime = Reservation::where('area_id', '=', $requestedArea)
-    					->where('departureDateTime','<=', $requestedArrivalDateTime)
-    					->lists('space_number');
+    	$resultsOfReservationQuery = DB::table('reservations')
+    				->join('lots', 'reservations.area_id', '=', 'lots.area_id')
+    				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.id', 'lots.street_address', 'lots.cost_per_hour')
+					->where('reservations.area_id', '=', $requestedArea)
+    				->whereNotBetween('arrivalDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
+    				->whereNotBetween('departureDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
+    				->get();
 
-    	if (sizeof($spacesAvailAtArrivalTime) > 1){
+    	// calculate the total parking duration (divide by 3600 to get hours format)
+    	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
 
-    		$spacesAvailBeforeTakenAgain = Reservation::where('area_id', '=', $requestedArea)
-    					->where('arrivalDateTime','>=', $requestedDepartureDateTime)
-    					->lists('space_number');
-
-    		foreach ($spacesAvailBeforeTakenAgain as $key => $value) {
-    			$results = array();
-
-	    		if (in_array( $value, $spacesAvailAtArrivalTime)){
-
-	    			$foundSlot = $spacesAvailBeforeTakenAgain[$key];
-
-	    			array_push($results, $foundSlot);
-	    		}
-    		}
-var_dump($results);
-    		// foreach ($results as $key => $result){
-    		// 	$pickOneResult = array();
-	    	// 	$foundSpacesCost = Reservation::where('space_number', '=', $result)
-	    	// 				 ->pluck('cost');
-
-    		// }
+    	foreach ($resultsOfReservationQuery as &$value){
+    			$value->total_cost = ($duration * $value->cost_per_hour);
     	}
-    						
-    	return $reservedSpaces; 	
-    }
+    				
+    	return $resultsOfReservationQuery; 	
+    }				
 
     // Now figure out the whole solution ----------------------------------------
     public function solution() {
@@ -68,14 +55,24 @@ var_dump($results);
     	$requestedArea = Input::get('area');
     	$requestedArrivalDateTime = Input::get('arrival_date_time');
     	$requestedDepartureDateTime = Input::get('departure_date_time');
-    	// calculate the total parking duration (divide by 3600 to get hours format)
-    	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
-
-    	if (($requestedArrivalDateTime > $requestedDepartureDateTime) || $requestedArrivalDateTime > time()) {
-    		Session::flash('errorMessage', "Arrival date and time must be after the current date and time and before selected departure time.  Please try again.");
-				return Redirect::action('HomeController@showReservation')->withInput();
+    	
+    	if ($requestedArrivalDateTime > $requestedDepartureDateTime){
+    		Session::flash('errorMessage', "Arrival date and time must be before the selected departure time.  Please try again.");
+			return Redirect::action('HomeController@showReservation')->withInput();
     	}
 
+    	// condition the date and time so as not to change the variable assignment
+    	// NOTE THAT THE DEFAULT UTC IS SET TO - date_default_timezone_set('America/Chicago');
+    	$currentDateTime = strtotime(date('m/d/Y h:i:s a', time()));
+    	$arrivalTime = strtotime($requestedArrivalDateTime);
+
+    	if ($arrivalTime < $currentDateTime){
+    		Session::flash('errorMessage', "Arrival date and time must be after the current date and time.  Please try again.");
+			return Redirect::action('HomeController@showReservation')->withInput();
+    	}
+
+    	// calculate the total parking duration (divide by 3600 to get hours format)
+    	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
     	// call function searchOpenSpaces to find spaces with a status of 0 ('open')
     	$resultsOfOpenSpaces = $this->searchOpenSpaces($requestedArea);
 
@@ -83,7 +80,8 @@ var_dump($results);
 		if (sizeof($resultsOfOpenSpaces) > 0){
 			Session::flash('successMessage', 'We found some options for you.');
 			// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
-			return Redirect::action('HomeController@results');
+			$results = $resultsOfOpenSpaces;
+			return Redirect::action('HomeController@results')->with('data', $results);
 
 		} else if (sizeof($resultsOfOpenSpaces) == 0) {
 			// query reservation table for parking spaces in the desired area where requested arrival time is after any already booked departure space times and where the desired departure time is before any already booked arrival times. 
@@ -99,16 +97,9 @@ var_dump($results);
     		// If reservation query is > zero, list results in a table for the user to review.  Pick only 5 and allow the user to pick only one choice to make a reservation.
 			Session::flash('successMessage', 'We found some options for you.');
 				// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
-				return Redirect::action('HomeController@results');
-
+				$results = $resultsOfReservationQuery;
+				return Redirect::action('HomeController@results')->with('data', $results);
 		}
-
-// DEVELOPMENT TEAM NOTES
-    	// upon click / SELECTION FROM THE 'SEARCH' VIEW - route the user to a pay view.
-
-    	// upon confirmation AND PAYMENT call the ReservationController@store method to save the reservation to the database.
-
-    	// if the user wants to edit their reservation, get the reservation by id, have the user make changes, run another reservation table query based on the new data.  The results and methods are the same as the creation of a new reservation except call the ReservationController@update methoc.
 
     	return View::make('search');
     } //THIS IS THE END OF THE PUBLIC SOLUTION FUNCTION
