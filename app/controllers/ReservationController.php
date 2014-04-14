@@ -31,19 +31,19 @@ class ReservationController extends BaseController {
     	// locate all potential spaces by determining that the user will
     	// arrive after the space should be empty
     	$resultsOfReservationQuery = DB::table('reservations')
-    				->join('lots', 'reservations.area_id', '=', 'lots.area_name')
-    				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.cost_per_hour')
+    				->join('lots', 'reservations.area_id', '=', 'lots.area_id')
+    				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.id', 'lots.street_address', 'lots.cost_per_hour')
 					->where('reservations.area_id', '=', $requestedArea)
     				->whereNotBetween('arrivalDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
     				->whereNotBetween('departureDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
-    				->distinct()
-    				->get()->toArray();
-		// $resultsOfReservationQuery = Reservation::select('area_id', 'lot_name', 'space_number', 'cost')
-		// 			->where('area_id', '=', $requestedArea)
-  //   				->whereNotBetween('arrivalDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
-  //   				->whereNotBetween('departureDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
-  //   				->distinct()
-  //   				->get()->toArray();
+    				->get();
+
+    	// calculate the total parking duration (divide by 3600 to get hours format)
+    	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
+
+    	foreach ($resultsOfReservationQuery as &$value){
+    			$value->total_cost = ($duration * $value->cost_per_hour);
+    	}
     				
     	return $resultsOfReservationQuery; 	
     }				
@@ -62,7 +62,7 @@ class ReservationController extends BaseController {
     	}
 
     	// condition the date and time so as not to change the variable assignment
-    	date_default_timezone_set('America/Chicago');
+    	// NOTE THAT THE DEFAULT UTC IS SET TO - date_default_timezone_set('America/Chicago');
     	$currentDateTime = strtotime(date('m/d/Y h:i:s a', time()));
     	$arrivalTime = strtotime($requestedArrivalDateTime);
 
@@ -81,26 +81,24 @@ class ReservationController extends BaseController {
 			Session::flash('successMessage', 'We found some options for you.');
 			// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
 			$results = $resultsOfOpenSpaces;
-			return Redirect::action('HomeController@results')->with($results);
+			return Redirect::action('HomeController@results')->with('data', $results);
 
 		} else if (sizeof($resultsOfOpenSpaces) == 0) {
 			// query reservation table for parking spaces in the desired area where requested arrival time is after any already booked departure space times and where the desired departure time is before any already booked arrival times. 
 			$reservedSpaces = $this->searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime);
-var_dump($reservedSpaces);
-die;
+
     		// get results of reservations query and count them.  If query result is zero, send the user a message - sorry, there are no space that meet your criteria.  Please return to the reservation make to change your search criteria.
     		if (sizeof($reservedSpaces) == 0){
     			Session::flash('errorMessage', 'No available parking spaces matched your search criteria.  Please amend your search and try again.');
 				return Redirect::action('HomeController@showReservation')->withInput();
 			}
     	} else {
-var_dump($reservedSpaces);
-die;
+
     		// If reservation query is > zero, list results in a table for the user to review.  Pick only 5 and allow the user to pick only one choice to make a reservation.
 			Session::flash('successMessage', 'We found some options for you.');
 				// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
 				$results = $resultsOfReservationQuery;
-				return Redirect::action('HomeController@results')->with($results);
+				return Redirect::action('HomeController@results')->with('data', $results);
 		}
 
     	return View::make('search');
