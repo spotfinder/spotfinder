@@ -44,6 +44,16 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+Route::filter('admin', function(){
+
+    if ( ! Auth::user()->isAdmin())
+    {
+        Session::flash('errorMessage', 'Sorry, you are not an Admin - access denied.');
+        return Redirect::to('/')->withError('No Admin, sorry.');
+    }
+
+});
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter

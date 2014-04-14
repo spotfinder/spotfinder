@@ -7,6 +7,8 @@ class HomeController extends BaseController {
 		// Run an auth filter before all methods except 
 		$this->beforeFilter('auth', ['except' => ['showLogin', 'doLogin', 'showWelcome', 'showHome']]);
 
+		$this->beforeFilter('admin', ['except' => ['showLogin', 'doLogin', 'logout', 'showWelcome', 'showHome', 'showReservation', 'showConfirmation', 'results', 'sendConfirmation']]);
+
 	}
 
 	/*
@@ -49,7 +51,17 @@ class HomeController extends BaseController {
 
 			// Perform Authentication
 			if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
-	    		return Redirect::intended('/reserve');
+
+				if (Auth::user()->isAdmin()){
+
+				   	return Redirect::intended('/admin');
+
+				}else{
+	    		
+	    		return Redirect::to('/reserve');
+	    	    
+	    	    }
+                
 			} else {
 				Session::flash('errorMessage', 'User email or password not recognized.  Please try again.');
 				return Redirect::back()->withInput()->withErrors($validator);
