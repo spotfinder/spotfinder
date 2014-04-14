@@ -19,25 +19,31 @@ class ReservationController extends BaseController {
     					->where('status', 0)
     					->take(5)
     					->get();
-
     // count the number of results; if count is > 0, then those are the quick picks since status is zero.  DB plan is to have a status defined as zero 0 available and one 1 as booked.  If it is booked (i.e. 1) then the spot also resides in the reservation table.  This initial query serves as a quick look of what is not in the reservation table.
-    		return $openSpaces; 	
- 			
+    		return $openSpaces; 			
     }
+
     // If count from the openSpaces query is zero, then a query of the reservation table is required.
     public function searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime){
-
     	// locate all potential spaces by determining that the user will
     	// arrive after the space should be empty
     	$spacesAvailAtArrivalTime = Reservation::where('area_id', '=', $requestedArea)
     					->where('departureDateTime','<=', $requestedArrivalDateTime)
     					->lists('space_number');
-
+var_dump($spacesAvailAtArrivalTime);
     	if (sizeof($spacesAvailAtArrivalTime) > 1){
 
     		$spacesAvailBeforeTakenAgain = Reservation::where('area_id', '=', $requestedArea)
     					->where('arrivalDateTime','>=', $requestedDepartureDateTime)
-    					->lists('space_number');
+    					->lists('space_number', 'lot_name');
+
+    		// $spacesAvailCost = Reservation::where('area_id', '=', $requestedArea)
+    		// 			->where('arrivalDateTime','>=', $requestedDepartureDateTime)
+    		// 			->lists('cost', 'cost');
+
+print_r($spacesAvailBeforeTakenAgain);
+var_dump($spacesAvailBeforeTakenAgain);
+
 
     		foreach ($spacesAvailBeforeTakenAgain as $key => $value) {
     			$results = array();
@@ -47,18 +53,20 @@ class ReservationController extends BaseController {
 	    			$foundSlot = $spacesAvailBeforeTakenAgain[$key];
 
 	    			array_push($results, $foundSlot);
+var_dump($results);
 	    		}
     		}
-var_dump($results);
-    		// foreach ($results as $key => $result){
-    		// 	$pickOneResult = array();
-	    	// 	$foundSpacesCost = Reservation::where('space_number', '=', $result)
-	    	// 				 ->pluck('cost');
+    	}				
+    	return $results; 	
 
-    		// }
-    	}
-    						
-    	return $reservedSpaces; 	
+$array1 = array("make","model","color","year");
+$array2 = array("Jeep","Liberty","Black","2005");
+$newArray = array_combine($array1, $array2);
+
+array($requestedArea, $lot_name, $foundSlot); 
+    	
+
+
     }
 
     // Now figure out the whole solution ----------------------------------------
@@ -69,13 +77,22 @@ var_dump($results);
     	$requestedArrivalDateTime = Input::get('arrival_date_time');
     	$requestedDepartureDateTime = Input::get('departure_date_time');
     	// calculate the total parking duration (divide by 3600 to get hours format)
-    	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
 
-    	if (($requestedArrivalDateTime > $requestedDepartureDateTime) || $requestedArrivalDateTime > time()) {
-    		Session::flash('errorMessage', "Arrival date and time must be after the current date and time and before selected departure time.  Please try again.");
-				return Redirect::action('HomeController@showReservation')->withInput();
+    	if ($requestedArrivalDateTime > $requestedDepartureDateTime){
+    		Session::flash('errorMessage', "Arrival date and time must be before the selected departure time.  Please try again.");
+			return Redirect::action('HomeController@showReservation')->withInput();
+    	}
+    	// condition the date and time so as not to change the variable assignment
+    	date_default_timezone_set('America/Chicago');
+    	$currentDateTime = strtotime(date('m/d/Y h:i:s a', time()));
+    	$arrivalTime = strtotime($requestedArrivalDateTime);
+
+    	if ($arrivalTime < $currentDateTime){
+    		Session::flash('errorMessage', "Arrival date and time must be after the current date and time.  Please try again.");
+			return Redirect::action('HomeController@showReservation')->withInput();
     	}
 
+    	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
     	// call function searchOpenSpaces to find spaces with a status of 0 ('open')
     	$resultsOfOpenSpaces = $this->searchOpenSpaces($requestedArea);
 
