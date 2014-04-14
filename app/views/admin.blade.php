@@ -24,35 +24,45 @@
                 <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-road"></i> Add a Lot</h3></div>
                   <div class="panel-body">
                    <form>
-                        <label>Lot Id</label>
-                        <input type="number" name="lot_id" id='lot_id'>
-                        <label>Lot Name</label>
-                        <input type="text" name="lot_name" id ='lot_name'>
-                        <label>Area Id</label>
-                        <input type="number" name="area_id" id ='area_id'>
-                        <br><label>Area Name</label>
-                        <input type="text" name="area_name" id='area_name'>
-                        <label>Street Address</label>
-                        <input type="text" name="street_address" id="street_address">
-                        <label>City</label>
-                        <input type="text" name="city" id="city">
-                        <br><label>Zip</label>
-                        <input type="text" name="zip" id="zip">
-                        <label>Phone Number</label>
-                        <input type="tel" name="phone_number" id="phone_number">
-                        <label>Capacity</label>
-                        <input type="number" name="capacity" id="capacity">
-                        <br><label>Open Time</label>
-                        <input type="time" name="open_time" id="open_time">
-                        <label>Close Time</label>
-                        <input type="time" name="close_time" id="close_time">
-                        <label>Latitude</label>
-                        <input type="float" name="latituted" id="latitude">
+                        <div class="form-group">
+                            <label>Lot Id</label>
+                            <input type="number" name="lot_id" id='lot_id'>
+                            <label>Lot Name</label>
+                            <input type="text" name="lot_name" id ='lot_name'>
+                            <label>Area Id</label>
+                            <input type="number" name="area_id" id ='area_id'>
+                         </div>
+                        <div class="form-group">
+                            <label>Area Name</label>
+                            <input type="text" name="area_name" id='area_name'>
+                            <label>Street Address</label>
+                            <input type="text" name="street_address" id="street_address">
+                            <label>City</label>
+                            <input type="text" name="city" id="city">
+                        </div>
+                        <div class="form-group">
+                            <label>Zip</label>
+                            <input type="text" name="zip" id="zip">
+                            <label>Phone Number</label>
+                            <input type="tel" name="phone_number" id="phone_number">
+                            <label>Capacity</label>
+                            <input type="number" name="capacity" id="capacity">
+                         </div>
+                        <div class="form-group"> 
+                            <label>Open Time</label>
+                            <input type="time" name="open_time" id="open_time">
+                            <label>Close Time</label>
+                            <input type="time" name="close_time" id="close_time">
+                            <label>Latitude</label>
+                            <input type="float" name="latituted" id="latitude">
+                        </div>
+                        <div class="form-group"> 
                         <label>Longitude</label>
                         <input type="float" name="longitude" id="longitude">
                         <label>Cost Per Hour</label>
                         <input type="number"  min="0.01" step="0.01" name="cost_per_hr" id="cost_per_hr">
-                        <br><input type="submit" value="Add Lot" class="btn btn-primary">
+                        </div>
+                        <input type="submit" value="Add Lot" class="btn btn-primary">
                     </form>
                   </div>
             </div>
