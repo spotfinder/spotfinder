@@ -58,5 +58,5 @@
 	        <p>{{ Form::submit('Submit', array('class' => 'btn btn-lg btn-primary btn-block')) }}</p>
 	    {{ Form::close() }}			
 </div> 
-
 @stop
+
