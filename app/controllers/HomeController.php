@@ -85,7 +85,8 @@ class HomeController extends BaseController {
 	}
 
 	public function showAdmin() {
-		return View::make('admin');
+		$users = User::all();
+		return View::make('admin')->with(array('users'=> $users));
 	}
     
     public function showConfirmation() {

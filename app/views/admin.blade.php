@@ -10,7 +10,7 @@
             text-align: center;
         }
         body {
-            background-color: #B30B30;
+            background-color: #FFF;
             background-image: url("/assets/images/patterns/pattern-1.png");
         }   
     </style>
@@ -46,25 +46,31 @@
                         <a><span class="glyphicon glyphicon-trash"></span></a>
                     </th>
                 </tr>
-<!--                @Foreach ($users as $user)
+               @foreach ($users as $user)
                 <tr>
                     <td>
-                        $user->first_name
+                        {{$user->first_name}}
                     </td>
                     <td>
-                        $user->last_name
+                        {{$user->last_name}}
                     </td>
                     <td>
-                        $user->email
+                        {{$user->email}}
                     </td>
                     <td>
-                        $user->created_at
+                        {{$user->created_at}}
                     </td>
                     <td>
-                        $user->updated_at
+                        {{$user->updated_at}}
                     </td>
+                    <th>
+                        <a><span class="glyphicon glyphicon-pencil"></span></a>
+                    </th>
+                    <th>
+                        <a><span class="glyphicon glyphicon-trash"></span></a>
+                    </th>
                 </tr>
-                    End Foreach -->
+               @endforeach
             </table>
 
         </div>
