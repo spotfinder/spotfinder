@@ -15,6 +15,7 @@ class ReservationController extends BaseController {
 	// Query for open spaces from the Spaces Table --------------
 	// Gets all "open" spaces in "requestedArea" from the Table "Spaces"
     public function searchOpenSpaces($requestedArea){
+
     	$resultsOfOpenSpaces = DB::table('spaces')
     						->join('lots', 'spaces.area_id', '=', 'lots.area_id')
     						->select('spaces.area_id', 'lots.lot_name', 'spaces.space_number', 'lots.cost_per_hour')
@@ -22,15 +23,7 @@ class ReservationController extends BaseController {
     						->take(5)
     						->get();
 
-    	// $openSpaces = Space::where('area_id', $requestedArea)
-    	// 				->where('status', 0)
-    	// 				->take(5)
-    	// 				->get()->toArray();
-    // count the number of results; if count is > 0, then those are the quick picks since status is zero.  DB plan is to have a status defined as zero 0 available and one 1 as booked.  If it is booked (i.e. 1) then the spot also resides in the reservation table.  This initial query serves as a quick look of what is not in the reservation table.
- var_dump($resultsOfOpenSpaces);
- print_r($resultsOfOpenSpaces);
- die;
-    		return $openSpaces; 			
+    	return $resultsOfOpenSpaces; 			
     }
 
     // If count from the openSpaces query is zero, then a query of the reservation table is required.
@@ -55,12 +48,12 @@ class ReservationController extends BaseController {
     	$requestedArea = Input::get('area');
     	$requestedArrivalDateTime = Input::get('arrival_date_time');
     	$requestedDepartureDateTime = Input::get('departure_date_time');
-    	// calculate the total parking duration (divide by 3600 to get hours format)
-
+    	
     	if ($requestedArrivalDateTime > $requestedDepartureDateTime){
     		Session::flash('errorMessage', "Arrival date and time must be before the selected departure time.  Please try again.");
 			return Redirect::action('HomeController@showReservation')->withInput();
     	}
+
     	// condition the date and time so as not to change the variable assignment
     	date_default_timezone_set('America/Chicago');
     	$currentDateTime = strtotime(date('m/d/Y h:i:s a', time()));
@@ -71,6 +64,7 @@ class ReservationController extends BaseController {
 			return Redirect::action('HomeController@showReservation')->withInput();
     	}
 
+    	// calculate the total parking duration (divide by 3600 to get hours format)
     	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
     	// call function searchOpenSpaces to find spaces with a status of 0 ('open')
     	$resultsOfOpenSpaces = $this->searchOpenSpaces($requestedArea);
@@ -98,7 +92,6 @@ class ReservationController extends BaseController {
 				// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
 				$results = $resultsOfReservationQuery;
 				return Redirect::action('HomeController@results')->with($results);
-
 		}
 
     	return View::make('search');
