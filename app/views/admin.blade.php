@@ -6,8 +6,10 @@
             margin-left: 50px;
             
         }
-        th{
+        .col-sm-12{
+            margin-left: 90px;
             text-align: center;
+            width: 900px;
         }
         body {
             background-color: #FFF;
@@ -17,65 +19,58 @@
 @stop
 @section('content')
 
-<div class="container-fluid projects">
-        <div class="col-md-3"></div>
-        <div class="col-md-8">
-        <h1 class = "text-center">Users</h1>
-
-            <table class="table table-striped table-hover table-bordered ">
-                <tr>
-                    <th>
-                        First Name
-                    </th>
-                    <th>
-                        Last Name
-                    </th>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        Created At
-                    </th>
-                    <th>
-                        Updated At
-                    </th>
-                    <th>
-                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                    </th>
-                    <th>
-                        <a><span class="glyphicon glyphicon-trash"></span></a>
-                    </th>
-                </tr>
-               @foreach ($users as $user)
-                <tr>
-                    <td>
-                        {{$user->first_name}}
-                    </td>
-                    <td>
-                        {{$user->last_name}}
-                    </td>
-                    <td>
-                        {{$user->email}}
-                    </td>
-                    <td>
-                        {{$user->created_at}}
-                    </td>
-                    <td>
-                        {{$user->updated_at}}
-                    </td>
-                    <th>
-                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                    </th>
-                    <th>
-                        <a><span class="glyphicon glyphicon-trash"></span></a>
-                    </th>
-                </tr>
-               @endforeach
-            </table>
-
+   <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-users"></i> Existing Users</h3>
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
+                      <tr>
+                        <th>First Name<i class="fa fa-sort"></i></th>
+                        <th>Last Name <i class="fa fa-sort"></i></th>
+                        <th>Email <i class="fa fa-sort"></i></th>
+                        <th>Created At <i class="fa fa-sort"></i></th>
+                        <th>Updated At <i class="fa fa-sort"></i></th>
+                        <th>Edit <i class="fa fa-pencil-square-o"></i></th>
+                        <th>Delete <i class="fa fa-trash-o"></i></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       @foreach ($users as $user)
+                        <tr>
+                            <td>
+                                {{$user->first_name}}
+                            </td>
+                            <td>
+                                {{$user->last_name}}
+                            </td>
+                            <td>
+                                {{$user->email}}
+                            </td>
+                            <td>
+                                {{$user->created_at}}
+                            </td>
+                            <td>
+                                {{$user->updated_at}}
+                            </td>
+                            <td>
+                                <i class="fa fa-pencil-square-o"></i>
+                            </td>
+                            <td>
+                                <i class="fa fa-trash-o"></i> 
+                            </td>
+                        </tr>
+                       @endforeach
+                    </tbody>
+                 </table>
+               </div>
+            </div>
         </div>
-
-    <div class="col-md-2"></div>
+    </div>
 </div>
 @stop
 
