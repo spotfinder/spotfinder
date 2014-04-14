@@ -35,5 +35,3 @@ Route::controller('password', 'RemindersController');
 Route::get('/confirmation', 'HomeController@showConfirmation');
 
 Route::post('/confirmation', 'HomeController@sendConfirmation');
-
-Route::post('/search', 'HomeController@doPay');

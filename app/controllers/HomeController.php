@@ -110,10 +110,16 @@ class HomeController extends BaseController {
 
 		// Create the charge on Stripe's servers - this will charge the user's card
 		try {
+
+		$customer = Stripe_Customer::create(array(
+		'email' => 'customer@example.com',
+		'card'  => $token
+		));
+
 		$charge = Stripe_Charge::create(array(
 		"amount" => 1000, // amount in cents, again
+		"customer" => $customer->id,
 		"currency" => "usd",
-		"card" => $token,
 		"description" => "payinguser@example.com")
 		);
 
