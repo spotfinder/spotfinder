@@ -72,6 +72,7 @@
         </div>
     </div>
 </div>
+
 @stop
 
 @section('bottom-script')
