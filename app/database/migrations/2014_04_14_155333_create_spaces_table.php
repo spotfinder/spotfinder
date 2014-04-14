@@ -12,13 +12,13 @@ class CreateSpacesTable extends Migration {
 	 */
 	public function up()
 	{
-		//
 		Schema::create('spaces', function($table)
 		{
-		    $table->integer('area_id')->unsigned();
+			$table->increments('id')->unsigned();
+			$table->integer('area_id')->unsigned();
 			$table->integer('lot_id')->unsigned();
-		    $table->integer('space_number')->unsigned();
-		    $table->integer('status', 20);
+			$table->integer('space_number')->unsigned();
+			$table->tinyInteger('status')->unsigned();
 		});
 	}
 
@@ -29,7 +29,6 @@ class CreateSpacesTable extends Migration {
 	 */
 	public function down()
 	{
-		//
 		Schema::drop('spaces');
 	}
 
