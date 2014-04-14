@@ -15,10 +15,16 @@
                         <li>Make it to wherever you're going on time!</li>
                     </ul>
                     <div class="download-area">
+                    @if(Auth::check())
+                        <p>
+                          <button type="button" class="btn btn-default btn-lg"><a href="{{{ action('HomeController@showReservation') }}}">Reserve A Spot</button></a>
+                        </p>
+                    @else
                         <p>
                           <button type="button" class="btn btn-default btn-lg"><a href="{{{ action('HomeController@showLogin') }}}">Login</button></a>
                           <button type="button" class="btn btn-default btn-lg"><a href="{{{ action('RegisterController@index') }}}">Sign Up</a></button>
                         </p>
+                    @endif
                     </div>
                 </div><!--//overview-->
                 
