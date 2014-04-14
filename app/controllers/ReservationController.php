@@ -30,14 +30,21 @@ class ReservationController extends BaseController {
     public function searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime){
     	// locate all potential spaces by determining that the user will
     	// arrive after the space should be empty
-
-		$resultsOfReservationQuery = Reservation::select('area_id', 'lot_name', 'space_number', 'cost')
-					->where('area_id', '=', $requestedArea)
+    	$resultsOfReservationQuery = DB::table('reservations')
+    				->join('lots', 'reservations.area_id', '=', 'lots.area_name')
+    				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.cost_per_hour')
+					->where('reservations.area_id', '=', $requestedArea)
     				->whereNotBetween('arrivalDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
     				->whereNotBetween('departureDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
     				->distinct()
     				->get()->toArray();
-
+		// $resultsOfReservationQuery = Reservation::select('area_id', 'lot_name', 'space_number', 'cost')
+		// 			->where('area_id', '=', $requestedArea)
+  //   				->whereNotBetween('arrivalDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
+  //   				->whereNotBetween('departureDateTime', array($requestedArrivalDateTime, $requestedDepartureDateTime))
+  //   				->distinct()
+  //   				->get()->toArray();
+    				
     	return $resultsOfReservationQuery; 	
     }				
 
