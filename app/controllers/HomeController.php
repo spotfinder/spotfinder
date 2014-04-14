@@ -7,7 +7,7 @@ class HomeController extends BaseController {
 		// Run an auth filter before all methods except 
 		$this->beforeFilter('auth', ['except' => ['showLogin', 'doLogin', 'showWelcome', 'showHome']]);
 
-		$this->beforeFilter('admin', ['except' => ['showLogin', 'doLogin', 'logout', 'showWelcome', 'showHome', 'showReservation', 'showConfirmation', 'results', 'sendConfirmation']]);
+		$this->beforeFilter('admin', ['only' => ['showAdmin']]);
 
 	}
 
