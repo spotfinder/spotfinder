@@ -34,6 +34,8 @@ class ReservationController extends BaseController {
     				->join('lots', 'reservations.area_id', '=', 'lots.area_id')
     				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.id', 'lots.street_address', 'lots.cost_per_hour')
 					->where('reservations.area_id', '=', $requestedArea)
+					->where('arrival_date_time', '>', $requestedDepartureDateTime) //
+					->where('departure_date_time', '<', $requestedArrivalDateTime) //
     				->whereNotBetween('arrival_date_time', array($requestedArrivalDateTime, $requestedDepartureDateTime))
     				->whereNotBetween('departure_date_time', array($requestedArrivalDateTime, $requestedDepartureDateTime))
     				->get();
@@ -84,6 +86,30 @@ class ReservationController extends BaseController {
 			return Redirect::action('HomeController@results')->with('data', $results);
 
 		} else if (sizeof($resultsOfOpenSpaces) == 0) {
+
+			$checkIfAnyReservationsExists = DB::table('reservations')
+    				->join('lots', 'reservations.area_id', '=', 'lots.area_id')
+    				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.id', 'lots.street_address', 'lots.cost_per_hour')
+					->where('reservations.area_id', '=', $requestedArea)
+					->where('departure_date_time', '>', $currentDateTime)
+            		->get();
+
+            if (empty($checkIfAnyReservationsExists)){
+            	Session::flash('successMessage', 'Here are your options for you.');	
+
+				$results = DB::table('lots')
+    				->join('spaces', 'lots.id', '=', 'spaces.lot_id')
+    				->select('lots.area_name', 'lots.lot_name', 'spaces.space_number', 'lots.lot_id', 'lots.street_address', 'lots.cost_per_hour')
+					->where('lots.lot_id', '=', $requestedArea)
+					->get();
+
+				foreach ($results as &$result){
+    			$result->total_cost = ($duration * $result->cost_per_hour);
+    			}
+    			
+				return Redirect::action('HomeController@results')->with('data', $results);
+            }
+
 			// query reservation table for parking spaces in the desired area where requested arrival time is after any already booked departure space times and where the desired departure time is before any already booked arrival times. 
 			$reservedSpaces = $this->searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime);
 
