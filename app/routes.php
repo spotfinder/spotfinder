@@ -26,6 +26,8 @@ Route::post('/login', 'HomeController@doLogin');
 
 Route::get('/logout', 'HomeController@logout');
 
+Route::post('/payment', 'HomeController@doPay');
+
 Route::resource('register', 'RegisterController'); 
 
 Route::get('/reserve', 'HomeController@showReservation');
