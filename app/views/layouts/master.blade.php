@@ -14,7 +14,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Covered+By+Your+Grace' rel='stylesheet' type='text/css'>  
     <!-- Global CSS -->
-    <link rel="stylesheet" href="{{ URL::to('') }}/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Plugins CSS -->    
     <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="/assets/plugins/flexslider/flexslider.css">
@@ -89,9 +89,8 @@
 
 @yield('content')
 
-@yield('bottom-script')
 
-	    <!-- Javascript -->          
+        <!-- Javascript -->          
     <script type="text/javascript" src="assets/plugins/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="assets/plugins/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="assets/plugins/detectmobilebrowser.js"></script>      
@@ -114,6 +113,8 @@
         $('.alert-success').fadeIn(5000);
         $('.alert-danger').fadeOut(10000);
     </script> 
+
+@yield('bottom-script')
 </body>
 
 </html> 

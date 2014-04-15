@@ -23,12 +23,6 @@
     <link id="theme-style" rel="stylesheet" href="{{ URL::to('') }}/assets/css/styles.css">
     <!-- Form CSS-->
     <link href="/css/signin.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
     <style type="text/css">
         .alert{
             margin-top: 90px;
@@ -91,22 +85,21 @@
 
 @yield('content')
 
-@yield('bottom-script')
 
-	    <!-- Javascript -->          
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/detectmobilebrowser.js"></script>      
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery.easing.1.3.js"></script>   
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>     
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery-inview/jquery.inview.min.js"></script>
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/FitVids/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>    
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/jquery-placeholder/jquery.placeholder.js"></script>
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/plugins/flexslider/jquery.flexslider-min.js"></script>
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/js/main.js"></script>
+        <!-- Javascript -->          
+    <script type="text/javascript" src="/assets/plugins/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="/assets/plugins/detectmobilebrowser.js"></script>      
+    <script type="text/javascript" src="/assets/plugins/jquery.easing.1.3.js"></script>   
+    <script type="text/javascript" src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>     
+    <script type="text/javascript" src="/assets/plugins/jquery-inview/jquery.inview.min.js"></script>
+    <script type="text/javascript" src="/assets/plugins/FitVids/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>    
+    <script type="text/javascript" src="/assets/plugins/jquery-placeholder/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="/assets/plugins/flexslider/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/assets/js/main.js"></script>
     <!--[if !IE]>--> 
-    <script type="text/javascript" src="{{ URL::to('') }}/assets/js/animations.js"></script> 
+    <script type="text/javascript" src="/assets/js/animations.js"></script> 
     <!--<![endif]-->
 
         <!-- Fade out error or success messages after forms are submitted -->
@@ -116,6 +109,7 @@
         $('.alert-success').fadeIn(5000);
         $('.alert-danger').fadeOut(10000);
     </script> 
-</body>
 
+@yield('bottom-script')
+</body>
 </html> 
