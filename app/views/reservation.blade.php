@@ -50,14 +50,14 @@
 					<option value="4">AT&amp;T Center</option>
 				</select> </p>
 			 <div class="form-group">
-	            	<label for="start_date">Choose: Arrival Date &amp; Time </label>
+	            	<label for="arrival_date_time">Choose: Arrival Date &amp; Time </label>
 	                <div class='input-group date' id='datetimepicker1'>
 	                    <input type='text' class="form-control" name='arrival_date_time' id="arrival_date_time">
 	                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 	                </div>
             </div>
              <div class="form-group">
-	            	<label for="start_date">Choose: Arrival Date &amp; Time </label>
+	            	<label for="departure_date_time">Choose: Departure Date &amp; Time </label>
 	                <div class='input-group date' id='datetimepicker2'>
 	                    <input type='text' class="form-control" name='departure_date_time' id="departure_date_time">
 	                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
