@@ -16,8 +16,6 @@ Route::get('/', 'HomeController@showHome');
 
 Route::get('/login', 'HomeController@showLogin');
 
-Route::get('/admin', 'HomeController@showAdmin');
-
 Route::any('/search', 'ReservationController@solution');
 
 Route::any('/results', 'HomeController@results');
@@ -38,4 +36,4 @@ Route::get('/confirmation', 'HomeController@showConfirmation');
 
 Route::post('/confirmation', 'HomeController@sendConfirmation');
 
-// Route::resource('admin', 'AdminController');
+Route::resource('admin', 'AdminController');

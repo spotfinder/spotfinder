@@ -1,7 +1,12 @@
 <?php
 
-class AdminController extends \BaseController {
+class AdminController extends BaseController {
 
+    public function __construct(){
+        
+        $this->beforeFilter('auth', ['except' => ['showLogin', 'doLogin', 'showWelcome', 'showHome']]);
+		$this->beforeFilter('admin', ['only' => ['index']]);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,7 +14,10 @@ class AdminController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+
+		$users = User::all();
+		return View::make('admin')->with(array('users'=> $users));
+
 	}
 
 

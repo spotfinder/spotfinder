@@ -7,8 +7,6 @@ class HomeController extends BaseController {
 		// Run an auth filter before all methods except 
 		$this->beforeFilter('auth', ['except' => ['showLogin', 'doLogin', 'showWelcome', 'showHome']]);
 
-		$this->beforeFilter('admin', ['only' => ['showAdmin']]);
-
 	}
 
 	/*
@@ -82,11 +80,6 @@ class HomeController extends BaseController {
     
     public function results() {
 		return View::make('search');
-	}
-
-	public function showAdmin() {
-		$users = User::all();
-		return View::make('admin')->with(array('users'=> $users));
 	}
     
     public function showConfirmation() {
