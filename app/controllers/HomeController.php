@@ -106,7 +106,7 @@ class HomeController extends BaseController {
 
 		// Get the credit card details submitted by the form
 		$token = Input::get('stripeToken');
-		// $amount = Input::get('amount');
+		$amount = Input::get('amount');
 
 		// Create the charge on Stripe's servers - this will charge the user's card
 		try {

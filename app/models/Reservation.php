@@ -12,10 +12,9 @@ class Reservation extends Eloquent {
 
 // Validation rules
     public static $rules = array(
-    	'arrival_date' => 'required',
-    	'arrival_time' => 'required',
-    	'departure_date' => 'required',
-    	'departure_time' => 'required'		
+    	'arrival_date_time' => 'required',
+    	'departure_date_time' => 'required'
+    			
 	);
 
 }

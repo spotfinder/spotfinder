@@ -3,10 +3,16 @@
 @section('top-script')
 <style>
     body {
-    background-color: #4EA784;
-    background-image: url("/assets/images/patterns/pattern-1.png");
-    margin-top: 80px;
+        background-color: #4EA784;
+        background-image: url("/assets/images/patterns/pattern-1.png");
+        margin-top: 100px;
     } 
+    td {
+        text-align: center;
+    }
+    a {
+        color: #FFF;
+    }
 </style>
 @stop
 
@@ -31,31 +37,40 @@
                         Space Number
                     </th>
                     <th>
-                        Total Cost
+                        Total Cost ($)
                     </th>
                     <th>
                         Select
                     </th>
                 </tr>
 
-                @foreach($this->$results as $result)
+                @foreach($results as $key => $result)
              
                 <tr>
                     <td>{{ $result->area_name }}</td>
                     <td>{{ $result->lot_name }}</td>
                     <td>{{ $result->space_number }}</td> 
+                    <td>{{ $result->total_cost }}</td>
+                    <td><a href="?purchase=<?= $key; ?>"><input type="checkbox" name="pick_me" id="pick_me" value="$key">&nbsp;Pick Me</button></a></td>
                 </tr>
                 @endforeach
             </table>
+            <?php
+                $amount = ($results[$key]->total_cost)*100;
+                $location = $results[$key]->lot_name;
+                $space = $results[$key]->space_number;
+                $duration = $results[$key]->duration;
+
+            ?>
             <div>
                 {{ Form::open(array('action' => 'HomeController@doPay', 'method' => 'post')) }}
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="{{ Config::get('stripe.stripe.public')}}"
-                    data-amount="1000"
+                    data-amount={{ $amount }}
                     data-name="SpotFinder"
-                    data-description="1 spot in LAZ for 12 hours ($10.00)"
+                    data-description="1 spot in {{ $location }} for {{ $duration }} hours"
                     data-image="assets/images/logo/logo.png">
                     </script>
                 {{Form::close()}}

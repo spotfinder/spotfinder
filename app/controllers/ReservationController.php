@@ -83,7 +83,7 @@ class ReservationController extends BaseController {
 			Session::flash('successMessage', 'We found some options for you.');
 			// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
 			$results = $resultsOfOpenSpaces;
-			return Redirect::action('HomeController@results')->with('data', $results);
+			return View::make('search')->with('results', $results);
 
 		} else if (sizeof($resultsOfOpenSpaces) == 0) {
 
@@ -95,7 +95,7 @@ class ReservationController extends BaseController {
             		->get();
 
             if (empty($checkIfAnyReservationsExists)){
-            	Session::flash('successMessage', 'Here are your options for you.');	
+            	Session::flash('successMessage', 'Here are your options.');	
 
 				$results = DB::table('lots')
     				->join('spaces', 'lots.id', '=', 'spaces.lot_id')
@@ -104,10 +104,11 @@ class ReservationController extends BaseController {
 					->get();
 
 				foreach ($results as &$result){
-    			$result->total_cost = ($duration * $result->cost_per_hour);
-    			}
-    			
-				return Redirect::action('HomeController@results')->with('data', $results);
+    				$result->total_cost = ($duration * $result->cost_per_hour);
+    				$result->duration = $duration;
+				}
+				
+				return View::make('search')->with('results', $results);
             }
 
 			// query reservation table for parking spaces in the desired area where requested arrival time is after any already booked departure space times and where the desired departure time is before any already booked arrival times. 
@@ -124,7 +125,7 @@ class ReservationController extends BaseController {
 			Session::flash('successMessage', 'We found some options for you.');
 				// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
 				$results = $resultsOfReservationQuery;
-				return Redirect::action('HomeController@results')->with('data', $results);
+				return View::make('search')->with('results', $results);
 		}
 
     	return View::make('search');
@@ -179,11 +180,11 @@ class ReservationController extends BaseController {
     		$reservation = new Reservation();
     		
 			$reservation->arrival_date_time = Input::get('arrival_date_time');
-			
 			$reservation->departure_date_time = Input::get('departure_date_time');
-			
-			
-			// example
+			DB::table('spaces')
+            	->where('lot_id', XXXXXX)
+            	->where('space_number', XXXX)
+            	->update(array('status' => 1));
 			$reservation->save();
 			Session::flash('successMessage', 'Reservation created successfully');
 			return Redirect::action('HomeController@showConfirmation');
