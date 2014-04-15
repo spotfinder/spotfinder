@@ -37,3 +37,5 @@ Route::get('/confirmation', 'HomeController@showConfirmation');
 Route::post('/confirmation', 'HomeController@sendConfirmation');
 
 Route::resource('admin', 'AdminController');
+
+Route::post('/addLot', 'AdminController@addLot');
