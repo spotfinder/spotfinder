@@ -30,11 +30,11 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				  	<h5>Do you want to get details about your <em> reservation</em>? Enter your phone number below.</h5>
+				  	<h5>Do you want to get details about your <em> reservation</em>? <br>Enter your phone number below.</h5>
 				    {{ Form::open(array('action' => 'HomeController@sendConfirmation', 'class' => 'well', 'role'=>'form', 'method'=> 'post')) }}
 				  <div class="form-group text-center">
 				    <h5><label for="phone">Phone Number:</label></h5>
-				    <input type='text' class="form-control" id="phone" name="phone" placeholder="##########" style="text-align:center")>
+				    <input type='text' class="form-control" id="phone" name="phone" placeholder="##########" style="text-align:center" required>
 				  </div>
 				  <button type="submit" class="btn btn-default">Send</button>
 				 {{ Form::close() }}
@@ -42,12 +42,13 @@
 			<div class="col-md-4"></div>
 		</div>
 		<div class="col-md-1"></div>
-		<div class="col-md-10">
-			@if(!empty($phone))
-				<div class="alert alert-info">
+		
+			@if (Session::has('phone'))
+				<div class="alert alert-info" >
+					<p>Message to {{ Session::get('phone') }} sent</p>
 				</div>
-			@endif	
-		</div>
+			@endif
+		
 		<div class="col-md-1"></div>
 	</div>
 @stop

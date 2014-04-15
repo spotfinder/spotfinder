@@ -410,7 +410,7 @@
     <!-- ******CONTENT****** --> 
     <footer class="footer">
         <div class="container">
-            <small class="copyright pull-left">Copyright &copy; 2014 Delta App</small>
+            <small class="copyright pull-left">Copyright &copy; 2014 SpotFinder App</small>
             <ul class="links list-inline">
                 <li><a href="#">Terms</a></li>
                 <li><a href="#">Privacy</a></li>

@@ -94,7 +94,9 @@ class HomeController extends BaseController {
 	}
     
     public function sendConfirmation() {
-    	Twilio::message('2102372042', 'Pink Elephants and Happy Rainbows');
+      
+    	Twilio::message('2102372042', 'Thank you for reserving a spot with us!');
+    	Session::flash('phone', 'phone number');
     	return View::make('confirmation');
     }
 
