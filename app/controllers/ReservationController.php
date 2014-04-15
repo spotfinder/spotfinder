@@ -101,14 +101,14 @@ class ReservationController extends BaseController {
 				$results = DB::table('lots')
     				->join('spaces', 'lots.id', '=', 'spaces.lot_id')
     				->select('lots.area_name', 'lots.lot_name', 'spaces.space_number', 'lots.lot_id', 'lots.street_address', 'lots.cost_per_hour')
-					->where('lots.lot_id', '=', $requestedArea)
+					->where('lots.area_id', '=', $requestedArea)
 					->get();
 
 				foreach ($results as &$result){
     				$result->total_cost = ($duration * $result->cost_per_hour);
-    				$result->duration = $duration;
+    				$result->duration = $duration;  				
 				}
-				
+			
 				return View::make('search')->with('results', $results);
             }
 
