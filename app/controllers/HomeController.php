@@ -105,7 +105,7 @@ class HomeController extends BaseController {
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here https://manage.stripe.com/account
 		Stripe::setApiKey(Config::get('stripe.stripe.secret'));
-
+		Input::all();
 		// Get the credit card details submitted by the form
 		$token = Input::get('stripeToken');
 		$amount = Input::get('amount');
@@ -119,7 +119,7 @@ class HomeController extends BaseController {
 		));
 
 		$charge = Stripe_Charge::create(array(
-		"amount" => 1000, // amount in cents, again
+		"amount" => $amount, // amount in cents, again
 		"customer" => $customer->id,
 		"currency" => "usd",
 		"description" => "payinguser@example.com")

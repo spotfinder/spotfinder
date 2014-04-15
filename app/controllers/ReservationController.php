@@ -57,8 +57,8 @@ class ReservationController extends BaseController {
     	$requestedArea = Input::get('area');
     	$requestedArrivalDateTime = Input::get('arrival_date_time');
     	$requestedDepartureDateTime = Input::get('departure_date_time');
-    	
-    	if ($requestedArrivalDateTime > $requestedDepartureDateTime){
+
+    	if (strtotime($requestedArrivalDateTime) > strtotime($requestedDepartureDateTime)){
     		Session::flash('errorMessage', "Arrival date and time must be before the selected departure time.  Please try again.");
 			return Redirect::action('HomeController@showReservation')->withInput();
     	}
@@ -68,7 +68,8 @@ class ReservationController extends BaseController {
     	$currentDateTime = strtotime(date('m/d/Y h:i:s a', time()));
     	$arrivalTime = strtotime($requestedArrivalDateTime);
 
-    	if ($arrivalTime < $currentDateTime){
+
+    	if ($arrivalTime <= $currentDateTime){
     		Session::flash('errorMessage', "Arrival date and time must be after the current date and time.  Please try again.");
 			return Redirect::action('HomeController@showReservation')->withInput();
     	}

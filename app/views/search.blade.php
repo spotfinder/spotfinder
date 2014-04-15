@@ -51,26 +51,29 @@
                     <td>{{ $result->lot_name }}</td>
                     <td>{{ $result->space_number }}</td> 
                     <td>{{ $result->total_cost }}</td>
-                    <td><a href="?purchase=<?= $key; ?>"><input type="checkbox" name="pick_me" id="pick_me" value="$key">&nbsp;Pick Me</button></a></td>
+                    <td><a href="#?purchase=<?= $key; ?>"><input type="checkbox" name="pick_me" id="pick_me" value="$key">&nbsp;Pick Me</button></a></td>
                 </tr>
                 @endforeach
             </table>
             <?php
                 $amount = ($results[$key]->total_cost)*100;
-                $location = $results[$key]->lot_name;
+               
                 $space = $results[$key]->space_number;
                 $duration = $results[$key]->duration;
 
+                // Session::put()
+
             ?>
-            <div>
+            <div id="paymentButton">
                 {{ Form::open(array('action' => 'HomeController@doPay', 'method' => 'post')) }}
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="hidden" name="amount" value={{ $amount }}>
                     <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="{{ Config::get('stripe.stripe.public')}}"
                     data-amount={{ $amount }}
                     data-name="SpotFinder"
-                    data-description="1 spot in {{ $location }} for {{ $duration }} hours"
+                    data-description="Spot {{ $results[$key]->space_number}} in {{ $results[$key]->lot_name; }} for {{ $duration }} hours"
                     data-image="assets/images/logo/logo.png">
                     </script>
                 {{Form::close()}}
@@ -78,4 +81,13 @@
         <div class="col-md-2"></div>
         </div>
     </div>
+@stop
+
+@section('bottom-script')
+    <script>
+        $('#paymentButton').hide();
+        $('#pick_me').on('click', function(){
+            $('#paymentButton').show();
+        })
+    </script>
 @stop
