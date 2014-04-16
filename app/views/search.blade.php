@@ -48,37 +48,26 @@
                     </th>
                 </tr>
 
+
                 @foreach($results as $key => $result)
                 <tr>
                     <td>{{ $result->area_name }}</td>
                     <td>{{ $result->lot_name }}</td>
                     <td>{{ $result->space_number }}</td> 
                     <td>{{ number_format($result->total_cost, 2, '.', ',') }}</td>
-                    <td><input type="radio" name="pick_me" class="pick_me" data-amount="{{{ $result->total_cost * 100 }}}" data-space="{{{ $result->space_number }}}" data-lot="{{{ $result->lot_name }}}" data-duration="{{{ $result->duration }}}">&nbsp;Pick Me</button></td>
+
+                    <td>
+                        {{ Form::open(array('action' => 'HomeController@showConfirmation', 'method' => "POST")) }}<input type="radio" name="pick_me" class="pick_me" value="{{$key}}" data-amount="{{{ $result->total_cost * 100 }}}" data-space="{{{ $result->space_number }}}" data-lot="{{{ $result->lot_name }}}" data-duration="{{{ $result->duration }}}">&nbsp;Pick Me</input>
+                    </td>
                 </tr>
                 @endforeach
             </table>
-            <?php
-                $amount = ($results[$key]->total_cost)*100;
-                
-                $space = $results[$key]->space_number;
-                $duration = $results[$key]->duration;
-
-            ?>
-            <div id="paymentButton">
-                <button class="btn btn-primary" id="showStripe">Pay Now</button>
-                {{ Form::open(array('action' => 'HomeController@doPay', 'method' => 'post')) }}
-                    <input type="hidden" name="amount" id="amountInput" value="">
-                    <input type="hidden" name="space" id="spaceInput" value="">
-                    <input type="hidden" name="lot" id="lotInput" value="">
-                    <input type="hidden" name="duration" id="durationInput" value="">
-
-                    <script src="https://checkout.stripe.com/checkout.js" ></script>
-                    
-                {{Form::close()}}
-            </div>
+                        {{ Form::submit('Go to payment', array('class' => 'btn btn-lg btn-primary paymentButton'))}}
+                        {{ Form:: close() }}
+            
             <div id='backButton'>
                 <a href="{{{ action('HomeController@showReservation') }}}"><button class="btn btn-primary">Back to Search</button></a>
+            </div>
             </div>
         <div class="col-md-2"></div>
         </div>
@@ -87,11 +76,11 @@
 
 @section('bottom-script')
     <script>
-        var handler = StripeCheckout.configure({
+        /*var handler = StripeCheckout.configure({
             key: '{{ Config::get('stripe.stripe.public')}}',
             image: 'assets/images/logo/logo.png',
             name: 'SpotFinder'
-        });
+        });*/
         
         selectionTime = setTimeout(startSelection, 300000);
         //
@@ -103,20 +92,17 @@
         // function to stop / reset the timer
         function stopSelection() {
             clearTimeout(selectionTime);
-            $('button').hide();
+            $('.paymentButton').hide();
             $('table').hide(); 
-            $('h3').show(); 
+            $('h3').show();
+            $('#backButton').show(); 
         }
 
         //
 
-        $('#paymentButton').hide();
+        $('.paymentButton').hide();
         $('.pick_me').on('click', function(){
-            $("#amountInput").val($(this).data('amount'));
-            $("#spaceInput").val($(this).data('space'));
-            $("#lotInput").val($(this).data('lot'));
-            $("#durationInput").val($(this).data('duration'));
-            $('#paymentButton').show();
+            $('.paymentButton').show();
         });
 
         $("#showStripe").on('click', function() {
