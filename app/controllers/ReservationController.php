@@ -11,9 +11,8 @@ class ReservationController extends BaseController {
 		$this->beforeFilter('auth', ['except' => ['index', 'show', 'create', 'store']]);
 		$this->beforeFilter('role', ['only' => ['edit', 'destroy']]);
 	}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Query for open spaces from the Spaces Table --------------
-	// Gets all "open" spaces in "requestedArea" from the Table "Spaces"
+
+	// Query for open spaces from the Spaces Table for the requested area
     public function searchOpenSpaces($requestedArea){
 
     	$resultsOfOpenSpaces = DB::table('spaces')
@@ -26,10 +25,9 @@ class ReservationController extends BaseController {
     	return $resultsOfOpenSpaces; 			
     }
 
-    // If count from the openSpaces query is zero, then a query of the reservation table is required.
+    // If count from the openSpaces query is zero, then a query of the reservation table will be required.
     public function searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime){
-    	// locate all potential spaces by determining that the user will
-    	// arrive after the space should be empty
+    	// locate all potential spaces by determining that the user will arrive after the space should be empty
     	$resultsOfReservationQuery = DB::table('reservations')
     				->join('lots', 'reservations.area_id', '=', 'lots.area_id')
     				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.id', 'lots.street_address', 'lots.cost_per_hour')
@@ -45,6 +43,7 @@ class ReservationController extends BaseController {
 
     	foreach ($resultsOfReservationQuery as &$value){
     			$value->total_cost = ($duration * $value->cost);
+    			$value->duration = $duration;
     	}
     				
     	return $resultsOfReservationQuery; 	
@@ -68,7 +67,6 @@ class ReservationController extends BaseController {
     	$currentDateTime = strtotime(date('m/d/Y h:i:s a', time()));
     	$arrivalTime = strtotime($requestedArrivalDateTime);
 
-
     	if ($arrivalTime <= $currentDateTime){
     		Session::flash('errorMessage', "Arrival date and time must be after the current date and time.  Please try again.");
 			return Redirect::action('HomeController@showReservation')->withInput();
@@ -81,9 +79,12 @@ class ReservationController extends BaseController {
 
 		// if open spaces are found
 		if (sizeof($resultsOfOpenSpaces) > 0){
+
 			Session::flash('successMessage', 'We found some options for you.');
 			// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
 			$results = $resultsOfOpenSpaces;
+
+			Session::put('results', $results);
 			return View::make('search')->with('results', $results);
 
 		} else if (sizeof($resultsOfOpenSpaces) == 0) {
@@ -108,7 +109,8 @@ class ReservationController extends BaseController {
     				$result->total_cost = ($duration * $result->cost_per_hour);
     				$result->duration = $duration;  				
 				}
-			
+
+				Session::put('results', $results);
 				return View::make('search')->with('results', $results);
             }
 
@@ -126,6 +128,7 @@ class ReservationController extends BaseController {
 			Session::flash('successMessage', 'We found some options for you.');
 				// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
 				$results = $resultsOfReservationQuery;
+				Session::put('results', $results);
 				return View::make('search')->with('results', $results);
 		}
 
@@ -155,7 +158,7 @@ class ReservationController extends BaseController {
 	public function create()
 	{
 		$reservation = new Reservation;
-		return View::make('reservation')->with(['user' => $user]);
+		return View::make('reservation');
 		/// PLACEHOLDER -- MIGHT NEED TO ADD/PASS OTHER TABLE INFO !!!!!!!!!!!!!!!!!!!!!!!!
 	}
 
@@ -182,16 +185,18 @@ class ReservationController extends BaseController {
     		
 			$reservation->arrival_date_time = Input::get('arrival_date_time');
 			$reservation->departure_date_time = Input::get('departure_date_time');
+			
+
 			DB::table('spaces')
             	->where('lot_id', XXXXXX)
             	->where('space_number', XXXX)
             	->update(array('status' => 1));
+			
 			$reservation->save();
 			Session::flash('successMessage', 'Reservation created successfully');
-			return Redirect::action('HomeController@showConfirmation');
+			return View::make('HomeController@showConfirmation');
 			
-		}
-		
+		}	
 	}
 
 	/**
@@ -203,7 +208,7 @@ class ReservationController extends BaseController {
 	public function show($id)
 	{
 		$reservation = Reservation::findOrFail($id);
-		return View::make('reservation')->with('user', $user);
+		return View::make('reservation');
 		///////////////////////////////////////////////////////////////// NOT PERFECT YET NEED OTHER TABLE DATA
 	}
 
@@ -216,7 +221,7 @@ class ReservationController extends BaseController {
 	public function edit($id)
 	{
 		$reservation = Reservation::findOrFail($id);
-		return View::make('reservation')->with('user', $user);
+		return View::make('reservation');
 		///////////////////////////////////////////////////////////////// NOT PERFECT YET NEED OTHER TABLE DATA
 	}
 
@@ -249,7 +254,7 @@ class ReservationController extends BaseController {
 			// example
 			$reservation->save();
 			Session::flash('successMessage', 'Reservation updated successfully');
-			return Redirect::action('HomeController@showConfirmation');
+			return View::make('HomeController@showConfirmation');
 			// change the redirect action to your desired page
 		}
 
