@@ -17,7 +17,10 @@ class AdminController extends BaseController {
        if (Auth::check())
 	   {
 			$users = User::all();
-			return View::make('admin')->with(array('users'=> $users));
+			$reservations = Reservation::all();
+			$lots = Lot::all();
+			$spaces = Space::all();
+			return View::make('admin')->with(array('users'=> $users, 'reservations'=> $reservations, 'lots'=> $lots, 'spaces'=>$spaces));
         }
 	}
 
@@ -113,6 +116,16 @@ class AdminController extends BaseController {
 			$lot->longitude = Input::get('longitude');
 			$lot->cost_per_hour = Input::get('cost_per_hour');
 			$lot->save();
+        
+            $capacity = Input::get('capacity');
+            for($counter = 1; $counter <= $capacity; $counter++){
+                 $space = new Space();
+                 $space->area_id = $lot->area_id;
+                 $space->space_number = $counter;
+                 $space->status = 0;
+                 $space->save();
+
+            }
 
 			Session::flash('successMessage', 'Lot added successfully');
 			return Redirect::action('AdminController@index');
