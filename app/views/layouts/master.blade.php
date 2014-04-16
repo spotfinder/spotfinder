@@ -69,7 +69,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{{ action('HomeController@showReservation') }}}">Reserve a spot!</a></li>
                                 <li><a href="{{{ action('RegisterController@index') }}}">Edit My Account</a></li>
-                                <li><a href="{{{ action('HomeController@logout') }}}">Logout</a></li>
+                                <li><a href="{{{ action('HomeController@logout') }}}">Logout ({{{ Auth::user()->first_name }}})</a></li>
                             </ul>
                             </li>
                         @endif
