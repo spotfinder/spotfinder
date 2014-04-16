@@ -13,7 +13,7 @@ class ReservationController extends BaseController {
 	}
 
 	// Query for open spaces from the Spaces Table for the requested area
-    public function searchOpenSpaces($requestedArea){
+    public function searchOpenSpaces($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime){
 
     	$resultsOfOpenSpaces = DB::table('spaces')
     						->join('lots', 'spaces.area_id', '=', 'lots.area_id')
@@ -21,6 +21,13 @@ class ReservationController extends BaseController {
     						->where('status','=', 0)
     						->take(5)
     						->get();
+    	// calculate the total parking duration (divide by 3600 to get hours format)
+    	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
+
+    	foreach ($resultsOfOpenSpaces as &$value){
+    			$value->total_cost = ($duration * $value->cost);
+    			$value->duration = $duration;
+    	}					
 
     	return $resultsOfOpenSpaces; 			
     }
@@ -75,7 +82,7 @@ class ReservationController extends BaseController {
     	// calculate the total parking duration (divide by 3600 to get hours format)
     	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
     	// call function searchOpenSpaces to find spaces with a status of 0 ('open')
-    	$resultsOfOpenSpaces = $this->searchOpenSpaces($requestedArea);
+    	$resultsOfOpenSpaces = $this->searchOpenSpaces($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime);
 
 		// if open spaces are found
 		if (sizeof($resultsOfOpenSpaces) > 0){
