@@ -28,6 +28,27 @@
 			<div class="col-md-1"></div>
 		</div>
 		<div class="row">
+			<table class="table table-striped table-hover table-bordered">
+
+               	<?= 
+               	// $results = Session::get('results'); 
+var_dump(Session::get('results'));
+die;
+               	?>
+
+                @foreach($results as $key => $result)
+             
+                <tr>
+                    <td>{{ $result->area_name }}</td>
+                    <td>{{ $result->lot_name }}</td>
+                    <td>{{ $result->space_number }}</td> 
+                    <td>{{ number_format($result->total_cost, 2, '.', ',') }}</td>
+                    <td><input type="radio" name="pick_me" class="pick_me" data-amount="{{{ $result->total_cost * 100 }}}" data-space="{{{ $result->space_number }}}" data-lot="{{{ $result->lot_name }}}" data-duration="{{{ $result->duration }}}">&nbsp;Pick Me</button></td>
+                </tr>
+
+                @endforeach
+
+            </table>
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				  	<h5>Do you want to get details about your <em> reservation</em>? <br>Enter your phone number below.</h5>

@@ -7,18 +7,22 @@
         background-image: url("/assets/images/patterns/pattern-1.png");
         margin-top: 100px;
     } 
-    td {
+    td, h3 {
         text-align: center;
     }
-    a {
+    #backButton {
         color: #000;
+        text-align: center;
+        margin: auto;
     }
 </style>
 @stop
 
 @section('content')
-    <h1 style="text-align:center">Available Parking</h1>
 
+    <h1 style="text-align:center">Available Parking</h1>
+    <h3> This page will time out in 5 minutes. </h3>
+  
     <div class="container-fluid projects">
 
         <div class="col-md-2"></div>
@@ -70,7 +74,11 @@
                     <input type="hidden" name="duration" id="durationInput" value="">
 
                     <script src="https://checkout.stripe.com/checkout.js" ></script>
+                    
                 {{Form::close()}}
+            </div>
+            <div id='backButton'>
+                <a href="{{{ action('HomeController@showReservation') }}}"><button class="btn btn-primary">Back to Search</button></a>
             </div>
         <div class="col-md-2"></div>
         </div>
@@ -84,6 +92,23 @@
             image: 'assets/images/logo/logo.png',
             name: 'SpotFinder'
         });
+        
+        selectionTime = setTimeout(startSelection, 300000);
+        //
+        function startSelection(){
+            setTimeout(stopSelection, 300000);
+            $('#backButton').hide();
+        }
+
+        // function to stop / reset the timer
+        function stopSelection() {
+            clearTimeout(selectionTime);
+            $('button').hide();
+            $('table').hide(); 
+            $('h3').show(); 
+        }
+
+        //
 
         $('#paymentButton').hide();
         $('.pick_me').on('click', function(){
@@ -102,5 +127,6 @@
             });
             e.preventDefault();
         });
+        
     </script>
 @stop
