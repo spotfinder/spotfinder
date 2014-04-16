@@ -95,6 +95,7 @@ class HomeController extends BaseController {
 
     public function doPay()
 	{
+		
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here https://manage.stripe.com/account
 		Stripe::setApiKey(Config::get('stripe.stripe.secret'));
@@ -107,7 +108,7 @@ class HomeController extends BaseController {
 		try {
 
 		$customer = Stripe_Customer::create(array(
-		'email' => 'customer@example.com',
+		'email' => Auth::user()->email, 
 		'card'  => $token
 		));
 
@@ -118,11 +119,15 @@ class HomeController extends BaseController {
 		"description" => "payinguser@example.com")
 		);
 
+		$charge = $charge->id;
+		Session::push('results', $charge);
+
 		} catch(Stripe_CardError $e) {
-		// The card has been declined
+		Session::flash('errorMessage', 'Your credit card has been declined.');	
 		dd($e);
 		}
-
-		dd($charge);
+		Session::flash('successMessage', 'Your credit card has been approved.  Thank you.');
+		return View::make('confirmation')->with('results', $results);
 	}
 }
+
