@@ -102,22 +102,24 @@
                             <input type="text" name="city" id="city">
                         </div>
                         <div class="form-group">
+                            <label>State</label>
+                            <input type="text" name="state" id="state">
                             <label>Zip</label>
                             <input type="text" name="zip" id="zip">
                             <label>Phone Number</label>
                             <input type="tel" name="phone_number" id="phone_number">
-                            <label>Capacity</label>
-                            <input type="number" name="capacity" id="capacity">
                          </div>
                         <div class="form-group"> 
+                            <label>Capacity</label>
+                            <input type="number" name="capacity" id="capacity">
                             <label>Open Time</label>
                             <input type="time" name="open_time" id="open_time">
                             <label>Close Time</label>
                             <input type="time" name="close_time" id="close_time">
-                            <label>Latitude</label>
-                            <input type="float" name="latitude" id="latitude">
                         </div>
                         <div class="form-group"> 
+                            <label>Latitude</label>
+                            <input type="float" name="latitude" id="latitude">
                             <label>Longitude</label>
                             <input type="float" name="longitude" id="longitude">
                             <label>Cost Per Hour</label>
