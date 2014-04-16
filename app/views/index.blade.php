@@ -11,7 +11,7 @@
                     <ul class="summary">
                         <li>Find a spot before you leave!</li>
                         <li>Reserve and pay right away!</li>
-                        <li>Get a text with driving directions!</li>
+                        <li>Get a confirmation text!</li>
                         <li>Make it to wherever you're going on time!</li>
                     </ul>
                     <div class="download-area">
@@ -188,31 +188,31 @@
                 <h2 class="title text-center">Frequently Asked Questions</h2>
                 <div class="faq-col col-md-6 col-sm-6 col-xs-12">
                     <div class="item">
-                        <h3 class="question"><i class="fa fa-question-circle"></i>How can I  ipsum dolor sit amet?</h3>
-                        <p class="answer">Proin scelerisque magna ac eros aliquam aliquam id in lacus. Morbi quam tortor, consequat at orci non, vulputate volutpat libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean sagittis laoreet urna eu ornare. Aenean tempor, leo vel eleifend porttitor, nibh libero ultricies est, sit amet ultricies magna enim et turpis. Donec aliquam velit eu sollicitudin cursus.</p>
+                        <h3 class="question"><i class="fa fa-question-circle"></i>How do I reserve a spot?</h3>
+                        <p class="answer">Just <a href="{{{action('RegisterController@index')}}}">signup</a> and head on over to <a href="{{{ action('HomeController@showReservation') }}}">spotfinder.dev/reserve</a> to get the best spot in the lot! You can pick an area of the city, which lot is closest to your destination and your arrival and departure time. We will then generate some options that best suite your needs. Pick one and hit that pay button! We will send you a confirmation email and text with all the info. Now all you have to do is show up!</p>
                     </div><!--//item-->
                     <div class="item">
-                        <h3 class="question"><i class="fa fa-question-circle"></i>What is the ipsum dolor sit amet quam tortor?</h3>
-                        <p class="answer">Proin scelerisque magna ac eros aliquam aliquam id in lacus. Morbi quam tortor, consequat at orci non, vulputate volutpat libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean sagittis laoreet urna eu ornare.</p>
+                        <h3 class="question"><i class="fa fa-question-circle"></i>What happens if someone is in my spot?</h3>
+                        <p class="answer">Well, I guess you will have a problem getting your car between the lines then! - Ok, eventually we would like to be able to send you a text or email with a different spot number. Right now we are trusting every one will be awesome humans and leave their spot when the time is up!</p>
                     </div><!--//item-->
-                    <div class="item">
+                    <!-- <div class="item">
                         <h3 class="question"><i class="fa fa-question-circle"></i>What's the differences between ipsum and dolor sit amet?</h3>
                         <p class="answer">Proin scelerisque magna ac eros aliquam aliquam id in lacus. Morbi quam tortor, consequat at orci non, vulputate volutpat libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean sagittis laoreet urna eu ornare. Aenean tempor, leo vel eleifend porttitor. Aenean tempor, leo vel eleifend porttitor, nibh libero ultricies est.</p>
-                    </div><!--//item-->
+                    </div> --><!--//item-->
                 </div><!--//faq-col-->
                 <div class="faq-col col-md-6 col-sm-6 col-xs-12">
                     <div class="item">
-                        <h3 class="question"><i class="fa fa-question-circle"></i>How does the morbi quam tortor work?</h3>
-                        <p class="answer">Proin scelerisque magna ac eros aliquam aliquam id in lacus. Morbi quam tortor, consequat at orci non, vulputate volutpat libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean sagittis laoreet urna eu ornare.Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean sagittis laoreet urna eu ornare. Aenean tempor, leo vel eleifend porttitor, nibh libero ultricies est, sit amet ultricies magna enim et turpis. Donec aliquam velit eu sollicitudin cursus.</p>
+                        <h3 class="question"><i class="fa fa-question-circle"></i>How does SpotFinder know what spots are available?</h3>
+                        <p class="answer">While we cant give away the secret sauce, we can tell you that we do a massive search in our database that compares lots and spaces with times and dates. It's pretty cool if your into geeky stuff. Take a short moment and thank Mike the guy who worked his butt off to give you this luxury!</p>
                     </div><!--//item-->
                     <div class="item">
-                        <h3 class="question"><i class="fa fa-question-circle"></i>Can I ipsum dolor sit amet nascetur ridiculus?</h3>
-                        <p class="answer">Proin scelerisque magna ac eros aliquam aliquam id in lacus. Morbi quam tortor, consequat at orci non, vulputate volutpat libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean sagittis laoreet urna eu ornare.</p>
+                        <h3 class="question"><i class="fa fa-question-circle"></i>Can I add my parking lots to SpotFinder?</h3>
+                        <p class="answer">Absolutley! We would love to hear from you. Send us an e-mail with all the info and we will get back to you promptly!</p>
                     </div><!--//item-->
-                    <div class="item">
+                  <!--   <div class="item">
                         <h3 class="question"><i class="fa fa-question-circle"></i>How can I proin scelerisque magna?</h3>
                         <p class="answer">Aenean tempor, leo vel eleifend porttitor, nibh libero ultricies est, sit amet ultricies magna enim et turpis. Donec aliquam velit eu sollicitudin cursus.Proin scelerisque magna ac eros aliquam aliquam id in lacus. Morbi quam tortor, consequat at orci non, vulputate volutpat libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean sagittis laoreet urna eu ornare. </p>
-                    </div><!--//item-->
+                    </div> --><!--//item-->
                 </div><!--//faq-col-->
             </div><!--//row-->
             <div class="more text-center">
@@ -234,7 +234,7 @@
                 <div class="team col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1 col-xs-12">
                     <div class="row">
                         <div class="member col-md-6 text-center">
-                            <img class="img-circle" style="width:160px" src="assets/images/team/eva-longoria.jpg" alt="" />
+                            <img class="img-circle" style="width:160px" src="assets/images/team/karina.jpg" alt="" />
                             <p class="name">Karina Montes Trevino</p>
                             <p class="title">Developer</p>
                             <ul class="connect list-inline">
@@ -244,7 +244,7 @@
                             </ul>
                         </div><!--//member-->
                         <div class="member col-md-6 text-center">
-                            <img class="img-circle" style="width:160px" src="assets/images/team/iron-man.jpg" alt="" />
+                            <img class="img-circle" style="width:160px" src="assets/images/team/Tamburo.jpg" alt="" />
                             <p class="name">Mike Tamburo</p>
                             <p class="title">Developer</p>
                             <ul class="connect list-inline">
@@ -254,7 +254,7 @@
                             </ul>
                         </div><!--//member-->
                         <div class="member col-md-12 text-center">
-                            <img class="img-circle" style="width:160px" src="assets/images/team/jennifer-lawerence.jpg" alt="" />
+                            <img class="img-circle" style="width:160px" src="assets/images/team/Grace.jpg" alt="" />
                             <p class="name">Grace Faubion</p>
                             <p class="title">Developer</p>
                             <ul class="connect list-inline">
