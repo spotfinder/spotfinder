@@ -12,7 +12,7 @@
             width: 1200px;
         }
         body {
-            background-color: #FFF;
+            background-color: #4EA784;
             background-image: url("/assets/images/patterns/pattern-1.png");
         }   
     </style>
@@ -67,6 +67,66 @@
                             <td>
                                 <a href = "#" class = "delete_user"><i class="fa fa-trash-o"></i></a>
                                 {{ Form::open(array('action'=> array('AdminController@destroy', $user->id), 'method' => 'delete', 'id' => 'formDeleteUser'))}}
+                                {{ Form::close() }} 
+                            </td>
+                        </tr>
+                       @endforeach
+                    </tbody>
+                 </table>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-users"></i> Existing Reservations</h3>
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
+                      <tr>
+                        <th>Customer Number <i class="fa fa-sort"></i></th>
+                        <th>Reservation Number<i class="fa fa-sort"></i></th>
+                        <th>Area Id <i class="fa fa-sort"></i></th>
+                        <th>Lot Name <i class="fa fa-sort"></i></th>
+                        <th>Space Number <i class="fa fa-sort"></i></th>
+                        <th>Duration Time <i class="fa fa fa-clock-o"></i></th>
+                        <th>Total Cost <i class="fa fa-money"></i></th>
+                        <th>Delete <i class="fa fa-trash-o"></i></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       @foreach ($reservations as $reservation)
+                        <tr>
+                            <td>
+                                {{$reservation->customer_number}}
+                            </td>
+                            <td>
+                                {{$reservation->reservation_number}}
+                            </td>
+                            <td>
+                                {{$reservation->area_id}}
+                            </td>
+                            <td>
+                                {{$reservation->lot_name}}
+                            </td>
+                            <td>
+                                {{$reservation->space_number}}
+                            </td>
+                             <td>
+                                {{$reservation->area_durationTime}}
+                            </td>
+                            <td>
+                                {{$reservation->area_total_cost}}
+                            </td>
+                            <td>
+                                <a href = "#" class = "delete_reservation"><i class="fa fa-trash-o"></i></a>
+                                {{ Form::open(array('action'=> array('ReservationController@destroy'), 'method' => 'delete', 'id' => 'formDeleteReservation'))}}
                                 {{ Form::close() }} 
                             </td>
                         </tr>
@@ -148,6 +208,14 @@
          $('#formDeleteUser').submit();   
         }
     });
+
+
+    $('.delete_reservation').on('click', function(e){
+        e.preventDefault();
+        if(confirm("Are you sure you want to delete this reservation?")){
+         $('#formDeleteReservation').submit();   
+        }
+    })
     </script>
 @stop
 
