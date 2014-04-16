@@ -49,7 +49,6 @@
                 </tr>
 
                 @foreach($results as $key => $result)
-             
                 <tr>
                     <td>{{ $result->area_name }}</td>
                     <td>{{ $result->lot_name }}</td>

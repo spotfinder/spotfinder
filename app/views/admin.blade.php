@@ -1,23 +1,129 @@
 @extends('layouts.master-admin')
 @section('top-script')
     <style>
-        #content{
-
-            margin-left: 50px;
-            
-        }
         .col-sm-12{
-            margin-left: 90px;
+            margin-left: 25px;
             text-align: center;
-            width: 1200px;
+            width: 90%;
         }
         body {
-            background-color: #FFF;
+            background-color: #4EA784;
             background-image: url("/assets/images/patterns/pattern-1.png");
         }   
     </style>
 @stop
 @section('content')
+<div class="row">
+          <div class="col-lg-3">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <i class="fa fa-users fa-5x"></i>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    <p class="announcement-heading">{{ User::totalCount() }}</p>
+                    <p class="announcement-text">Existing Users</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#">
+                <div class="panel-footer announcement-bottom">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      View Mentions
+                    </div>
+                    <div class="col-xs-6 text-right">
+                      <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <i class="fa fa-road fa-5x"></i>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    <p class="announcement-heading">{{ Lot::totalCount() }}</p>
+                    <p class="announcement-text">Lots</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#">
+                <div class="panel-footer announcement-bottom">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      Complete Tasks
+                    </div>
+                    <div class="col-xs-6 text-right">
+                      <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <i class="fa fa-calendar fa-5x"></i>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    <p class="announcement-heading">{{ Reservation::totalCount()}}</p>
+                    <p class="announcement-text">Reservations</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#">
+                <div class="panel-footer announcement-bottom">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      Fix Issues
+                    </div>
+                    <div class="col-xs-6 text-right">
+                      <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <i class="fa fa-truck fa-5x "></i>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    <p class="announcement-heading">{{ Space::totalCount()}}</p>
+                    <p class="announcement-text">Total Spaces</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#">
+                <div class="panel-footer announcement-bottom">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      Complete Orders
+                    </div>
+                    <div class="col-xs-6 text-right">
+                      <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div><!-- /.row -->
+    </div><!-- /#wrapper -->
 <!--Users Table-->
    <div class="row">
           <div class="col-sm-12">
@@ -67,6 +173,67 @@
                             <td>
                                 <a href = "#" class = "delete_user"><i class="fa fa-trash-o"></i></a>
                                 {{ Form::open(array('action'=> array('AdminController@destroy', $user->id), 'method' => 'delete', 'id' => 'formDeleteUser'))}}
+                                {{ Form::close() }} 
+                            </td>
+                        </tr>
+                       @endforeach
+                    </tbody>
+                 </table>
+                <!-- <a href = "{{{ action ('AdminController@create') }}} "> Create New User</a> -->
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-calendar"></i> Existing Reservations</h3>
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover table-striped tablesorter">
+                    <thead>
+                      <tr>
+                        <th>Customer Number <i class="fa fa-sort"></i></th>
+                        <th>Reservation Number<i class="fa fa-sort"></i></th>
+                        <th>Area Id <i class="fa fa-sort"></i></th>
+                        <th>Lot Name <i class="fa fa-sort"></i></th>
+                        <th>Space Number <i class="fa fa-sort"></i></th>
+                        <th>Duration Time <i class="fa fa fa-clock-o"></i></th>
+                        <th>Total Cost <i class="fa fa-money"></i></th>
+                        <th>Delete <i class="fa fa-trash-o"></i></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       @foreach ($reservations as $reservation)
+                        <tr>
+                            <td>
+                                {{$reservation->customer_number}}
+                            </td>
+                            <td>
+                                {{$reservation->reservation_number}}
+                            </td>
+                            <td>
+                                {{$reservation->area_id}}
+                            </td>
+                            <td>
+                                {{$reservation->lot_name}}
+                            </td>
+                            <td>
+                                {{$reservation->space_number}}
+                            </td>
+                             <td>
+                                {{$reservation->area_durationTime}}
+                            </td>
+                            <td>
+                                {{$reservation->area_total_cost}}
+                            </td>
+                            <td>
+                                <a href = "#" class = "delete_reservation"><i class="fa fa-trash-o"></i></a>
+                                {{ Form::open(array('action'=> array('AdminController@destroy'), 'method' => 'delete', 'id' => 'formDeleteReservation'))}}
                                 {{ Form::close() }} 
                             </td>
                         </tr>
@@ -148,6 +315,14 @@
          $('#formDeleteUser').submit();   
         }
     });
+
+
+    $('.delete_reservation').on('click', function(e){
+        e.preventDefault();
+        if(confirm("Are you sure you want to delete this reservation?")){
+         $('#formDeleteReservation').submit();   
+        }
+    })
     </script>
 @stop
 

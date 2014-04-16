@@ -91,4 +91,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	}
 
+	 public static function totalCount(){
+        
+        return $users = DB::table('users')->count();
+    }
+
 }

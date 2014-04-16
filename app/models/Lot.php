@@ -10,4 +10,8 @@ class Lot extends Eloquent {
     	return $this->hasMany('Space');
     }
 
+    public static function totalCount(){
+    	return $lots = DB::table('lots')->count();
+    }
+
 }
