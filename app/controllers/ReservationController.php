@@ -17,7 +17,7 @@ class ReservationController extends BaseController {
 
     	$resultsOfOpenSpaces = DB::table('spaces')
     						->join('lots', 'spaces.area_id', '=', 'lots.area_id')
-    						->select('spaces.area_id', 'lots.lot_name', 'spaces.space_number', 'lots.cost_per_hour')
+    						->select('lots.area_name', 'spaces.area_id', 'lots.lot_name', 'spaces.space_number', 'lots.cost_per_hour')
     						->where('status','=', 0)
     						->take(5)
     						->get();
