@@ -25,7 +25,7 @@ class ReservationController extends BaseController {
     	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
 
     	foreach ($resultsOfOpenSpaces as &$value){
-    			$value->total_cost = ($duration * $value->cost);
+    			$value->total_cost = ($duration * $value->cost_per_hour);
     			$value->duration = $duration;
     	}					
 
