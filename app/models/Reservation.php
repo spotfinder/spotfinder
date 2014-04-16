@@ -17,4 +17,8 @@ class Reservation extends Eloquent {
     			
 	);
 
+    public static function totalCount(){
+        return $reservations = DB::table('reservations')->count();
+    }
+
 }

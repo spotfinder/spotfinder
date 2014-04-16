@@ -18,9 +18,7 @@ class AdminController extends BaseController {
 	   {
 			$users = User::all();
 			$reservations = Reservation::all();
-			$lots = Lot::all();
-			$spaces = Space::all();
-			return View::make('admin')->with(array('users'=> $users, 'reservations'=> $reservations, 'lots'=> $lots, 'spaces'=>$spaces));
+			return View::make('admin')->with(array('users'=> $users, 'reservations'=> $reservations));
         }
 	}
 
@@ -33,6 +31,9 @@ class AdminController extends BaseController {
 	public function create()
 	{
 		//
+
+		$user = new User;
+		return View::make('create-user');
 	}
 
 
@@ -44,6 +45,23 @@ class AdminController extends BaseController {
 	public function store()
 	{
 		//
+		$user = new User();
+    		
+			$user->customer_number = Input::get('customer_number');
+			$user->first_name = Input::get('first_name');
+			$user->last_name = Input::get('last_name');
+			$user->street_address = Input::get('street_address');
+			$user->city = Input::get('city');
+			$user->state = Input::get('state');
+			$user->zip = Input::get('zip');
+			$user->phone_number = Input::get('phone_number');
+			$user->email = Input::get('email');
+			$user->password = Input::get('password');
+			$user->role_id= Input::get('role_id');
+
+			$user->save();
+            Session::flash('successMessage', 'User created sucessfully.');
+            return Redirect::action('AdminController@index');
 	}
 
 

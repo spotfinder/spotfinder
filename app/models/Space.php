@@ -14,5 +14,7 @@ class Space extends Eloquent {
     	return $this->hasMany('Reservations');
     } 
     
-
+    public static function totalCount(){
+        return $spaces = DB::table('spaces')->count();
+    }
 }

@@ -1,15 +1,10 @@
 @extends('layouts.master-admin')
 @section('top-script')
     <style>
-        #content{
-
-            margin-left: 50px;
-            
-        }
         .col-sm-12{
-            margin-left: 90px;
+            margin-left: 25px;
             text-align: center;
-            width: 1200px;
+            width: 90%;
         }
         body {
             background-color: #4EA784;
@@ -18,6 +13,117 @@
     </style>
 @stop
 @section('content')
+<div class="row">
+          <div class="col-lg-3">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <i class="fa fa-users fa-5x"></i>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    <p class="announcement-heading">{{ User::totalCount() }}</p>
+                    <p class="announcement-text">Existing Users</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#">
+                <div class="panel-footer announcement-bottom">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      View Mentions
+                    </div>
+                    <div class="col-xs-6 text-right">
+                      <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <i class="fa fa-road fa-5x"></i>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    <p class="announcement-heading">{{ Lot::totalCount() }}</p>
+                    <p class="announcement-text">Lots</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#">
+                <div class="panel-footer announcement-bottom">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      Complete Tasks
+                    </div>
+                    <div class="col-xs-6 text-right">
+                      <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <i class="fa fa-calendar fa-5x"></i>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    <p class="announcement-heading">{{ Reservation::totalCount()}}</p>
+                    <p class="announcement-text">Reservations</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#">
+                <div class="panel-footer announcement-bottom">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      Fix Issues
+                    </div>
+                    <div class="col-xs-6 text-right">
+                      <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <i class="fa fa-truck fa-5x "></i>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    <p class="announcement-heading">{{ Space::totalCount()}}</p>
+                    <p class="announcement-text">Total Spaces</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#">
+                <div class="panel-footer announcement-bottom">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      Complete Orders
+                    </div>
+                    <div class="col-xs-6 text-right">
+                      <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div><!-- /.row -->
+    </div><!-- /#wrapper -->
 <!--Users Table-->
    <div class="row">
           <div class="col-sm-12">
@@ -73,6 +179,7 @@
                        @endforeach
                     </tbody>
                  </table>
+                <!-- <a href = "{{{ action ('AdminController@create') }}} "> Create New User</a> -->
                </div>
             </div>
         </div>
@@ -126,7 +233,7 @@
                             </td>
                             <td>
                                 <a href = "#" class = "delete_reservation"><i class="fa fa-trash-o"></i></a>
-                                {{ Form::open(array('action'=> array('ReservationController@destroy'), 'method' => 'delete', 'id' => 'formDeleteReservation'))}}
+                                {{ Form::open(array('action'=> array('AdminController@destroy'), 'method' => 'delete', 'id' => 'formDeleteReservation'))}}
                                 {{ Form::close() }} 
                             </td>
                         </tr>
