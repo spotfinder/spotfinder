@@ -9,13 +9,13 @@
 	<title>Dashboard - Spot Finder Admin</title>
 
 	<!-- Bootstrap core CSS -->
-	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="{{ URL::to('') }}/css/bootstrap.css" rel="stylesheet">
 
 	<!-- Add custom CSS here -->
-	<link href="css/sb-admin.css" rel="stylesheet">
-	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="{{ URL::to('') }}/css/sb-admin.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{ URL::to('') }}/font-awesome/css/font-awesome.min.css">
 	<!-- Page Specific CSS -->
-	<link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+	<link rel="stylesheet" href="{{ URL::to('') }}/http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
 	<style >
 		h1 small{
 		 	color: #FFF;
@@ -112,10 +112,11 @@
 			  </ul>
 			</li>
 			<li class="dropdown user-dropdown">
-			  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ $user->first_name }} <b class="caret"></b></a>
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{Auth::user()->first_name}} <b class="caret"></b></a>
 			  <ul class="dropdown-menu">
 				<li><a href="{{{ action('RegisterController@index') }}}"><i class="fa fa-user"></i> Profile</a></li>
 				<li><a href="{{{ action('HomeController@showReservation') }}}"><i class="fa fa-calendar-o"></i> Reserve a Spot!</a></li>
+				<li><a href = "{{{ action ('AdminController@create') }}} "><i class="fa fa-users"></i> Create a User</a></li>
 				<li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
 				<li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
 				<li class="divider"></li>
@@ -136,122 +137,11 @@
 			</ol>
 			<div class="alert alert-success alert-dismissable">
 			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			  Welcome to SpotFinder {{$user->first_name}} {{$user->last_name}}!
+			  Welcome to SpotFinder {{Auth::user()->first_name}} {{Auth::user()->last_name}}!
 			</div>
 		  </div>
 		</div><!-- /.row -->
 
-		<div class="row">
-		  <div class="col-lg-3">
-			<div class="panel panel-info">
-			  <div class="panel-heading">
-				<div class="row">
-				  <div class="col-xs-6">
-					<i class="fa fa-users fa-5x"></i>
-				  </div>
-				  <div class="col-xs-6 text-right">
-					<p class="announcement-heading">{{$users = count($users);}}</p>
-					<p class="announcement-text">Existing Users</p>
-				  </div>
-				</div>
-			  </div>
-			  <a href="#">
-				<div class="panel-footer announcement-bottom">
-				  <div class="row">
-					<div class="col-xs-6">
-					  View Mentions
-					</div>
-					<div class="col-xs-6 text-right">
-					  <i class="fa fa-arrow-circle-right"></i>
-					</div>
-				  </div>
-				</div>
-			  </a>
-			</div>
-		  </div>
-		  <div class="col-lg-3">
-			<div class="panel panel-warning">
-			  <div class="panel-heading">
-				<div class="row">
-				  <div class="col-xs-6">
-					<i class="fa fa-road fa-5x"></i>
-				  </div>
-				  <div class="col-xs-6 text-right">
-					<p class="announcement-heading">{{$lots = count($lots);}}</p>
-					<p class="announcement-text">Lots</p>
-				  </div>
-				</div>
-			  </div>
-			  <a href="#">
-				<div class="panel-footer announcement-bottom">
-				  <div class="row">
-					<div class="col-xs-6">
-					  Complete Tasks
-					</div>
-					<div class="col-xs-6 text-right">
-					  <i class="fa fa-arrow-circle-right"></i>
-					</div>
-				  </div>
-				</div>
-			  </a>
-			</div>
-		  </div>
-		  <div class="col-lg-3">
-			<div class="panel panel-danger">
-			  <div class="panel-heading">
-				<div class="row">
-				  <div class="col-xs-6">
-					<i class="fa fa-calendar fa-5x"></i>
-				  </div>
-				  <div class="col-xs-6 text-right">
-					<p class="announcement-heading">{{$reservations = count($reservations);}}</p>
-					<p class="announcement-text">Reservations</p>
-				  </div>
-				</div>
-			  </div>
-			  <a href="#">
-				<div class="panel-footer announcement-bottom">
-				  <div class="row">
-					<div class="col-xs-6">
-					  Fix Issues
-					</div>
-					<div class="col-xs-6 text-right">
-					  <i class="fa fa-arrow-circle-right"></i>
-					</div>
-				  </div>
-				</div>
-			  </a>
-			</div>
-		  </div>
-		  <div class="col-lg-3">
-			<div class="panel panel-success">
-			  <div class="panel-heading">
-				<div class="row">
-				  <div class="col-xs-6">
-					<i class="fa fa-truck fa-5x "></i>
-				  </div>
-				  <div class="col-xs-6 text-right">
-					<p class="announcement-heading">{{$spaces = count($spaces);}}</p>
-					<p class="announcement-text">Total Spaces</p>
-				  </div>
-				</div>
-			  </div>
-			  <a href="#">
-				<div class="panel-footer announcement-bottom">
-				  <div class="row">
-					<div class="col-xs-6">
-					  Complete Orders
-					</div>
-					<div class="col-xs-6 text-right">
-					  <i class="fa fa-arrow-circle-right"></i>
-					</div>
-				  </div>
-				</div>
-			  </a>
-			</div>
-		  </div>
-		</div><!-- /.row -->
-	</div><!-- /#wrapper -->
 @yield('content')
 
 	<!-- JavaScript -->

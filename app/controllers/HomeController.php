@@ -90,11 +90,18 @@ class HomeController extends BaseController {
       
     	Twilio::message('2102372042', 'Thank you for reserving a spot with us!');
     	Session::flash('phone', 'phone number');
+    	// return Redirect::action('ReservationController@makePayment');
     	return View::make('confirmation');
     }
 
     public function doPay()
 	{
+
+		
+		// $result = file_get_contents('http://requestb.in/1b5dg2c1');
+  //   	echo $result;
+  //   	exit();
+
 		
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here https://manage.stripe.com/account
@@ -124,7 +131,7 @@ class HomeController extends BaseController {
 
 		} catch(Stripe_CardError $e) {
 		Session::flash('errorMessage', 'Your credit card has been declined.');	
-		dd($e);
+		
 		}
 		Session::flash('successMessage', 'Your credit card has been approved.  Thank you.');
 		return View::make('confirmation')->with('results', $results);
