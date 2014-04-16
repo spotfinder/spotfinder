@@ -16,6 +16,12 @@
 		h5{
 			color: #000;
 		}
+		th {
+			text-align: center;
+		}
+		table {
+			background-color: #FFF;
+		}
     </style>
 @stop
 @section('content')
@@ -23,32 +29,69 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="page-header col-md-10">
-				<h1>Payment Confirmation</h1>
+				<h1>SpotSpy Confirmation</h1>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 		<div class="row">
-			<table class="table table-striped table-hover table-bordered">
-
-               	<?= 
-               	// $results = Session::get('results'); 
-var_dump(Session::get('results'));
-die;
+               	<? 
+        
+					$index = intval($_POST['pick_me']);	
+               	
+					$order = Session::get('results');
+					$newArray = $order[$index];	
                	?>
-
-                @foreach($results as $key => $result)
-             
-                <tr>
-                    <td>{{ $result->area_name }}</td>
-                    <td>{{ $result->lot_name }}</td>
-                    <td>{{ $result->space_number }}</td> 
-                    <td>{{ number_format($result->total_cost, 2, '.', ',') }}</td>
-                    <td><input type="radio" name="pick_me" class="pick_me" data-amount="{{{ $result->total_cost * 100 }}}" data-space="{{{ $result->space_number }}}" data-lot="{{{ $result->lot_name }}}" data-duration="{{{ $result->duration }}}">&nbsp;Pick Me</button></td>
+             	
+			<table class="table table-bordered">
+				<tr>
+                    <th>
+                        Area name
+                    </th>
+                    <th>
+                        Lot Name
+                    </th>
+                    <th>
+                        Space Number
+                    </th>
+                    <th>
+                        Street Address
+                    </th>
+                    <th>
+                        Total Cost
+                    </th>
+                    <th>
+                        Arrival
+                    </th>
+                    <th>
+                        Departure
+                    </th>
                 </tr>
-
-                @endforeach
-
+          
+                <tr>
+                    <td>{{ $order[$index]->area_name }}</td>
+                    <td>{{ $order[$index]->lot_name }}</td>
+                    <td>{{ $order[$index]->space_number }}</td> 
+                    <td>{{ $order[$index]->street_address }}</td> 
+                    <td>{{ '$' . number_format($order[$index]->total_cost, 2, '.', ',') }}</td>
+                    <td>{{ $order[$index]->arrival }}</td>
+                    <td>{{ $order[$index]->departure }}</td>
+                    
+                </tr>
             </table>
+            
+            {{ Form::open(array('action' => 'ReservationController@makePayment', 'role'=>'form')) }}
+            
+			  <script
+			    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			    data-key="{{ Config::get('stripe.stripe.public')}}"
+			    data-amount="{{ $order[$index]->total_cost * 100 }}"
+			    data-name="SpotSpy"
+			    data-description="Space {{$order[$index]->space_number}} in {{ $order[$index]->lot_name }} from  {{ $order[$index]->arrival }} to {{ $order[$index]->departure }}"
+			    data-image="/assets/images/logo/logo.png">
+			  </script>
+			
+			{{ Form::close() }}
+
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				  	<h5>Do you want to get details about your <em> reservation</em>? <br>Enter your phone number below.</h5>

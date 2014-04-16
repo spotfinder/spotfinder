@@ -93,9 +93,10 @@
         // function to stop / reset the timer
         function stopSelection() {
             clearTimeout(selectionTime);
-            $('button').hide();
+            $('.paymentButton').hide();
             $('table').hide(); 
-            $('h3').show(); 
+            $('h3').show();
+            $('#backButton').show(); 
         }
 
         //
