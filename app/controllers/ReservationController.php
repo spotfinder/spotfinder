@@ -27,6 +27,8 @@ class ReservationController extends BaseController {
     	foreach ($resultsOfOpenSpaces as &$value){
     			$value->total_cost = ($duration * $value->cost_per_hour);
     			$value->duration = $duration;
+    			$value->arrival = $requestedArrivalDateTime;
+    			$value->departure = $requestedDepartureDateTime;
     	}					
 
     	return $resultsOfOpenSpaces; 			
@@ -51,6 +53,8 @@ class ReservationController extends BaseController {
     	foreach ($resultsOfReservationQuery as &$value){
     			$value->total_cost = ($duration * $value->cost);
     			$value->duration = $duration;
+    			$value->arrival = $requestedArrivalDateTime;
+    			$value->departure = $requestedDepartureDateTime;
     	}
     				
     	return $resultsOfReservationQuery; 	
@@ -114,7 +118,9 @@ class ReservationController extends BaseController {
 
 				foreach ($results as &$result){
     				$result->total_cost = ($duration * $result->cost_per_hour);
-    				$result->duration = $duration;  				
+    				$result->duration = $duration;
+    				$result->arrival = $requestedArrivalDateTime;
+    				$result->departure = $requestedDepartureDateTime;  				
 				}
 
 				Session::put('results', $results);
@@ -204,6 +210,14 @@ class ReservationController extends BaseController {
 			return View::make('HomeController@showConfirmation');
 			
 		}	
+	}
+	/**
+	 * Collect Payment.
+	 */
+	public function makePayment(){
+
+
+		return View::make('thankyou');
 	}
 
 	/**
