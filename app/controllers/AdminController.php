@@ -107,6 +107,7 @@ class AdminController extends BaseController {
 			$lot->area_name = Input::get('area_name');
 			$lot->street_address = Input::get('street_address');
 			$lot->city = Input::get('city');
+			$lot->state = Input::get('state');
 			$lot->zip = Input::get('zip');
 			$lot->phone_number = Input::get('phone_number');
 			$lot->capacity = Input::get('capacity');
@@ -121,6 +122,7 @@ class AdminController extends BaseController {
             for($counter = 1; $counter <= $capacity; $counter++){
                  $space = new Space();
                  $space->area_id = $lot->area_id;
+                 $space->lot_id = $lot->lot_id;
                  $space->space_number = $counter;
                  $space->status = 0;
                  $space->save();
