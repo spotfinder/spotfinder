@@ -28,7 +28,7 @@
         <div class="col-md-2"></div>
 
         <div class="col-md-8">
-
+        {{ Form::open(array('action' => 'HomeController@showConfirmation', 'method' => "GET")) }}
             <table class="table table-striped table-hover table-bordered">
                 <tr>
                     <th>
@@ -48,7 +48,6 @@
                     </th>
                 </tr>
 
-
                 @foreach($results as $key => $result)
                 <tr>
                     <td>{{ $result->area_name }}</td>
@@ -57,13 +56,13 @@
                     <td>{{ number_format($result->total_cost, 2, '.', ',') }}</td>
 
                     <td>
-                        {{ Form::open(array('action' => 'HomeController@showConfirmation', 'method' => "POST")) }}<input type="radio" name="pick_me" class="pick_me" value="{{$key}}" data-amount="{{{ $result->total_cost * 100 }}}" data-space="{{{ $result->space_number }}}" data-lot="{{{ $result->lot_name }}}" data-duration="{{{ $result->duration }}}">&nbsp;Pick Me</input>
+                        <input type="radio" name="pick_me" class="pick_me" value="{{$key}}" data-amount="{{{ $result->total_cost * 100 }}}" data-space="{{{ $result->space_number }}}" data-lot="{{{ $result->lot_name }}}" data-duration="{{{ $result->duration }}}">&nbsp;Pick Me</input>
                     </td>
                 </tr>
                 @endforeach
             </table>
-                        {{ Form::submit('Go to payment', array('class' => 'btn btn-lg btn-primary paymentButton'))}}
-                        {{ Form:: close() }}
+            {{ Form::submit('Go to payment', array('class' => 'btn btn-lg btn-primary paymentButton'))}}
+            {{ Form:: close() }}
             
             <div id='backButton'>
                 <a href="{{{ action('HomeController@showReservation') }}}"><button class="btn btn-primary">Back to Search</button></a>

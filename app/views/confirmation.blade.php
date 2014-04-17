@@ -34,14 +34,6 @@
 			<div class="col-md-1"></div>
 		</div>
 		<div class="row">
-               	<? 
-        
-					$index = intval($_POST['pick_me']);	
-               	
-					$order = Session::get('results');
-					$newArray = $order[$index];	
-               	?>
-             	
 			<table class="table table-bordered">
 				<tr>
                     <th>

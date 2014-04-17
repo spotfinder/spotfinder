@@ -13,11 +13,11 @@ class ReservationController extends BaseController {
 	}
 
 	// Query for open spaces from the Spaces Table for the requested area
-    public function searchOpenSpaces($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime){
+    public function searchOpenSpaces($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime, $licensePlate){
 
     	$resultsOfOpenSpaces = DB::table('spaces')
     						->join('lots', 'spaces.area_id', '=', 'lots.area_id')
-    						->select('lots.area_name', 'spaces.area_id', 'lots.lot_name', 'spaces.space_number', 'lots.cost_per_hour')
+    						->select('lots.area_name', 'spaces.area_id', 'lots.lot_name', 'spaces.space_number', 'lots.cost_per_hour', 'spaces.lot_id')
     						->where('status','=', 0)
     						->take(5)
     						->get();
@@ -25,21 +25,24 @@ class ReservationController extends BaseController {
     	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
 
     	foreach ($resultsOfOpenSpaces as &$value){
+    			$value->cost = $value->cost_per_hour;
     			$value->total_cost = ($duration * $value->cost_per_hour);
     			$value->duration = $duration;
     			$value->arrival = $requestedArrivalDateTime;
     			$value->departure = $requestedDepartureDateTime;
+    			$value->area_id = $requestedArea;
+    			$value->license_plate_number = $licensePlate;
     	}					
 
     	return $resultsOfOpenSpaces; 			
     }
 
     // If count from the openSpaces query is zero, then a query of the reservation table will be required.
-    public function searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime){
+    public function searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime, $licensePlate){
     	// locate all potential spaces by determining that the user will arrive after the space should be empty
     	$resultsOfReservationQuery = DB::table('reservations')
     				->join('lots', 'reservations.area_id', '=', 'lots.area_id')
-    				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.id', 'lots.street_address', 'lots.cost_per_hour')
+    				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.lot_id', 'lots.street_address', 'lots.cost_per_hour')
 					->where('reservations.area_id', '=', $requestedArea)
 					->where('arrival_date_time', '>', $requestedDepartureDateTime) //
 					->where('departure_date_time', '<', $requestedArrivalDateTime) //
@@ -51,10 +54,13 @@ class ReservationController extends BaseController {
     	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
 
     	foreach ($resultsOfReservationQuery as &$value){
+    			$value->cost = $value->cost_per_hour;
     			$value->total_cost = ($duration * $value->cost);
     			$value->duration = $duration;
     			$value->arrival = $requestedArrivalDateTime;
     			$value->departure = $requestedDepartureDateTime;
+    			$value->area_id = $requestedArea;
+    			$value->license_plate_number = $licensePlate;
     	}
     				
     	return $resultsOfReservationQuery; 	
@@ -67,6 +73,7 @@ class ReservationController extends BaseController {
     	$requestedArea = Input::get('area');
     	$requestedArrivalDateTime = Input::get('arrival_date_time');
     	$requestedDepartureDateTime = Input::get('departure_date_time');
+    	$licensePlate = Input::get('license_plate_number');
 
     	if (strtotime($requestedArrivalDateTime) > strtotime($requestedDepartureDateTime)){
     		Session::flash('errorMessage', "Arrival date and time must be before the selected departure time.  Please try again.");
@@ -86,7 +93,7 @@ class ReservationController extends BaseController {
     	// calculate the total parking duration (divide by 3600 to get hours format)
     	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
     	// call function searchOpenSpaces to find spaces with a status of 0 ('open')
-    	$resultsOfOpenSpaces = $this->searchOpenSpaces($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime);
+    	$resultsOfOpenSpaces = $this->searchOpenSpaces($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime, $licensePlate);
 
 		// if open spaces are found
 		if (sizeof($resultsOfOpenSpaces) > 0){
@@ -102,7 +109,7 @@ class ReservationController extends BaseController {
 
 			$checkIfAnyReservationsExists = DB::table('reservations')
     				->join('lots', 'reservations.area_id', '=', 'lots.area_id')
-    				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.id', 'lots.street_address', 'lots.cost_per_hour')
+    				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.lot_id', 'lots.street_address', 'lots.cost_per_hour')
 					->where('reservations.area_id', '=', $requestedArea)
 					->where('departure_date_time', '>', $currentDateTime)
             		->get();
@@ -117,10 +124,13 @@ class ReservationController extends BaseController {
 					->get();
 
 				foreach ($results as &$result){
+					$result->cost = $result->cost_per_hour;
     				$result->total_cost = ($duration * $result->cost_per_hour);
     				$result->duration = $duration;
     				$result->arrival = $requestedArrivalDateTime;
-    				$result->departure = $requestedDepartureDateTime;  				
+    				$result->departure = $requestedDepartureDateTime;
+    				$result->area_id = $requestedArea; 
+    				$result->license_plate_number = $licensePlate; 				
 				}
 
 				Session::put('results', $results);
@@ -214,9 +224,43 @@ class ReservationController extends BaseController {
 	/**
 	 * Collect Payment.
 	 */
-	public function makePayment(){
+	public function makePayment($index){
+		$index = intval($index);
 
+		$order = Session::get('results');
+		$selection = $order[$index];
 
+		$reservation = new Reservation();
+		$reservation->customer_number = Auth::user()->id;
+		// $reservation->reservation_number = $selection->license_plate_number; ///// ADD RANDOM GENERATION TO BEGINNING
+  //   	$reservation->license_plate_number = $selection->license_plate_number;
+    	/////////////////////////////////////////////////////////////////////////////////////
+    	// $reservation->lot_id = $selection->lot_id; /// ADD to reservation????
+    	$reservation->area_id = $selection->area_id;
+    	$reservation->lot_name = $selection->lot_name;
+    	$reservation->space_number = $selection->space_number;
+    	$reservation->street_address = $selection->street_address;
+    	// $reservation->city = ;
+    	// $reservation->state = ;
+    	// $reservation->zip = ;
+    	// $reservation->phone = ;
+    	$reservation->arrival_date_time = $selection->arrival;
+    	$reservation->departure_date_time = $selection->departure;
+    	// $reservation->durationTime = $selection->$duration; 	// THIS LINE CREATES AN ERROR IF UNCOMMENTED
+    	$reservation->cost = $selection->cost_per_hour;
+ // var_dump($selection);
+ // die;
+    	$reservation->total_cost = $selection->total_cost;  
+
+		$reservation->save();
+
+		// DB::table('spaces')
+  //           	->where('lot_id', )
+  //           	->where('space_number', $reservation->space_number)
+  //           	->update(array('status' => 1));
+
+        
+        Session::flash('successMessage', 'Reservation created sucessfully.');
 		return View::make('thankyou');
 	}
 
@@ -230,7 +274,7 @@ class ReservationController extends BaseController {
 	{
 		$reservation = Reservation::findOrFail($id);
 		return View::make('reservation');
-		///////////////////////////////////////////////////////////////// NOT PERFECT YET NEED OTHER TABLE DATA
+		////////// NOT PERFECT YET NEED OTHER TABLE DATA
 	}
 
 	/**
@@ -243,7 +287,7 @@ class ReservationController extends BaseController {
 	{
 		$reservation = Reservation::findOrFail($id);
 		return View::make('reservation');
-		///////////////////////////////////////////////////////////////// NOT PERFECT YET NEED OTHER TABLE DATA
+		//////////// NOT PERFECT YET NEED OTHER TABLE DATA
 	}
 
 	/**
