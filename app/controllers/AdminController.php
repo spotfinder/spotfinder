@@ -86,6 +86,8 @@ class AdminController extends BaseController {
 	public function edit($id)
 	{
 		//
+		$user = User::findOrFail($id);
+		return View::make('create-edit-user')->with(array('user'=> $user));
 	}
 
 
@@ -98,7 +100,23 @@ class AdminController extends BaseController {
 	public function update($id)
 	{
 		//
-	}
+		$user = User::findOrFail($id);
+	    $user->customer_number = Input::get('customer_number');
+		$user->first_name = Input::get('first_name');
+		$user->last_name = Input::get('last_name');
+		$user->street_address = Input::get('street_address');
+		$user->city = Input::get('city');
+		$user->state = Input::get('state');
+		$user->zip = Input::get('zip');
+		$user->phone_number = Input::get('phone_number');
+		$user->email = Input::get('email');
+		$user->password = Input::get('password');
+		$user->role_id= Input::get('role_id');
+
+		$user->save();
+        Session::flash('successMessage', 'User updated sucessfully.');
+        return Redirect::action('AdminController@index');
+}
 
 
 	/**
