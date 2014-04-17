@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="overview col-md-8 col-sm-12 col-xs-12">
-                    <h2 class="title">SpotFinder makes parking easy!</h2>
+                    <h2 class="title">SpotSpy makes parking easy!</h2>
                     <ul class="summary">
                         <li>Find a spot before you leave!</li>
                         <li>Reserve and pay right away!</li>
@@ -17,12 +17,12 @@
                     <div class="download-area">
                     @if(Auth::check())
                         <p>
-                          <button type="button" class="btn btn-default btn-lg"><a href="{{{ action('HomeController@showReservation') }}}">Reserve A Spot</button></a>
+                          <a href="{{{ action('HomeController@showReservation') }}}"><button type="button" class="btn btn-default btn-lg">Reserve A Spot</button></a>
                         </p>
                     @else
                         <p>
-                          <button type="button" class="btn btn-default btn-lg"><a href="{{{ action('HomeController@showLogin') }}}">Login</button></a>
-                          <button type="button" class="btn btn-default btn-lg"><a href="{{{ action('RegisterController@index') }}}">Sign Up</a></button>
+                          <a href="{{{ action('HomeController@showLogin') }}}"><button type="button" class="btn btn-default btn-lg">Login</button></a>
+                          <a href="{{{ action('RegisterController@index') }}}"><button type="button" class="btn btn-default btn-lg">Sign Up</button></a>
                         </p>
                     @endif
                     </div>
@@ -119,7 +119,7 @@
                     </div><!--//icon-->
                     <div class="content">
                         <h3 class="title"> Be Prepared </h3>
-                        <p> With SpotFinder you can make a parking reservation minutes before or days in advance! Never be late for that important meeting again. </p>   
+                        <p> With SpotSpy you can make a parking reservation minutes before or days in advance! Never be late for that important meeting again. </p>   
                     </div><!--//content-->                            
                 </div><!--//item-->
             </div><!--//row-->
@@ -131,7 +131,7 @@
                     </div><!--//icon-->
                     <div class="content">
                         <h3 class="title">Don't Know How To Get There</h3>
-                        <p> SpotFinder will send you a text with a confirmation number and street address to the lot! No more driving around in circles! </p>  
+                        <p> SpotSpy will send you a text with a confirmation number and street address to the lot! No more driving around in circles! </p>  
                     </div><!--//content-->               
                 </div><!--//item-->
                 <div class="item col-md-6 col-sm-6 col-xs-12 text-center">
@@ -189,7 +189,7 @@
                 <div class="faq-col col-md-6 col-sm-6 col-xs-12">
                     <div class="item">
                         <h3 class="question"><i class="fa fa-question-circle"></i>How do I reserve a spot?</h3>
-                        <p class="answer">Just <a href="{{{action('RegisterController@index')}}}">signup</a> and head on over to <a href="{{{ action('HomeController@showReservation') }}}">spotfinder.dev/reserve</a> to get the best spot in the lot! You can pick an area of the city, which lot is closest to your destination and your arrival and departure time. We will then generate some options that best suite your needs. Pick one and hit that pay button! We will send you a confirmation email and text with all the info. Now all you have to do is show up!</p>
+                        <p class="answer">Just <a href="{{{action('RegisterController@index')}}}">signup</a> and head on over to <a href="{{{ action('HomeController@showReservation') }}}">spotfinder.dev/reserve</a> to get the best spot in the lot! You can pick an area of the city, which lot is closest to your destination and your arrival and departure time. We will then generate some options that best suite your needs. Pick one and hit that pay button! We will send you a confirmation email and text with all the info. Now all you have to do is park!</p>
                     </div><!--//item-->
                     <div class="item">
                         <h3 class="question"><i class="fa fa-question-circle"></i>What happens if someone is in my spot?</h3>
@@ -202,11 +202,11 @@
                 </div><!--//faq-col-->
                 <div class="faq-col col-md-6 col-sm-6 col-xs-12">
                     <div class="item">
-                        <h3 class="question"><i class="fa fa-question-circle"></i>How does SpotFinder know what spots are available?</h3>
+                        <h3 class="question"><i class="fa fa-question-circle"></i>How does SpotSpy know what spots are available?</h3>
                         <p class="answer">While we cant give away the secret sauce, we can tell you that we do a massive search in our database that compares lots and spaces with times and dates. It's pretty cool if your into geeky stuff. Take a short moment and thank Mike the guy who worked his butt off to give you this luxury!</p>
                     </div><!--//item-->
                     <div class="item">
-                        <h3 class="question"><i class="fa fa-question-circle"></i>Can I add my parking lots to SpotFinder?</h3>
+                        <h3 class="question"><i class="fa fa-question-circle"></i>Can I add my parking lots to SpotSpy?</h3>
                         <p class="answer">Absolutley! We would love to hear from you. Send us an e-mail with all the info and we will get back to you promptly!</p>
                     </div><!--//item-->
                   <!--   <div class="item">
@@ -229,7 +229,7 @@
             <div class="row">
                 <div class="content col-md-6 col-sm-6 col-xs-12 text-center">
                     <h2 class="title">Story behind the app</h2>
-                    <p>Parking was a pain so Karina and Mike came up with SpotFinder. The easy way to reserve a parking spot before you even get into a car! No driving in circles around full lots or having to park blocks away in the shady part of town!</p>
+                    <p>Our team created SpotSpy, a solution to dreadful, everyday parking in city lots. SpotSpy allows the user to reserve a parking space within a lot of their choice before even leaving for work, an event, or just to grab a cup of coffee. This project is a great representation of all the skills we acquired during our time at CodeUp. We used Laravel a PHP framework, a MYSQL database, HTML, CSS, Twitter Bootstrap, JavaScript and jQuery. We also included several API’s such as Stripe and TWILIO.</p>
                 </div><!--//content-->
                 <div class="team col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1 col-xs-12">
                     <div class="row">
@@ -278,7 +278,7 @@
                     <div class="quote-box">
                         <i class="fa fa-quote-left"></i>
                         <blockquote class="quote">
-                            <a href="#">@spotfinder</a> I love this #app. Spotfinder makes parking so easy!
+                            <a href="#">@spotspy</a> I love this #app. SpotSpy makes parking so easy!
                         </blockquote><!--//quote-->
                     </div><!--//quote-box-->
                     <div class="people row">
@@ -293,7 +293,7 @@
                     <div class="quote-box">
                         <i class="fa fa-quote-left"></i>
                         <blockquote class="quote">
-                            <a href="#">@spotfinder</a> Oh snap! I love spotfinder! 
+                            <a href="#">@spotspy</a> Oh snap! I love SpotSpy! 
                         </blockquote><!--//quote-->
                     </div><!--//quote-box-->
                     <div class="people row">
@@ -308,7 +308,7 @@
                     <div class="quote-box">
                         <i class="fa fa-quote-left"></i>
                         <blockquote class="quote">
-                        I find SpotFinder very useful - I never have to stress about finding parking again!
+                        I find SpotSpy very useful - I never have to stress about finding parking again!
                         </blockquote><!--//quote-->
                     </div><!--//quote-box-->
                     <div class="people row">
@@ -325,7 +325,7 @@
                     <div class="quote-box">
                         <i class="fa fa-quote-left"></i>
                         <blockquote class="quote">
-                         Spotfinder rocks my world! I use it every week!
+                         SpotSpy rocks my world! I use it every week!
                         </blockquote><!--//quote-->
                     </div><!--//quote-box-->
                     <div class="people row">
@@ -410,7 +410,7 @@
     <!-- ******CONTENT****** --> 
     <footer class="footer">
         <div class="container">
-            <small class="copyright pull-left">Copyright &copy; 2014 SpotFinder App</small>
+            <small class="copyright pull-left">Copyright &copy; 2014 SpotSpy App</small>
             <ul class="links list-inline">
                 <li><a href="#">Terms</a></li>
                 <li><a href="#">Privacy</a></li>

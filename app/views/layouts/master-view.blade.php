@@ -39,7 +39,7 @@
             <h1 class="logo pull-left">
                 <a class="scrollto" href="#promo">
                     <img id="logo-image" class="logo-image" src="{{ URL::to('') }}/assets/images/logo/logo.png" alt="Logo">
-                    <span class="logo-title"><a href="http://spotfinder.dev/">SpotFinder</a></span>
+                    <span class="logo-title"><a href="http://spotfinder.dev/">SpotSpy</a></span>
                 </a>
             </h1><!--//logo-->              
             <nav id="main-nav" class="main-nav navbar-right" role="navigation">
@@ -104,10 +104,29 @@
 
         <!-- Fade out error or success messages after forms are submitted -->
     <script type="text/javascript">
-        $('.alert-success').fadeIn(5000);
-        $('.alert-success').fadeOut(10000);
-        $('.alert-success').fadeIn(5000);
-        $('.alert-danger').fadeOut(10000);
+
+        $('.alert-success').hide();
+        $('.alert-danger').hide();
+        $('.alert-success').fadeIn(2000);
+        $('.alert-danger').fadeIn(2000);
+
+        displayTime = setTimeout(showMessages, 3000);
+        //
+        function showMessages(){
+            setTimeout(hideMessages, 3000);
+        }
+
+        // function to stop / reset the timer
+        function hideMessages() {
+            clearTimeout(displayTime);
+            $('.alert-success').fadeOut(2000);
+            $('.alert-danger').fadeOut(2000);
+        }
+
+        showMessages();
+
+
+
     </script> 
 
 @yield('bottom-script')
