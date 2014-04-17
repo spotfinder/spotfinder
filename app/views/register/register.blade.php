@@ -42,6 +42,31 @@
 	{{ Form::text('last_name', null, array('class' => 'form-control', 'placeholder' => 'Last Name')) }}</p>
 	</div>
 
+	<div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
+	<p>{{ Form::label('street_address', 'Street Address') }}
+	{{ Form::text('street_address', null, array('class' => 'form-control', 'placeholder' => 'Street Address')) }}</p>
+	</div>
+    
+    <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
+	<p>{{ Form::label('city', 'City') }}
+	{{ Form::text('city', null, array('class' => 'form-control', 'placeholder' => 'City')) }}</p>
+	</div>
+
+	<div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
+	<p>{{ Form::label('state', 'State') }}
+	{{ Form::text('state', null, array('class' => 'form-control', 'placeholder' => 'State')) }}</p>
+	</div>
+
+	<div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
+	<p>{{ Form::label('zip', 'Zip') }}
+	{{ Form::text('zip', null, array('class' => 'form-control', 'placeholder' => 'Zip')) }}</p>
+	</div>
+
+	<div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
+	<p>{{ Form::label('phone_number', 'Phone Number') }}
+	{{ Form::text('phone_number', null, array('class' => 'form-control', 'placeholder' => 'Phone Number')) }}</p>
+	</div>
+
 	<div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
 	<p>{{ Form::label('email', 'Email') }}
 	{{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email')) }}</p>
@@ -56,6 +81,7 @@
 	<p>{{ Form::label('password_confirmation', 'Confirm Password') }}
 	{{ Form::password('password_confirmation', array('class' => 'form-control')) }}</p>
 	</div>
+
 	
 	@if (!Auth::user())
 	<p>{{ Form::submit('Join', array('class' => 'btn btn-lg btn-primary btn-block'))}}</p>

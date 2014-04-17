@@ -33,7 +33,7 @@ class AdminController extends BaseController {
 		//
 
 		$user = new User;
-		return View::make('create-user');
+		return View::make('create-edit-user');
 	}
 
 
@@ -133,7 +133,20 @@ class AdminController extends BaseController {
 		return Redirect::action('AdminController@index');
 	}
     
-    public function addLot(){
+    public function addLot()
+    {
+
+		// create the validator
+    	$validator = Validator::make(Input::all(), Lot::$lot_rules);
+
+    	// attempt validation
+    	if ($validator->fails()){
+        	// validation failed, redirect to the post create page with validation errors and old inputs
+    		Session::flash('errorMessage', 'Could not add a new lot - see form errors');
+    		return Redirect::back()->withInput()->withErrors($validator);
+
+    	} else {
+        	// validation succeeded, create and save the post
 
     	$lot = new Lot();
 
@@ -167,6 +180,7 @@ class AdminController extends BaseController {
 
 			Session::flash('successMessage', 'Lot added successfully');
 			return Redirect::action('AdminController@index');
+	    }
     }
 
 }
