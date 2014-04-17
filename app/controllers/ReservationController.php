@@ -252,7 +252,7 @@ class ReservationController extends BaseController {
     	$reservation->total_cost = $selection->total_cost;  
 
 		$reservation->save();
-
+		Session::flush();
 		// DB::table('spaces')
   //           	->where('lot_id', )
   //           	->where('space_number', $reservation->space_number)
