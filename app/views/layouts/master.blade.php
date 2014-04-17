@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>SpotFinder</title>
+    <title>SpotSpy</title>
     <!--- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,7 +43,7 @@
             <h1 class="logo pull-left">
                 <a class="scrollto" href="#promo">
                     <img id="logo-image" class="logo-image" src="/assets/images/logo/logo.png" alt="Logo">
-                    <span class="logo-title">SpotFinder</span>
+                    <span class="logo-title">SpotSpy</span>
                 </a>
             </h1><!--//logo-->              
             <nav id="main-nav" class="main-nav navbar-right" role="navigation">
@@ -108,10 +108,27 @@
 
         <!-- Fade out error or success messages after forms are submitted -->
     <script type="text/javascript">
-        $('.alert-success').fadeIn(5000);
-        $('.alert-success').fadeOut(10000);
-        $('.alert-success').fadeIn(5000);
-        $('.alert-danger').fadeOut(10000);
+
+        $('.alert-success').hide();
+        $('.alert-danger').hide();
+        $('.alert-success').fadeIn(2000);
+        $('.alert-danger').fadeIn(2000);
+
+        displayTime = setTimeout(showMessages, 3000);
+        //
+        function showMessages(){
+            setTimeout(hideMessages, 3000);
+        }
+
+        // function to stop / reset the timer
+        function hideMessages() {
+            clearTimeout(displayTime);
+            $('.alert-success').fadeOut(2000);
+            $('.alert-danger').fadeOut(2000);
+        }
+
+        showMessages();
+
     </script> 
 
 @yield('bottom-script')
