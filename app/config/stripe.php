@@ -3,7 +3,7 @@
 return array(
   // Stripe keys
   'stripe' => array(
-    'secret' => 'sk_test_0OpCF1QdfG776esCRYyTvuhQ',
+    'secret' => $_ENV['private_stripe_key'],
     'public' => 'pk_test_7PazbpNRjvqnioIMAx6922WE'
   ),
  
