@@ -168,7 +168,7 @@
                                 {{$user->role_id}}
                             </td>
                             <td>
-                                <i class="fa fa-pencil-square-o"></i>
+                                <a href = "{{{ action('AdminController@edit', $user->id) }}}" class = "edit_user"><i class="fa fa-pencil-square-o"></i></a>
                             </td>
                             <td>
                                 <a href = "#" class = "delete_user"><i class="fa fa-trash-o"></i></a>
@@ -179,7 +179,6 @@
                        @endforeach
                     </tbody>
                  </table>
-                <!-- <a href = "{{{ action ('AdminController@create') }}} "> Create New User</a> -->
                </div>
             </div>
         </div>

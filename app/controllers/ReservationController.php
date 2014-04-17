@@ -248,8 +248,7 @@ class ReservationController extends BaseController {
     	$reservation->departure_date_time = $selection->departure;
     	// $reservation->durationTime = $selection->$duration; 	// THIS LINE CREATES AN ERROR IF UNCOMMENTED
     	$reservation->cost = $selection->cost_per_hour;
- // var_dump($selection);
- // die;
+
     	$reservation->total_cost = $selection->total_cost;  
 
 		$reservation->save();
