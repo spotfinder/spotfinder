@@ -52,7 +52,7 @@ class HomeController extends BaseController {
 
 				if (Auth::user()->isAdmin()){
 
-				   	return Redirect::intended('/admin');
+				   	return Redirect::to('/admin');
 
 				}else{
 	    		
