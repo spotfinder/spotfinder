@@ -24,7 +24,7 @@ Route::post('/login', 'HomeController@doLogin');
 
 Route::get('/logout', 'HomeController@logout');
 
-Route::post('/thankyou', 'ReservationController@makePayment');
+Route::post('/thankyou/{index}', 'ReservationController@makePayment');
 
 Route::get('/thankyou', 'ReservationController@makePayment');
 
@@ -34,7 +34,7 @@ Route::get('/reserve', 'HomeController@showReservation');
 
 Route::controller('password', 'RemindersController');
 
-Route::any('/confirmation', 'HomeController@showConfirmation');
+Route::get('/confirmation', 'HomeController@showConfirmation');
 
 Route::post('/confirmation', 'HomeController@sendConfirmation');
 

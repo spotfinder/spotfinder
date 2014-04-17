@@ -83,7 +83,13 @@ class HomeController extends BaseController {
 	}
     
     public function showConfirmation() {
-		return View::make('confirmation');
+    	$index = Input::get('pick_me');
+		$order = Session::get('results');
+		$data = array(
+			'index' => $index,
+			'order' => $order
+		);
+		return View::make('confirmation')->with($data);
 	}
     
     public function sendConfirmation() {
@@ -94,7 +100,7 @@ class HomeController extends BaseController {
     	return View::make('confirmation');
     }
 
-    public function doPay()
+    public function pendingReservation()
 	{
 
 		
@@ -105,36 +111,36 @@ class HomeController extends BaseController {
 		
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here https://manage.stripe.com/account
-		Stripe::setApiKey(Config::get('stripe.stripe.secret'));
-		Input::all();
-		// Get the credit card details submitted by the form
-		$token = Input::get('stripeToken');
-		$amount = Input::get('amount');
+	// 	Stripe::setApiKey(Config::get('stripe.stripe.secret'));
+	// 	Input::all();
+	// 	// Get the credit card details submitted by the form
+	// 	$token = Input::get('stripeToken');
+	// 	$amount = Input::get('amount');
 
-		// Create the charge on Stripe's servers - this will charge the user's card
-		try {
+	// 	// Create the charge on Stripe's servers - this will charge the user's card
+	// 	try {
 
-		$customer = Stripe_Customer::create(array(
-		'email' => Auth::user()->email, 
-		'card'  => $token
-		));
+	// 	$customer = Stripe_Customer::create(array(
+	// 	'email' => Auth::user()->email, 
+	// 	'card'  => $token
+	// 	));
 
-		$charge = Stripe_Charge::create(array(
-		"amount" => $amount, // amount in cents, again
-		"customer" => $customer->id,
-		"currency" => "usd",
-		"description" => "payinguser@example.com")
-		);
+	// 	$charge = Stripe_Charge::create(array(
+	// 	"amount" => $amount, // amount in cents, again
+	// 	"customer" => $customer->id,
+	// 	"currency" => "usd",
+	// 	"description" => "payinguser@example.com")
+	// 	);
 
-		$charge = $charge->id;
-		Session::push('results', $charge);
+	// 	$charge = $charge->id;
+	// 	Session::push('results', $charge);
 
-		} catch(Stripe_CardError $e) {
-		Session::flash('errorMessage', 'Your credit card has been declined.');	
+	// 	} catch(Stripe_CardError $e) {
+	// 	Session::flash('errorMessage', 'Your credit card has been declined.');	
 		
-		}
-		Session::flash('successMessage', 'Your credit card has been approved.  Thank you.');
-		return View::make('confirmation')->with('results', $results);
+	// 	}
+	// 	Session::flash('successMessage', 'Your credit card has been approved.  Thank you.');
+	// 	return View::make('confirmation')->with('results', $results);
 	}
 }
 

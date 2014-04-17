@@ -4,8 +4,6 @@
 		body {
 		    margin-top: 50px;
 			text-align: center;
-			/*background-image: url("/assets/pattern-1.png");*/
-			/*background-size: 100%;*/
 			background-image: url("/assets/images/patterns/pattern-1.png");
 			background-color: #4EA784;
 		}
