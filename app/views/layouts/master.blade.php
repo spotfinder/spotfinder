@@ -42,7 +42,7 @@
         <div class="container">            
             <h1 class="logo pull-left">
                 <a class="scrollto" href="#promo">
-                    <img id="logo-image" class="logo-image" src="/assets/images/logo/logo.png" alt="Logo">
+                    <img id="logo-image" class="logo-image" src="/assets/images/logo/magnifying-glass.gif" alt="Logo">
                     <span class="logo-title">SpotSpy</span>
                 </a>
             </h1><!--//logo-->              
