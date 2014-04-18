@@ -266,7 +266,7 @@ class ReservationController extends BaseController {
 
 		$reservation = new Reservation();
 		$reservation->customer_number = Auth::user()->id;
-		// $reservation->reservation_number = $selection->XXXXXXXXXX; ///// ADD RANDOM GENERATION TO BEGINNING
+		$reservation->reservation_number = ($reservation->customer_number * 4444);
     	$reservation->license_plate_number = $selection->license_plate_number;
     	/////////////////////////////////////////////////////////////////////////////////////
     	
