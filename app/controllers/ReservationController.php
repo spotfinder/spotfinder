@@ -139,25 +139,53 @@ class ReservationController extends BaseController {
 				Session::put('results', $results);
 				return View::make('search')->with('results', $results);
             }
+            // $requestedArrivalDateTime = strtotime($requestedArrivalDateTime);
+            // $requestedDepartureDateTime = strtotime($requestedDepartureDateTime);
+           
 
 			// Query the reservation table for parking spaces in the desired area where requested arrival time is after any already 
 			// booked departure space times and where the desired departure time is before any already booked arrival times. 
-			$reservedSpaces = $this->searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime);
+			$reservedSpaces = $this->searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime, $licensePlate);
 
     		// Get the results of reservations query and count them.  If query result is zero, send the user a message 
     		// sorry, there are no space that meet your criteria.  Please return to the reservation make to change your search criteria.
     		if (sizeof($reservedSpaces) == 0){
-    			Session::flash('errorMessage', 'No available parking spaces matched your search criteria.  Please amend your search and try again.');
-				return Redirect::action('HomeController@showReservation')->withInput();
+    			
+            	Session::flash('successMessage', 'Here are your options.');	
+
+				$results = DB::table('reservations')
+    				->join('lots', 'reservations.area_id', '=', 'lots.area_id')
+    				->select('lots.area_name', 'lots.lot_name', 'reservations.space_number', 'lots.lot_id', 'reservations.street_address', 'lots.cost_per_hour')
+					->where('reservations.area_id', '=', $requestedArea)
+					->where('arrival_date_time', '>', $requestedDepartureDateTime) //
+					->where('departure_date_time', '>', $requestedArrivalDateTime) //
+    				->whereNotBetween('arrival_date_time', array($requestedArrivalDateTime, $requestedDepartureDateTime))
+    				->whereNotBetween('departure_date_time', array($requestedArrivalDateTime, $requestedDepartureDateTime))
+    				->take(5)
+    				->get();
+
+				foreach ($results as &$result){
+					$result->cost = $result->cost_per_hour;
+    				$result->total_cost = ($duration * $result->cost_per_hour);
+    				$result->duration = $duration;
+    				$result->arrival = $requestedArrivalDateTime;
+    				$result->departure = $requestedDepartureDateTime;
+    				$result->area_id = $requestedArea; 
+    				$result->license_plate_number = $licensePlate; 				
+				}
+
+				Session::put('results', $results);
+				return View::make('search')->with('results', $results);
+
 			}
     	} else {
 
-    		// If reservation query is > zero, list results in a table for the user to review.  Pick only 5 and allow the user to pick only one choice to make a reservation.
-			Session::flash('successMessage', 'We found some options for you.');
-				// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
-				$results = $resultsOfReservationQuery;
-				Session::put('results', $results);
-				return View::make('search')->with('results', $results);
+    		// If reservation query is > zero there could be conflicts, list results in a table for the user to review.  Pick only 5 and allow the user to pick only one choice to make a reservation.
+			
+			// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
+			
+			Session::flash('errorMessage', 'No available parking spaces matched your search criteria.  Please amend your search and try again.');
+			return Redirect::action('HomeController@showReservation')->withInput();
 		}
 
     	return View::make('search');
@@ -238,7 +266,7 @@ class ReservationController extends BaseController {
 
 		$reservation = new Reservation();
 		$reservation->customer_number = Auth::user()->id;
-		// $reservation->reservation_number = $selection->XXXXXXXXXX; ///// ADD RANDOM GENERATION TO BEGINNING
+		$reservation->reservation_number = ($reservation->customer_number * 4444);
     	$reservation->license_plate_number = $selection->license_plate_number;
     	/////////////////////////////////////////////////////////////////////////////////////
     	
@@ -288,7 +316,11 @@ class ReservationController extends BaseController {
         
 		// Session::flush();
         Session::flash('successMessage', 'Reservation created sucessfully.');
-		return View::make('thankyou');
+        $data = array(
+			'index' => $index,
+			'order' => $order
+		);
+		return View::make('thankyou')->with($data);
 	}
 
 	/**
