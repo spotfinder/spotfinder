@@ -6,7 +6,7 @@ class LotTableSeeder extends Seeder {
     {
         DB::table('lots')->delete();
 
-        $lot = new lot();
+        $lot = new Lot();
         $lot->lot_id = 'Park4U #2';
         $lot->area_id = 1;
         $lot->area_name = 'Downtown';
