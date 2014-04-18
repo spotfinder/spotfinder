@@ -79,7 +79,7 @@
 			    data-amount="{{ $order[$index]->total_cost * 100 }}"
 			    data-name="SpotSpy"
 			    data-description="Space {{$order[$index]->space_number}} in {{ $order[$index]->lot_name }} from  {{ $order[$index]->arrival }} to {{ $order[$index]->departure }}"
-			    data-image="/assets/images/logo/logo.png">
+			    data-image="/assets/images/logo/magnifying-glass.gif">
 			  </script>
 			
 			{{ Form::close() }}

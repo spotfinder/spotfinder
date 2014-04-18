@@ -35,13 +35,13 @@
                             <div class="slider flexslider">
                                 <ul class="slides">
                                     <li>
-                                        <img src="assets/images/iphone/iphone-slide-1.png"  alt="" />
+                                        <img style="height:395px" src="/assets/images/iphone/stripe.png"  alt="" />
                                     </li>
                                     <li>
-                                        <img src="assets/images/iphone/iphone-slide-2.png"  alt="" />
+                                        <img style="height:395px" src="/assets/images/iphone/reserve.png"  alt="" />
                                     </li>
                                     <li>
-                                        <img src="assets/images/iphone/iphone-slide-3.png"  alt="" />
+                                        <img style="height:395px" src="assets/images/iphone/home.png"  alt="" />
                                     </li>
                                 </ul><!--//slides-->
                             </div><!--//flexslider-->   
@@ -140,7 +140,7 @@
                     </div><!--//icon-->
                     <div class="content">
                         <h3 class="title">Easy Checkout</h3>
-                        <p> Easy secure payment system. I mean seriously, who carries cash anymore?</p>   
+                        <p> Easy secure payment system via stripe. I mean seriously, who carries cash anymore?</p>   
                     </div><!--//content-->               
                 </div><!--//item-->
             </div><!--//row-->
@@ -153,28 +153,12 @@
         <div class="container">
             <div class="row">
                 <div class="content col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6 text-center">
+                    <img style="width:50px" style="width:50px" src="/assets/images/logo/magnifying-glass.gif">
                     <h2 class="title">How it works</h2>
-                    <p class="intro">You can <a href="http://blog.sensortower.com/blog/2013/07/19/3-ways-to-create-a-great-ios-app-demo-video-without-breaking-the-bank/" target="_blank">create a video demo</a> for your app to demonstrate how the app works. You can also <a href="http://www.qrstuff.com/" target="_blank">generate QR codes</a> for the app download links.</p>
-                    <div class="qr-codes hidden-sm hidden-xs">
-                        <div class="note">
-                            <p>Scan the QR codes</p>
-                            <span class="left-arrow"></span>
-                            <span class="right-arrow"></span>
-                        </div><!--//note-->
-                        <div class="row">
-                            <div class="item col-md-6 col-sm-6">
-                                <img src="assets/images/qrcodes/qr-1.png" alt="" />
-                                <p>Download for iOS</p>
-                            </div><!--//item-->
-                            <div class="item col-md-6 col-sm-6">
-                                <img src="assets/images/qrcodes/qr-1.png" alt="" />
-                                <p>Download for Andriod</p>
-                            </div><!--//item-->
-                        </div>                    
-                    </div><!--//qr-codes-->
+                    <p class="intro">SpotSpy is a web app that provides a way for you to reserve a parking space by searching city lots. You can choose an area of the city for a desired arrival and departure time. Then you will be presented with the ability to choose a parking lot based upon availability and cost. Once complete you will have the option to pay and receive a confirmation email and text.</p>
                 </div><!--//content-->
                 <div id="video-container" class="video-container col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
-                    <iframe src="//player.vimeo.com/video/87044590" width="570" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                     <iframe width="570" height="320" src="//www.youtube.com/embed/sGF6bOi1NfA" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div><!--//video-->
             </div><!--//row-->
         </div><!--//container-->
@@ -227,9 +211,9 @@
     <section id="story" class="story section has-pattern">
         <div class="container">
             <div class="row">
-                <div class="content col-md-6 col-sm-6 col-xs-12 text-center">
+                <div class="content col-md-6 col-sm-6 col-md-12 text-center">
                     <h2 class="title">Story behind the app</h2>
-                    <p>Our team created SpotSpy, a solution to dreadful, everyday parking in city lots. SpotSpy allows the user to reserve a parking space within a lot of their choice before even leaving for work, an event, or just to grab a cup of coffee. This project is a great representation of all the skills we acquired during our time at CodeUp. We used Laravel a PHP framework, a MYSQL database, HTML, CSS, Twitter Bootstrap, JavaScript and jQuery. We also included several API’s such as Stripe and TWILIO.</p>
+                    <p>Our team created SpotSpy, a solution to dreadful, everyday parking in city lots. SpotSpy allows the user to reserve a parking space within a lot of their choice before even leaving for work, an event, or just to grab a cup of coffee. This project is a great representation of all the skills we acquired during our time at CodeUp. We used Laravel a PHP framework, a MYSQL database, HTML, CSS, Twitter Bootstrap, JavaScript and jQuery. We also included API’s such as Stripe and TWILIO.</p>
                 </div><!--//content-->
                 <div class="team col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1 col-xs-12">
                     <div class="row">
@@ -248,8 +232,8 @@
                             <p class="name">Mike Tamburo</p>
                             <p class="title">Developer</p>
                             <ul class="connect list-inline">
-                                <li><a href="#" ><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" ><i class="fa fa-linkedin"></i></a></li>
+                                <!-- <li><a href="#" ><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" ><i class="fa fa-linkedin"></i></a></li> -->
                                 <li class="row-end"><a href="https://github.com/miketamburo"><i class="fa fa-github"></i></a></li>         
                             </ul>
                         </div><!--//member-->
@@ -374,7 +358,7 @@
                 <div class="intro col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
                     <p>We’d love to hear from you!</p>
                     <ul class="list-unstyled contact-details">
-                        <li><i class="fa fa-envelope"></i><a href="mailto: hello@website.com">spotfindersa@gmail.com</a></li>
+                        <li><i class="fa fa-envelope"></i><a href="mailto: hello@website.com">spotspysa@gmail.com</a></li>
                         <!-- <li><i class="fa fa-phone-square"></i>0800 123 456</li> -->
                 </div>
             </div><!--//row-->
