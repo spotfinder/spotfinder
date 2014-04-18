@@ -28,9 +28,10 @@ class CreateLotsTable extends Migration {
 		    $table->integer('capacity');
 		    $table->time('open_time');
 		    $table->time('close_time');
-		    $table->DECIMAL('latitude', 10, 8);
-		    $table->DECIMAL('longitude', 10, 8);
-		    $table->DECIMAL('cost_per_hour', 4, 2);
+		    $table->DECIMAL('latitude', 20, 8);
+		    $table->DECIMAL('longitude', 20, 8);
+		    $table->DECIMAL('cost_per_hour', 10, 2);
+		    $table->timestamps();
 		
 		});
 	}
