@@ -1,7 +1,7 @@
 <?php
 
 class Reservation extends Eloquent { 
-    public $timestamps = false;
+    public $timestamps = true;
     
     public function user() {
         return $this->belongsTo('User');
