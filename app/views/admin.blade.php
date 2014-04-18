@@ -31,7 +31,7 @@
                 <div class="panel-footer announcement-bottom">
                   <div class="row">
                     <div class="col-xs-6">
-                      View Mentions
+                      View All the Users 
                     </div>
                     <div class="col-xs-6 text-right">
                       <i class="fa fa-arrow-circle-right"></i>
@@ -50,7 +50,7 @@
                   </div>
                   <div class="col-xs-6 text-right">
                     <p class="announcement-heading">{{ Lot::totalCount() }}</p>
-                    <p class="announcement-text">Lots</p>
+                    <p class="announcement-text">Existing Lots</p>
                   </div>
                 </div>
               </div>
@@ -58,7 +58,7 @@
                 <div class="panel-footer announcement-bottom">
                   <div class="row">
                     <div class="col-xs-6">
-                      Complete Tasks
+                      View All the Lots
                     </div>
                     <div class="col-xs-6 text-right">
                       <i class="fa fa-arrow-circle-right"></i>
@@ -85,7 +85,7 @@
                 <div class="panel-footer announcement-bottom">
                   <div class="row">
                     <div class="col-xs-6">
-                      Fix Issues
+                      View Reservations
                     </div>
                     <div class="col-xs-6 text-right">
                       <i class="fa fa-arrow-circle-right"></i>
@@ -104,7 +104,7 @@
                   </div>
                   <div class="col-xs-6 text-right">
                     <p class="announcement-heading">{{ Space::totalCount()}}</p>
-                    <p class="announcement-text">Total Spaces</p>
+                    <p class="announcement-text"> Spaces Occupied</p>
                   </div>
                 </div>
               </div>
@@ -112,7 +112,7 @@
                 <div class="panel-footer announcement-bottom">
                   <div class="row">
                     <div class="col-xs-6">
-                      Complete Orders
+                      View Total Spaces
                     </div>
                     <div class="col-xs-6 text-right">
                       <i class="fa fa-arrow-circle-right"></i>
@@ -171,12 +171,13 @@
                                 <a href = "{{{ action('AdminController@edit', $user->id) }}}" class = "edit_user"><i class="fa fa-pencil-square-o"></i></a>
                             </td>
                             <td>
-                                <a href = "{{{ action ('AdminController@destroy', $user->id) }}}" class = "delete_user"><i class="fa fa-trash-o"></i></a>
+                                <a href = "{{{ action ('AdminController@destroy', $user->id) }}}" class="delete_user" data-userid="{{{$user->id}}}"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
-                       @endforeach
-                                {{ Form::open(array('action'=> array('AdminController@destroy', $user->id), 'method' => 'delete', 'id' => 'formDeleteUser'))}}
-                                {{ Form::close() }} 
+                      @endforeach
+                      {{ Form::open(array('action'=> array('AdminController@destroy'), 'method' => 'delete', 'id' => 'formDeleteUser'))}}
+                        {{ Form::hidden('type', 'user') }}
+                      {{ Form::close() }} 
                     </tbody>
                  </table>
                </div>
@@ -231,12 +232,13 @@
                                 {{$reservation->area_total_cost}}
                             </td>
                             <td>
-                                <a href = "#" class = "delete_reservation"><i class="fa fa-trash-o"></i></a>
-                                {{ Form::open(array('action'=> array('AdminController@destroy'), 'method' => 'delete', 'id' => 'formDeleteReservation'))}}
-                                {{ Form::close() }} 
+                                <a href="{{{ action ('AdminController@destroy', $reservation->id) }}}" class="delete_reservation" data-reservationid="{{{$reservation->id}}}"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
-                       @endforeach
+                      @endforeach
+                      {{ Form::open(array('action'=> array('AdminController@destroy'), 'method' => 'delete', 'id' => 'formDeleteReservation'))}}
+                        {{ Form::hidden('type', 'reservation') }}
+                      {{ Form::close() }} 
                     </tbody>
                  </table>
                </div>
@@ -278,15 +280,10 @@
                         <div class="form-group"> 
                             {{ Form::label('capacity', 'Capacity') }}
                             {{ Form::text('capacity', null, array('class' => 'form', 'placeholder' => 'Capacity')) }}
-                          <!--   <div class='input-group date' id='datetimepicker4'>
-                                <input type='text' class="form" id= "open_time"/>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
-                                </span>
-                            </div> -->
                             {{ Form::label('open_time', 'OpenTime') }}
-                            {{ Form::text('open_time', null, array('class' => 'form', 'placeholder' => 'Open Time')) }}
+                            <input type="time" name="open_time" id ="open_time">
                             {{ Form::label('close_time', 'Close Time') }}
-                            {{ Form::text('close_time', null, array('class' => 'form', 'placeholder' => 'Close Time')) }}
+                            <input type="time" name="close_time" id ="close_time">
                         </div>
                         <div class="form-group"> 
                             {{ Form::label('latitude', 'Latitude') }}
@@ -309,17 +306,18 @@
 @section('bottom-script')
     <!-- Custom JavaScript for the Menu Toggle -->
     <script>
-
     $('.delete_user').on('click', function(e){
         e.preventDefault();
         if(confirm("Are you sure you want to delete this user?")){
-         $('#formDeleteUser').submit();   
+          $('#formDeleteUser').attr('action', '/admin/' + $(this).data('userid'));
+          $('#formDeleteUser').submit();   
         }
     });
 
     $('.delete_reservation').on('click', function(e){
         e.preventDefault();
         if(confirm("Are you sure you want to delete this reservation?")){
+         $('#formDeleteReservation').attr('action', '/admin/' + $(this).data('reservationid'));
          $('#formDeleteReservation').submit();   
         }
     })
