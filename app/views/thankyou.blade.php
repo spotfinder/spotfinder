@@ -44,16 +44,16 @@
        
         	<div class= "text-center">
 	            <h5>Date: {{ $reservation->arrival_date_time}}</h5>
-	            <h5>Lot name: {{ $reservation->lot_name}}</h5>
+	            <h5>Lot Name: {{ $reservation->lot_name}}</h5>
 	            <h5>Space Number: {{ $reservation->space_number}}</h5>
 	            <h5>Address: {{ $reservation->street_address}} </h5>
 	            <h5>Cost: {{ $reservation->total_cost}}</h5>
             </div>
                	
-			<!-- <div class="col-md-4"></div>
+			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				  	<h5>Do you want to get details about your <em> reservation</em>? <br>Enter your phone number below.</h5>
-				    {{ Form::open(array('action' => 'HomeController@sendConfirmation', 'class' => 'well', 'role'=>'form', 'method'=> 'post')) }}
+				  	<h5>Get details about your <em> reservation on your phone</em>? <br>Enter your phone number below.</h5>
+				  {{ Form::open(array('action' => 'HomeController@sendConfirmation', 'class' => 'well', 'role'=>'form', 'method'=> 'post')) }}
 				  <div class="form-group text-center">
 				    <h5><label for="phone">Phone Number:</label></h5>
 				    <input type='text' class="form-control" id="phone" name="phone" placeholder="##########" style="text-align:center" required>
@@ -64,12 +64,6 @@
 			<div class="col-md-4"></div>
 		</div>
 		<div class="col-md-1"></div>
-		
-			@if (Session::has('phone'))
-				<div class="alert alert-info" >
-					<p>Message to {{ Session::get('phone') }} sent</p>
-				</div>
-			@endif -->
 		
 		<div class="col-md-1"></div>
 	</div>

@@ -97,7 +97,7 @@ class HomeController extends BaseController {
     	Twilio::message('2102372042', 'Thank you for reserving a spot with us!');
     	Session::flash('phone', 'phone number');
     	// return Redirect::action('ReservationController@makePayment');
-    	return View::make('confirmation');
+    	return Redirect::action('HomeController@showHome');
     }
 
     public function pendingReservation()
