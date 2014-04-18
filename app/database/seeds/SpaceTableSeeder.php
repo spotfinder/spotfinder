@@ -6,7 +6,7 @@ class SpaceTableSeeder extends Seeder {
     {
         DB::table('spaces')->delete();
 
-        $space = new space();
+        $space = new Space();
         $space->area_id = 1;
         $space->lot_id = 'Park4U #2';
         $space->space_number = '42';
