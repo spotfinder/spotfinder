@@ -171,12 +171,12 @@
                                 <a href = "{{{ action('AdminController@edit', $user->id) }}}" class = "edit_user"><i class="fa fa-pencil-square-o"></i></a>
                             </td>
                             <td>
-                                <a href = "#" class = "delete_user"><i class="fa fa-trash-o"></i></a>
-                                {{ Form::open(array('action'=> array('AdminController@destroy', $user->id), 'method' => 'delete', 'id' => 'formDeleteUser'))}}
-                                {{ Form::close() }} 
+                                <a href = "{{{ action ('AdminController@destroy', $user->id) }}}" class = "delete_user"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                        @endforeach
+                                {{ Form::open(array('action'=> array('AdminController@destroy', $user->id), 'method' => 'delete', 'id' => 'formDeleteUser'))}}
+                                {{ Form::close() }} 
                     </tbody>
                  </table>
                </div>
@@ -252,44 +252,49 @@
                   <div class="panel-body">
                    {{ Form::open(array('action' => 'AdminController@addLot', 'class' => 'form', 'role'=>'form', 'method'=> 'post')) }}
                         <div class="form-group">
-                            <label>Lot Id</label>
-                            <input type="number" name="lot_id" id='lot_id'>
-                            <label>Lot Name</label>
-                            <input type="text" name="lot_name" id ='lot_name'>
-                            <label>Area Id</label>
-                            <input type="number" name="area_id" id ='area_id'>
+                            {{ Form::label('lot_id', 'Lot Id') }}
+                            {{ Form::text('lot_id', null, array('class' => 'form', 'placeholder' => 'Lot Id')) }}
+                            {{ Form::label('lot_name', 'Lot Name') }}
+                            {{ Form::text('lot_name', null, array('class' => 'form', 'placeholder' => 'Lot Name')) }}
+                            {{ Form::label('area_id', 'Area Id') }}
+                            {{ Form::text('area_id', null, array('class' => 'form', 'placeholder' => 'Area Id')) }}
                          </div>
                         <div class="form-group">
-                            <label>Area Name</label>
-                            <input type="text" name="area_name" id='area_name'>
-                            <label>Street Address</label>
-                            <input type="text" name="street_address" id="street_address">
-                            <label>City</label>
-                            <input type="text" name="city" id="city">
+                            {{ Form::label('area_name', 'Area Name') }}
+                            {{ Form::text('area_name', null, array('class' => 'form', 'placeholder' => 'Area Name')) }}
+                            {{ Form::label('street_address', 'Street Address') }}
+                            {{ Form::text('street_address', null, array('class' => 'form', 'placeholder' => 'Street Address')) }}
+                            {{ Form::label('city', 'City') }}
+                            {{ Form::text('city', null, array('class' => 'form', 'placeholder' => 'City')) }}
                         </div>
                         <div class="form-group">
-                            <label>State</label>
-                            <input type="text" name="state" id="state">
-                            <label>Zip</label>
-                            <input type="text" name="zip" id="zip">
-                            <label>Phone Number</label>
-                            <input type="tel" name="phone_number" id="phone_number">
-                         </div>
-                        <div class="form-group"> 
-                            <label>Capacity</label>
-                            <input type="number" name="capacity" id="capacity">
-                            <label>Open Time</label>
-                            <input type="time" name="open_time" id="open_time">
-                            <label>Close Time</label>
-                            <input type="time" name="close_time" id="close_time">
+                            {{ Form::label('state', 'State') }}
+                            {{ Form::text('state', null, array('class' => 'form', 'placeholder' => 'State')) }}
+                            {{ Form::label('zip', 'Zip') }}
+                            {{ Form::text('zip', null, array('class' => 'form', 'placeholder' => 'Zip')) }}
+                            {{ Form::label('phone_number', 'Phone Number') }}
+                            {{ Form::text('phone_number', null, array('class' => 'form', 'placeholder' => '##########')) }}
                         </div>
                         <div class="form-group"> 
-                            <label>Latitude</label>
-                            <input type="float" name="latitude" id="latitude">
-                            <label>Longitude</label>
-                            <input type="float" name="longitude" id="longitude">
-                            <label>Cost Per Hour</label>
-                            <input type="number"  min="0.01" step="0.01" name="cost_per_hour" id="cost_per_hour">
+                            {{ Form::label('capacity', 'Capacity') }}
+                            {{ Form::text('capacity', null, array('class' => 'form', 'placeholder' => 'Capacity')) }}
+                          <!--   <div class='input-group date' id='datetimepicker4'>
+                                <input type='text' class="form" id= "open_time"/>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div> -->
+                            {{ Form::label('open_time', 'OpenTime') }}
+                            {{ Form::text('open_time', null, array('class' => 'form', 'placeholder' => 'Open Time')) }}
+                            {{ Form::label('close_time', 'Close Time') }}
+                            {{ Form::text('close_time', null, array('class' => 'form', 'placeholder' => 'Close Time')) }}
+                        </div>
+                        <div class="form-group"> 
+                            {{ Form::label('latitude', 'Latitude') }}
+                            {{ Form::text('latitude', null, array('class' => 'form', 'placeholder' => 'Latitude')) }}
+                            {{ Form::label('longitude', 'Longitude') }}
+                            {{ Form::text('longitude', null, array('class' => 'form', 'placeholder' => 'Longitude')) }}
+                            {{ Form::label('cost_per_hour', 'Cost Per Hour') }}
+                            {{ Form::text('cost_per_hour', null, array('class' => 'form', 'placeholder' => 'Cost Per Hour')) }}
                         </div>
                         <input type="submit" value="Add Lot" class="btn btn-primary">
                     {{ Form::close() }}
@@ -300,13 +305,10 @@
 
 @stop
 
+
 @section('bottom-script')
     <!-- Custom JavaScript for the Menu Toggle -->
     <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("active");
-    });
 
     $('.delete_user').on('click', function(e){
         e.preventDefault();
@@ -314,7 +316,6 @@
          $('#formDeleteUser').submit();   
         }
     });
-
 
     $('.delete_reservation').on('click', function(e){
         e.preventDefault();
@@ -324,4 +325,5 @@
     })
     </script>
 @stop
+
 

@@ -14,8 +14,7 @@ class AdminController extends BaseController {
 	 */
 	public function index()
 	{
-       if (Auth::check())
-	   {
+        if (Auth::check()){
 			$users = User::all();
 			$reservations = Reservation::all();
 			return View::make('admin')->with(array('users'=> $users, 'reservations'=> $reservations));
@@ -33,7 +32,7 @@ class AdminController extends BaseController {
 		//
 
 		$user = new User;
-		return View::make('create-user');
+		return View::make('create-edit-user');
 	}
 
 
@@ -44,10 +43,19 @@ class AdminController extends BaseController {
 	 */
 	public function store()
 	{
-		//
-		$user = new User();
-    		
-			$user->customer_number = Input::get('customer_number');
+		
+	    //create the validator
+    	$validator = Validator::make(Input::all(), User::$admin_user_rules);
+
+    	// attempt validation
+    	if ($validator->fails()){
+        	// validation failed, redirect to the post create page with validation errors and old inputs
+    		Session::flash('errorMessage', 'Could not register a new user - see form errors');
+    		return Redirect::back()->withInput()->withErrors($validator);
+    	} else {
+        	//validation succeeded, create and save the post
+			$user = new User();
+    		$user->customer_number = str_random(6);
 			$user->first_name = Input::get('first_name');
 			$user->last_name = Input::get('last_name');
 			$user->street_address = Input::get('street_address');
@@ -62,6 +70,7 @@ class AdminController extends BaseController {
 			$user->save();
             Session::flash('successMessage', 'User created sucessfully.');
             return Redirect::action('AdminController@index');
+	    }
 	}
 
 
@@ -100,23 +109,33 @@ class AdminController extends BaseController {
 	public function update($id)
 	{
 		//
-		$user = User::findOrFail($id);
-	    $user->customer_number = Input::get('customer_number');
-		$user->first_name = Input::get('first_name');
-		$user->last_name = Input::get('last_name');
-		$user->street_address = Input::get('street_address');
-		$user->city = Input::get('city');
-		$user->state = Input::get('state');
-		$user->zip = Input::get('zip');
-		$user->phone_number = Input::get('phone_number');
-		$user->email = Input::get('email');
-		$user->password = Input::get('password');
-		$user->role_id= Input::get('role_id');
+		// create the validator
+    	$validator = Validator::make(Input::all(), User::$admin_user_rules);
 
-		$user->save();
-        Session::flash('successMessage', 'User updated sucessfully.');
-        return Redirect::action('AdminController@index');
-}
+    	// attempt validation
+    	if ($validator->fails()){
+        	// validation failed, redirect to the post create page with validation errors and old inputs
+    		Session::flash('errorMessage', 'Could not register a new user - see form errors');
+    		return Redirect::back()->withInput()->withErrors($validator);
+    	} else {
+        	// validation succeeded, create and save the post
+			$user = User::findOrFail($id);
+			$user->first_name = Input::get('first_name');
+			$user->last_name = Input::get('last_name');
+			$user->street_address = Input::get('street_address');
+			$user->city = Input::get('city');
+			$user->state = Input::get('state');
+			$user->zip = Input::get('zip');
+			$user->phone_number = Input::get('phone_number');
+			$user->email = Input::get('email');
+			$user->password = Input::get('password');
+			$user->role_id= Input::get('role_id');
+
+			$user->save();
+	        Session::flash('successMessage', 'User updated sucessfully.');
+	        return Redirect::action('AdminController@index');
+	    }
+    }
 
 
 	/**
@@ -129,11 +148,29 @@ class AdminController extends BaseController {
 	{
 		//
 		$user = User::findOrFail($id);
-		$user->delete();
-		return Redirect::action('AdminController@index');
+		if (Auth::user()->id != $id) {
+			$user->delete();
+			return Redirect::action('AdminController@index');	
+		} else {
+			Session::flash('errorMessage', 'Error: Action not permitted');
+			return Redirect::back()->withInput();
+		}
 	}
     
-    public function addLot(){
+    public function addLot()
+    {
+
+		// create the validator
+    	$validator = Validator::make(Input::all(), Lot::$lot_rules);
+
+    	// attempt validation
+    	if ($validator->fails()){
+        	// validation failed, redirect to the post create page with validation errors and old inputs
+    		Session::flash('errorMessage', 'Could not add a new lot - see form errors');
+    		return Redirect::back()->withInput()->withErrors($validator);
+
+    	} else {
+        	// validation succeeded, create and save the post
 
     	$lot = new Lot();
 
@@ -167,6 +204,7 @@ class AdminController extends BaseController {
 
 			Session::flash('successMessage', 'Lot added successfully');
 			return Redirect::action('AdminController@index');
+	    }
     }
 
 }

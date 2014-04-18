@@ -59,9 +59,15 @@ class RegisterController extends BaseController {
         	// validation succeeded, create and save the post
 
     		$user = new User();
+    		$user->customer_number = str_random(6);
     		$user->role_id = User::ROLE_STAND;
 			$user->first_name = Input::get('first_name');
 			$user->last_name = Input::get('last_name');
+			$user->street_address = Input::get('street_address');
+			$user->city = Input::get('city');
+			$user->state = Input::get('state');
+			$user->zip = Input::get('zip');
+			$user->phone_number = Input::get('phone_number');
 			$user->email = Input::get('email');
 			$user->password = Input::get('password');
 
@@ -130,6 +136,10 @@ class RegisterController extends BaseController {
     		$user->role_id = User::ROLE_STAND;
 			$user->first_name = Input::get('first_name');
 			$user->last_name = Input::get('last_name');
+			$user->street_address = Input::get('street_address');
+			$user->city = Input::get('city');
+			$user->state = Input::get('state');
+			$user->zip = Input::get('zip');
 			$user->email = Input::get('email');
 			$user->password = Input::get('password');
 
