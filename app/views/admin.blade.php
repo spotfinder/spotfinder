@@ -1,6 +1,5 @@
 @extends('layouts.master-admin')
 @section('top-script')
-<link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
     <style>
         .col-sm-12{
             margin-left: 25px;
@@ -172,12 +171,12 @@
                                 <a href = "{{{ action('AdminController@edit', $user->id) }}}" class = "edit_user"><i class="fa fa-pencil-square-o"></i></a>
                             </td>
                             <td>
-                                <a href = "#" class = "delete_user"><i class="fa fa-trash-o"></i></a>
-                                {{ Form::open(array('action'=> array('AdminController@destroy', $user->id), 'method' => 'delete', 'id' => 'formDeleteUser'))}}
-                                {{ Form::close() }} 
+                                <a href = "{{{ action ('AdminController@destroy', $user->id) }}}" class = "delete_user"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                        @endforeach
+                                {{ Form::open(array('action'=> array('AdminController@destroy', $user->id), 'method' => 'delete', 'id' => 'formDeleteUser'))}}
+                                {{ Form::close() }} 
                     </tbody>
                  </table>
                </div>
@@ -306,19 +305,10 @@
 
 @stop
 
+
 @section('bottom-script')
-<!-- Bower Components--> 
-<script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
-<script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <!-- Custom JavaScript for the Menu Toggle -->
     <script>
-   
-    $(function () {
-        $('#datetimepicker4').datetimepicker({
-            pickDate: false
-        });
-    });
-
 
     $('.delete_user').on('click', function(e){
         e.preventDefault();
@@ -326,7 +316,6 @@
          $('#formDeleteUser').submit();   
         }
     });
-
 
     $('.delete_reservation').on('click', function(e){
         e.preventDefault();
@@ -336,4 +325,5 @@
     })
     </script>
 @stop
+
 

@@ -42,27 +42,27 @@
 	{{ Form::text('last_name', null, array('class' => 'form-control', 'placeholder' => 'Last Name')) }}</p>
 	</div>
 
-	<div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
+	<div class="form-group {{ $errors->has('street_address') ? 'has-error' : ''}}">
 	<p>{{ Form::label('street_address', 'Street Address') }}
 	{{ Form::text('street_address', null, array('class' => 'form-control', 'placeholder' => 'Street Address')) }}</p>
 	</div>
     
-    <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
+    <div class="form-group {{ $errors->has('city') ? 'has-error' : ''}}">
 	<p>{{ Form::label('city', 'City') }}
 	{{ Form::text('city', null, array('class' => 'form-control', 'placeholder' => 'City')) }}</p>
 	</div>
 
-	<div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
+	<div class="form-group {{ $errors->has('state') ? 'has-error' : ''}}">
 	<p>{{ Form::label('state', 'State') }}
 	{{ Form::text('state', null, array('class' => 'form-control', 'placeholder' => 'State')) }}</p>
 	</div>
 
-	<div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
+	<div class="form-group {{ $errors->has('zip') ? 'has-error' : ''}}">
 	<p>{{ Form::label('zip', 'Zip') }}
 	{{ Form::text('zip', null, array('class' => 'form-control', 'placeholder' => 'Zip')) }}</p>
 	</div>
 
-	<div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
+	<div class="form-group {{ $errors->has('phone_number') ? 'has-error' : ''}}">
 	<p>{{ Form::label('phone_number', 'Phone Number') }}
 	{{ Form::text('phone_number', null, array('class' => 'form-control', 'placeholder' => 'Phone Number')) }}</p>
 	</div>

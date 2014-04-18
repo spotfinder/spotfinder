@@ -15,7 +15,7 @@
 	<link href="{{ URL::to('') }}/css/sb-admin.css" rel="stylesheet">
 	<link rel="stylesheet" href="{{ URL::to('') }}/font-awesome/css/font-awesome.min.css">
 	<!-- Page Specific CSS -->
-	<link rel="stylesheet" href="{{ URL::to('') }}/http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+	<link rel="stylesheet" href="{{ URL::to('') }}/assets/css/morris-0.4.3.min.css">
 	 <!-- Global CSS -->
     <!-- <link rel="stylesheet" href="{{ URL::to('') }}/assets/plugins/bootstrap/css/bootstrap.min.css"> -->
 	<style >
@@ -90,6 +90,17 @@
 
 @yield('content')
     <!-- Fade out error or success messages after forms are submitted -->
+
+	<!-- JavaScript -->
+	<script src="{{ URL::to('') }}/assets/js/jquery-1.10.2.js"></script>
+	<script src="{{ URL::to('') }}/assets/js/bootstrap.js"></script>
+
+	<!-- Page Specific Plugins -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="{{ URL::to('') }}/assets/js/morris/morris-0.4.3.min.js"></script>
+	<script src="{{ URL::to('') }}/assets/js/morris/chart-data-morris.js"></script>
+	<script src="{{ URL::to('') }}/assets/js/tablesorter/jquery.tablesorter.js"></script>
+	<script src="{{ URL::to('') }}/assets/js/tablesorter/tables.js"></script>
     <script type="text/javascript">
 
         $('.alert-success').hide();
@@ -113,17 +124,6 @@
         showMessages();
 
     </script> 
-
-	<!-- JavaScript -->
-	<script src="/assets/js/jquery-1.10.2.js"></script>
-	<script src="/assets/js/bootstrap.js"></script>
-
-	<!-- Page Specific Plugins -->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-	<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-	<script src="/assets/js/morris/chart-data-morris.js"></script>
-	<script src="/assets/js/tablesorter/jquery.tablesorter.js"></script>
-	<script src="/assers/js/tablesorter/tables.js"></script>
 @yield('bottom-script')
   </body>
 </html>
