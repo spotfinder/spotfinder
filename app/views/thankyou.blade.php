@@ -1,6 +1,8 @@
-@extends('layouts.master-view')
-@section('top-script')
+<html>
+<head>
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
     <style>
+  
 		body {
 		    margin-top: 50px;
 			text-align: center;
@@ -21,13 +23,13 @@
 			background-color: #FFF;
 		}
     </style>
-@stop
-@section('content')
+</head>
+<body>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="page-header col-md-10">
-				<h1>Thank you</h1>
+				<h1>Thank you!</h1>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
@@ -36,6 +38,17 @@
 		<div>
             <a href="{{{ action('HomeController@showReservation') }}}"><button class="btn btn-primary">Reserve Another Spot</button></a>
         </div>
+
+ 
+        <p><h3>Thank you for reserving a spot with us. Here are the details of your reservation:</h3></p>
+       
+        	<div class= "text-center">
+	            <h5>Date: {{ $reservation->arrival_date_time}}</h5>
+	            <h5>Lot name: {{ $reservation->lot_name}}</h5>
+	            <h5>Space Number: {{ $reservation->space_number}}</h5>
+	            <h5>Address: {{ $reservation->street_address}} </h5>
+	            <h5>Cost: {{ $reservation->total_cost}}</h5>
+            </div>
                	
 			<!-- <div class="col-md-4"></div>
 			<div class="col-md-4">
@@ -60,4 +73,5 @@
 		
 		<div class="col-md-1"></div>
 	</div>
-@stop
+</body>
+</html>
