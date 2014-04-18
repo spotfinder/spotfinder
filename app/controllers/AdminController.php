@@ -146,21 +146,31 @@ class AdminController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
-		$user = User::findOrFail($id);
-		if (Auth::user()->id != $id) {
-			$user->delete();
-			return Redirect::action('AdminController@index');	
-		} else {
-			Session::flash('errorMessage', 'Error: Action not permitted');
-			return Redirect::back()->withInput();
-		}
+		$type = Input::get('type');
+
+		// type == 'user' OR 'reservation'
+		if ($type == 'user'){
+			$user = User::findOrFail($id);
+			if (Auth::user()->id != $id) {
+				$user->delete();
+				return Redirect::action('AdminController@index');	
+			} else {
+				Session::flash('errorMessage', 'Error: You can\'t delete your account while you are logged in');
+				return Redirect::back()->withInput();
+			}
+		} else{
+		
+			$reservation = Reservation::findOrFail($id);
+			$reservation->delete();
+			return Redirect::action('AdminController@index');
+
+		}	
 	}
     
     public function addLot()
     {
 
-		// create the validator
+		//create the validator
     	$validator = Validator::make(Input::all(), Lot::$lot_rules);
 
     	// attempt validation
@@ -170,7 +180,7 @@ class AdminController extends BaseController {
     		return Redirect::back()->withInput()->withErrors($validator);
 
     	} else {
-        	// validation succeeded, create and save the post
+        	//validation succeeded, create and save the post
 
     	$lot = new Lot();
 
@@ -204,7 +214,7 @@ class AdminController extends BaseController {
 
 			Session::flash('successMessage', 'Lot added successfully');
 			return Redirect::action('AdminController@index');
-	    }
+	     }
     }
 
 }
