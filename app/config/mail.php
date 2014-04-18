@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'spotfindersa@gmail.com', 'name' => 'Spotfinder Web App. We solve your parking problems.'),
+	'from' => array('address' => 'spotspysa@gmail.com', 'name' => 'SpotSpy Web App. We solve your parking problems.'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'spotfindersa@gmail.com',
+	'username' => 'spotspysa@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'BetaSpot',
+	'password' => 'SpotSpyCodeUp',
 
 	/*
 	|--------------------------------------------------------------------------

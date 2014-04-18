@@ -7,7 +7,7 @@
         background-image: url("/assets/images/patterns/pattern-1.png");
         margin-top: 100px;
     } 
-    td, h3 {
+    td, h3, th {
         text-align: center;
     }
     #backButton {
