@@ -260,21 +260,21 @@ class ReservationController extends BaseController {
     	$reservation->total_cost = $selection->total_cost;
     	// Check if space still exists prior to saving 
     	//////////// CAN ONLY TEST ON SERVER /////////////////////////////////////
-    	// $checkIfReservationExists = DB::table('reservations')
-    	// 			->join('lots', 'reservations.area_id', '=', 'lots.area_id')
-    	// 			->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.lot_id', 'lots.street_address', 'lots.cost_per_hour')
-					// ->where('reservations.area_id', '=', $reservation->area_id)
-					// ->where('reservations.arrival_date_time', $reservation->arrival_date_time)
-					// ->where('reservations.departure_date_time', $reservation->departure_date_time)
-					// ->where('reservations.space_number', $reservation->space_number)
-					// ->where('lots.lot_name', $reservation->lot_name)
-     //        		->get();
+    	$checkIfReservationExists = DB::table('reservations')
+    				->join('lots', 'reservations.area_id', '=', 'lots.area_id')
+    				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.lot_id', 'lots.street_address', 'lots.cost_per_hour')
+					->where('reservations.area_id', '=', $reservation->area_id)
+					->where('reservations.arrival_date_time', $reservation->arrival_date_time)
+					->where('reservations.departure_date_time', $reservation->departure_date_time)
+					->where('reservations.space_number', $reservation->space_number)
+					->where('lots.lot_name', $reservation->lot_name)
+            		->get();
 
         
-     //    if (!empty($checkIfReservationExists)){
-     //        	Session::flash('errorMessage', 'This spot has already been reserved during this process.  Please try again.');	
-     //        	return Redirect::action('HomeController@showReservation')->withInput();
-     //    }
+        if (!empty($checkIfReservationExists)){
+            	Session::flash('errorMessage', 'This spot has already been reserved during this process.  Please try again.');	
+            	return Redirect::action('HomeController@showReservation')->withInput();
+        }
         ////////////////////////////////////////////////////////////////////// END OF CHECK
 
 		$reservation->save();
