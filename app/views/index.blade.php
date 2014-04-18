@@ -232,8 +232,7 @@
                             <p class="name">Mike Tamburo</p>
                             <p class="title">Developer</p>
                             <ul class="connect list-inline">
-                                <!-- <li><a href="#" ><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" ><i class="fa fa-linkedin"></i></a></li> -->
+                                <li><a href="mailto:tamburocode@gmail.com" ><i class="fa fa-envelope"></i></a></li>
                                 <li class="row-end"><a href="https://github.com/miketamburo"><i class="fa fa-github"></i></a></li>         
                             </ul>
                         </div><!--//member-->
@@ -358,7 +357,7 @@
                 <div class="intro col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
                     <p>We’d love to hear from you!</p>
                     <ul class="list-unstyled contact-details">
-                        <li><i class="fa fa-envelope"></i><a href="mailto: hello@website.com">spotspysa@gmail.com</a></li>
+                        <li><i class="fa fa-envelope"></i><a href="mailto:spotspysa@gmail.com">spotspysa@gmail.com</a></li>
                         <!-- <li><i class="fa fa-phone-square"></i>0800 123 456</li> -->
                 </div>
             </div><!--//row-->
