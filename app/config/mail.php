@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'spotspysa@gmail.com',
+	'username' => $_ENV['EMAIL_USER'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'SpotSpyCodeUp',
+	'password' => $_ENV['EMAIL_PASS'],
 
 	/*
 	|--------------------------------------------------------------------------

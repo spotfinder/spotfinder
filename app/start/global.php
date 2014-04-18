@@ -58,6 +58,11 @@ App::error(function(Exception $exception, $code)
 	}
 });
 
+App::error(function(ModelNotFoundException $e)
+{
+    return Response::view('errors.404', array(), 404);
+});
+
 // Customized error 404 page.
 App::missing(function($exception)
 {
