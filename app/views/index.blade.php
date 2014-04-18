@@ -158,7 +158,7 @@
                     <p class="intro">SpotSpy is a web app that provides a way for you to reserve a parking space by searching city lots. You can choose an area of the city for a desired arrival and departure time. Then you will be presented with the ability to choose a parking lot based upon availability and cost. Once complete you will have the option to pay and receive a confirmation email and text.</p>
                 </div><!--//content-->
                 <div id="video-container" class="video-container col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
-                     <iframe width="570" height="320" src="//www.youtube.com/embed/sGF6bOi1NfA" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <iframe width="570" height="320" src="//www.youtube.com/embed/lZQJFAMUk1w" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
                 </div><!--//video-->
             </div><!--//row-->
         </div><!--//container-->
