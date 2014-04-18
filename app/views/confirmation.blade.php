@@ -71,7 +71,7 @@
                 </tr>
             </table>
             
-            {{ Form::open(array('action' => 'ReservationController@makePayment', 'role'=>'form')) }}
+            {{ Form::open(array('action' => array('ReservationController@makePayment', $index), 'role'=>'form')) }}
             
 			  <script
 			    src="https://checkout.stripe.com/checkout.js" class="stripe-button"

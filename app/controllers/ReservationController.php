@@ -318,8 +318,15 @@ class ReservationController extends BaseController {
         Session::flash('successMessage', 'Reservation created sucessfully.');
         $data = array(
 			'index' => $index,
-			'order' => $order
+			'order' => $order,
+			'reservation' => $reservation
 		);
+
+		// Send a confirmation email of the reservation to the user 
+		Mail::send('thankyou', $data, function($message){
+        	$message->to(Auth::user()->email)->subject('Your SpotSpy Reservation ');
+        });
+
 		return View::make('thankyou')->with($data);
 	}
 
