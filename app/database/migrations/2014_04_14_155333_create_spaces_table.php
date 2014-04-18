@@ -19,6 +19,7 @@ class CreateSpacesTable extends Migration {
 			$table->integer('lot_id')->unsigned();
 			$table->integer('space_number')->unsigned();
 			$table->tinyInteger('status')->unsigned();
+			$table->timestamps();
 		});
 	}
 

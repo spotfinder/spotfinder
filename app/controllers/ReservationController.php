@@ -16,9 +16,10 @@ class ReservationController extends BaseController {
     public function searchOpenSpaces($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime, $licensePlate){
 
     	$resultsOfOpenSpaces = DB::table('spaces')
-    						->join('lots', 'spaces.area_id', '=', 'lots.area_id')
+    						->join('lots', 'spaces.lot_id', '=', 'lots.lot_id')
     						->select('lots.area_name', 'spaces.area_id', 'lots.lot_name', 'spaces.space_number', 'lots.street_address', 'lots.cost_per_hour', 'spaces.lot_id')
-    						->where('status','=', 0)
+    						->where('spaces.area_id', $requestedArea)
+    						->where('spaces.status','=', 0)
     						->take(5)
     						->get();
     	// calculate the total parking duration (divide by 3600 to get hours format)
@@ -70,18 +71,19 @@ class ReservationController extends BaseController {
     public function solution() {
     	
     	// Take in requested area, dates/times
-    	$requestedArea = Input::get('area');
+    	$requestedArea = intval(Input::get('area'));
     	$requestedArrivalDateTime = Input::get('arrival_date_time');
     	$requestedDepartureDateTime = Input::get('departure_date_time');
     	$licensePlate = Input::get('license_plate_number');
+
 
     	if (strtotime($requestedArrivalDateTime) > strtotime($requestedDepartureDateTime)){
     		Session::flash('errorMessage', "Arrival date and time must be before the selected departure time.  Please try again.");
 			return Redirect::action('HomeController@showReservation')->withInput();
     	}
 
-    	// condition the date and time so as not to change the variable assignment
-    	// NOTE THAT THE DEFAULT UTC IS SET TO - date_default_timezone_set('America/Chicago');
+    	// Condition the date and time so as not to change the variable assignment
+    	// NOTE THAT THE DEFAULT UTC IS SET TO - date_default_timezone_set('America/Chicago'); FOR THE DEMO VERSION
     	$currentDateTime = strtotime(date('m/d/Y h:i:s a', time()));
     	$arrivalTime = strtotime($requestedArrivalDateTime);
 
@@ -92,6 +94,7 @@ class ReservationController extends BaseController {
 
     	// calculate the total parking duration (divide by 3600 to get hours format)
     	$duration = (strtotime($requestedDepartureDateTime) - strtotime($requestedArrivalDateTime))/3600;
+    	
     	// call function searchOpenSpaces to find spaces with a status of 0 ('open')
     	$resultsOfOpenSpaces = $this->searchOpenSpaces($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime, $licensePlate);
 
@@ -99,7 +102,7 @@ class ReservationController extends BaseController {
 		if (sizeof($resultsOfOpenSpaces) > 0){
 
 			Session::flash('successMessage', 'We found some options for you.');
-			// the results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
+			// The results of the reservation search ($reservedSpaces) should be passed to the results (aka search) view
 			$results = $resultsOfOpenSpaces;
 
 			Session::put('results', $results);
@@ -137,10 +140,12 @@ class ReservationController extends BaseController {
 				return View::make('search')->with('results', $results);
             }
 
-			// query reservation table for parking spaces in the desired area where requested arrival time is after any already booked departure space times and where the desired departure time is before any already booked arrival times. 
+			// Query the reservation table for parking spaces in the desired area where requested arrival time is after any already 
+			// booked departure space times and where the desired departure time is before any already booked arrival times. 
 			$reservedSpaces = $this->searchReservations($requestedArea, $requestedArrivalDateTime, $requestedDepartureDateTime);
 
-    		// get results of reservations query and count them.  If query result is zero, send the user a message - sorry, there are no space that meet your criteria.  Please return to the reservation make to change your search criteria.
+    		// Get the results of reservations query and count them.  If query result is zero, send the user a message 
+    		// sorry, there are no space that meet your criteria.  Please return to the reservation make to change your search criteria.
     		if (sizeof($reservedSpaces) == 0){
     			Session::flash('errorMessage', 'No available parking spaces matched your search criteria.  Please amend your search and try again.');
 				return Redirect::action('HomeController@showReservation')->withInput();
@@ -156,7 +161,7 @@ class ReservationController extends BaseController {
 		}
 
     	return View::make('search');
-    } //THIS IS THE END OF THE PUBLIC SOLUTION FUNCTION
+    } //THIS IS THE END OF THE PUBLIC SOLUTION FUNCTION ////////////////////////////////////////////////////////////////
 
 	/**
 	 * Display a listing of the resource.
@@ -182,7 +187,8 @@ class ReservationController extends BaseController {
 	{
 		$reservation = new Reservation;
 		return View::make('reservation');
-		/// PLACEHOLDER -- MIGHT NEED TO ADD/PASS OTHER TABLE INFO !!!!!!!!!!!!!!!!!!!!!!!!
+		/// FOR FUTURE USE - Create a reservation but do not take payment right away. 
+		/// Possible attach with chron to expire in 24 hours
 	}
 
 	/**
@@ -192,7 +198,7 @@ class ReservationController extends BaseController {
 	 */
 	public function store()
 	{
-
+		///// FOR FUTURE USE - DEMO VERSTION TAKES USER STRAIGHT TO PAYMENT IN TEST MODE
 		// create the validator
     	$validator = Validator::make(Input::all(), Reservation::$rules);
 
@@ -232,37 +238,80 @@ class ReservationController extends BaseController {
 
 		$reservation = new Reservation();
 		$reservation->customer_number = Auth::user()->id;
-		// $reservation->reservation_number = $selection->license_plate_number; ///// ADD RANDOM GENERATION TO BEGINNING
-  //   	$reservation->license_plate_number = $selection->license_plate_number;
+		// $reservation->reservation_number = $selection->XXXXXXXXXX; ///// ADD RANDOM GENERATION TO BEGINNING
+    	$reservation->license_plate_number = $selection->license_plate_number;
     	/////////////////////////////////////////////////////////////////////////////////////
-    	// $reservation->lot_id = $selection->lot_id; /// ADD to reservation????
+    	
     	$reservation->area_id = $selection->area_id;
     	$reservation->lot_name = $selection->lot_name;
     	$reservation->space_number = $selection->space_number;
     	$reservation->street_address = $selection->street_address;
     	// $reservation->city = ;
     	// $reservation->state = ;
-    	// $reservation->zip = ;
-    	// $reservation->phone = ;
+    	// $reservation->zip = ; 
+    	
     	$reservation->arrival_date_time = $selection->arrival;
     	$reservation->departure_date_time = $selection->departure;
-    	// $reservation->durationTime = $selection->$duration; 	// THIS LINE CREATES AN ERROR IF UNCOMMENTED
+    	$reservation->duration_time = (strtotime($selection->departure) - strtotime($selection->arrival))/3600; 	// THIS LINE CREATES AN ERROR IF UNCOMMENTED
+
+
     	$reservation->cost = $selection->cost_per_hour;
 
-    	$reservation->total_cost = $selection->total_cost;  
-
-		$reservation->save();
-		Session::flush();
-		// DB::table('spaces')
-  //           	->where('lot_id', )
-  //           	->where('space_number', $reservation->space_number)
-  //           	->update(array('status' => 1));
+    	$reservation->total_cost = $selection->total_cost;
+    	// Check if space still exists prior to saving 
+    	//////////// CAN ONLY TEST ON SERVER /////////////////////////////////////
+    	$checkIfReservationExists = DB::table('reservations')
+    				->join('lots', 'reservations.area_id', '=', 'lots.area_id')
+    				->select('lots.area_name', 'reservations.lot_name', 'reservations.space_number', 'lots.lot_id', 'lots.street_address', 'lots.cost_per_hour')
+					->where('reservations.area_id', '=', $reservation->area_id)
+					->where('reservations.arrival_date_time', $reservation->arrival_date_time)
+					->where('reservations.departure_date_time', $reservation->departure_date_time)
+					->where('reservations.space_number', $reservation->space_number)
+					->where('lots.lot_name', $reservation->lot_name)
+            		->get();
 
         
+        if (!empty($checkIfReservationExists)){
+            	Session::flash('errorMessage', 'This spot has already been reserved during this process.  Please try again.');	
+            	return Redirect::action('HomeController@showReservation')->withInput();
+        }
+        ////////////////////////////////////////////////////////////////////// END OF CHECK
+
+		$reservation->save();
+
+		// Turned space status to NOT AVAILABLE
+		DB::table('spaces')
+            	->where('lot_id', $selection->lot_id)
+            	->where('space_number', $reservation->space_number)
+            	->update(array('status' => 1));
+
+        
+		// Session::flush();
         Session::flash('successMessage', 'Reservation created sucessfully.');
 		return View::make('thankyou');
 	}
 
+	/**
+	 * Display the specified resource.
+	 *
+	 */
+	// public function pending()  ////////////////////////// code to add a pending status
+	// search view will direct here and this will then direct to HomeController@showConfirmation
+	// NEED TO ADD METHOD TO TURN STATUS BACK TO ANOTHER STATUS IF NOT RESERVED
+	// {	
+	// 	$index = intval(Input::get('pick_me'));
+	// 	$order = Session::get('results');
+		
+	// 	$selection = $order[$index];
+
+	// 	DB::table('spaces')
+ //            	->where('lot_id', $selection->lot_id)
+ //            	->where('space_number', $selection->space_number)
+ //            	->update(array('status' => 3));
+
+	// 	return Redirect::action('HomeController@showConfirmation');
+	// 	////////// FOR FUTURE USE
+	// }
 	/**
 	 * Display the specified resource.
 	 *
@@ -286,7 +335,7 @@ class ReservationController extends BaseController {
 	{
 		$reservation = Reservation::findOrFail($id);
 		return View::make('reservation');
-		//////////// NOT PERFECT YET NEED OTHER TABLE DATA
+		//////////// FOR FUTURE USE
 	}
 
 	/**
@@ -314,12 +363,10 @@ class ReservationController extends BaseController {
 			
 			$reservation->departure_date_time = Input::get('departure_date_time');
 			
-			
-			// example
 			$reservation->save();
 			Session::flash('successMessage', 'Reservation updated successfully');
 			return View::make('HomeController@showConfirmation');
-			// change the redirect action to your desired page
+			
 		}
 
 	}

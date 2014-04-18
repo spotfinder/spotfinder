@@ -48,7 +48,14 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+	if (Config::get('app.debug') === true){
+		Log::error($exception);		
+	}
+	else
+	{
+		Log::error($exception->getMessage());
+		return Response::view('errors.500', array(), 500);
+	}
 });
 
 // Customized error 404 page.
