@@ -104,7 +104,7 @@
                   </div>
                   <div class="col-xs-6 text-right">
                     <p class="announcement-heading">{{ Space::totalCount()}}</p>
-                    <p class="announcement-text"> Spaces Occupied</p>
+                    <p class="announcement-text"> Existing Spaces</p>
                   </div>
                 </div>
               </div>
