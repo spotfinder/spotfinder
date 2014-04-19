@@ -69,6 +69,9 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{{ action('HomeController@showReservation') }}}">Reserve a spot!</a></li>
                                 <li><a href="{{{ action('RegisterController@index') }}}">Edit My Account</a></li>
+                            @if (Auth::user()->isAdmin())   
+                                    <li><a href="{{{ action('AdminController@index') }}}">Admin Dashboard</a></li>
+                            @endif
                                 <li><a href="{{{ action('HomeController@logout') }}}">Logout ({{{ Auth::user()->first_name }}})</a></li>
                             </ul>
                             </li>

@@ -1,9 +1,9 @@
 @extends('layouts.master-view')
 	<style>
 		div #error{
-         	margin-left: 40px;
-         	height: 500px;
-         	width: 1060px;
+         	margin: center;
+         	height: 90%;
+         	width: 90%;
 		}
 	</style>
 @section('content')
