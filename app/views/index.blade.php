@@ -173,7 +173,7 @@
                 <div class="faq-col col-md-6 col-sm-6 col-xs-12">
                     <div class="item">
                         <h3 class="question"><i class="fa fa-question-circle"></i>How do I reserve a spot?</h3>
-                        <p class="answer">Just <a href="{{{action('RegisterController@index')}}}">signup</a> and head on over to <a href="{{{ action('HomeController@showReservation') }}}">spotfinder.dev/reserve</a> to get the best spot in the lot! You can pick an area of the city, which lot is closest to your destination and your arrival and departure time. We will then generate some options that best suite your needs. Pick one and hit that pay button! We will send you a confirmation email and text with all the info. Now all you have to do is park!</p>
+                        <p class="answer">Just <a href="{{{action('RegisterController@index')}}}">signup</a> and head on over to <a href="{{{ action('HomeController@showReservation') }}}">spotspy.us/reserve</a> to get the best spot in the lot! You can pick an area of the city, which lot is closest to your destination and your arrival and departure time. We will then generate some options that best suite your needs. Pick one and hit that pay button! We will send you a confirmation email and text with all the info. Now all you have to do is park!</p>
                     </div><!--//item-->
                     <div class="item">
                         <h3 class="question"><i class="fa fa-question-circle"></i>What happens if someone is in my spot?</h3>
@@ -187,7 +187,7 @@
                 <div class="faq-col col-md-6 col-sm-6 col-xs-12">
                     <div class="item">
                         <h3 class="question"><i class="fa fa-question-circle"></i>How does SpotSpy know what spots are available?</h3>
-                        <p class="answer">While we cant give away the secret sauce, we can tell you that we do a massive search in our database that compares lots and spaces with times and dates. It's pretty cool if your into geeky stuff. Take a short moment and thank Mike the guy who worked his butt off to give you this luxury!</p>
+                        <p class="answer">While we can't give away the secret sauce, we can tell you that we do a massive search in our database that compares lots and spaces with times and dates. It's pretty cool if your into geeky stuff. Take a short moment and thank Mike the guy who worked his butt off to give you this luxury!</p>
                     </div><!--//item-->
                     <div class="item">
                         <h3 class="question"><i class="fa fa-question-circle"></i>Can I add my parking lots to SpotSpy?</h3>

@@ -10,5 +10,5 @@
   <div>
     <img id="error" src = "/img/error.png">
   </div>
-    <div class = "text-center"><a href = "http://spotfinder.dev/" > Go Home</a></div>
+    <div class = "text-center"><a href = "{{{ action('HomeController@showHome') }}}" > Go Home</a></div>
 @stop
