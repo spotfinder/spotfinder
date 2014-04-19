@@ -47,7 +47,7 @@
 	            <h5>Lot Name: {{ $reservation->lot_name}}</h5>
 	            <h5>Space Number: {{ $reservation->space_number}}</h5>
 	            <h5>Address: {{ $reservation->street_address}} </h5>
-	            <h5>Cost: {{ $reservation->total_cost}}</h5>
+	            <h5>Cost: ${{ $reservation->total_cost}}</h5>
             </div>
                	
 			<div class="col-md-4"></div>
