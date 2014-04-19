@@ -76,7 +76,7 @@
 			</ol>
 			<div class="alert alert-success alert-dismissable">
 			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			  Welcome to SpotFinder {{Auth::user()->first_name}} {{Auth::user()->last_name}}!
+			  Welcome to SpotSpy {{Auth::user()->first_name}} {{Auth::user()->last_name}}!
 			</div>
 		  </div>
 		</div><!-- /.row -->
