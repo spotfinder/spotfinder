@@ -78,7 +78,7 @@ class RegisterController extends BaseController {
 
 			// Send a Welcome email to the new user
 			Mail::send('welcome', array('first_name'=>Input::get('first_name')), function($message){
-            $message->to(Input::get('email'), Input::get('first_name').' '.Input::get('last_name'))->subject('Welcome to the Spotfinder Web App. We are dedicated to make your life much easier!');
+            $message->to(Input::get('email'), Input::get('first_name').' '.Input::get('last_name'))->subject('Welcome to SpotSpy. We are dedicated to make your life much easier!');
             });
 
 			return Redirect::action('HomeController@showLogin');

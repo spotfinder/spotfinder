@@ -14,6 +14,6 @@ return array(
 	*/
 
 	'debug' => true,
-
+	'url' => 'http://spotfinder.dev'
 
 );
