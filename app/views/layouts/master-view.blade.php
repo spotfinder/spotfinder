@@ -39,7 +39,7 @@
             <h1 class="logo pull-left">
                 <a class="scrollto" href="#promo">
                     <img id="logo-image" class="logo-image" src="{{ URL::to('') }}/assets/images/logo/magnifying-glass.gif" alt="Logo">
-                    <span class="logo-title"><a href="http://spotfinder.dev/">SpotSpy</a></span>
+                    <span class="logo-title"><a href="{{{ action('HomeController@showHome') }}}">SpotSpy</a></span>
                 </a>
             </h1><!--//logo-->              
             <nav id="main-nav" class="main-nav navbar-right" role="navigation">
@@ -54,17 +54,20 @@
                 <div class="navbar-collapse collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active nav-item sr-only"><a class="scrollto" href="#promo">Home</a></li>
-                        <li class="nav-item"><a href="http://spotfinder.dev/#features">Features</a></li>
-                        <li class="nav-item"><a href="http://spotfinder.dev/#how">How it works</a></li>
-                        <li class="nav-item"><a href="http://spotfinder.dev/#faq">FAQ</a></li>
-                        <li class="nav-item"><a href="http://spotfinder.dev/#story">Story</a></li>
-                        <li class="nav-item last"><a href="http://spotfinder.dev/#contact">Contact</a></li>
+                        <li class="nav-item"><a href="{{ URL::to('') }}/#features">Features</a></li>
+                        <li class="nav-item"><a href="{{ URL::to('') }}/#how">How it works</a></li>
+                        <li class="nav-item"><a href="{{ URL::to('') }}/#faq">FAQ</a></li>
+                        <li class="nav-item"><a href="{{ URL::to('') }}/#story">Story</a></li>
+                        <li class="nav-item last"><a href="{{ URL::to('') }}/#contact">Contact</a></li>
                         <li class="dropdown">
                         @if (Auth::check())
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">MY ACCOUNT<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{{ action('HomeController@showReservation') }}}">Reserve a spot!</a></li>
                                 <li><a href="{{{ action('RegisterController@index') }}}">Edit My Account</a></li>
+                                @if (Auth::user()->isAdmin())   
+                                    <li><a href="{{{ action('AdminController@index') }}}">Admin Dashboard</a></li>
+                                @endif
                                 <li><a href="{{{ action('HomeController@logout') }}}">Logout ({{{ Auth::user()->first_name }}})</a></li>
                             </ul>
                             </li>
