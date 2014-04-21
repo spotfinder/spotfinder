@@ -29,7 +29,7 @@
                 </div><!--//overview-->
                 
                 <!--// iPhone starts -->
-                <div class="phone iphone iphone-black col-md-4 col-sm-12 col-xs-12 ">
+                <div class="phone iphone iphone-white col-md-4 col-sm-12 col-xs-12 ">
                     <div class="iphone-holder phone-holder">
                         <div class="iphone-holder-inner">
                             <div class="slider flexslider">
@@ -402,7 +402,7 @@
     </footer><!--//footer-->
     
     <!-- *****CONFIGURE STYLE****** -->  
-    <div class="config-wrapper">
+<!--      <div class="config-wrapper">
         <div class="config-wrapper-inner">
             <a id="config-trigger" class="config-trigger" href="#"><i class="fa fa-cog"></i></a>
             <div id="config-panel" class="config-panel">
@@ -422,7 +422,7 @@
                     <li class="theme-9"><a data-style="assets/css/styles-9.css" data-logo="assets/images/logo/logo-9.png" href="#"></a></li>
                     <li class="theme-10"><a data-style="assets/css/styles-10.css" data-logo="assets/images/logo/logo-10.png" href="#"></a></li>
                     
-                </ul><!--//color-options-->
+                </ul> --><!--//color-options
                 <h5 class="device-title">Choose Device</h5>
                 <ul id="device-options" class="list-unstyled">
                     <li class="default active"><a data-class="iphone-black" data-type="iphone" href="#">iPhone Black</a></li>
@@ -431,7 +431,7 @@
                     <li><a data-class="ipad-black" data-type="ipad" href="#">iPad Black</a></li>
                     <li><a data-class="android" data-type="android" href="#">Android</a></li>
                 </ul>
-                <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
+                <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a> -->
             </div><!--//configure-panel-->
         </div><!--//config-wrapper-inner-->
     </div><!--//config-wrapper-->
