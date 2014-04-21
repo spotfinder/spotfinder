@@ -94,7 +94,7 @@ class HomeController extends BaseController {
     
     public function sendConfirmation() {
       
-    	Twilio::message('2102372042', 'Thank you for reserving a spot with us!');
+    	Twilio::message('2102372042', 'Thank you for reserving a spot with us, check your email for more info!');
     	Session::flash('phone', 'phone number');
     	// return Redirect::action('ReservationController@makePayment');
     	return Redirect::action('HomeController@showHome');
